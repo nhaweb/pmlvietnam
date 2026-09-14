@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+/* Design tokens — PML Vietnam Landing (mục 0) */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f7f5f2;
+  --cta-orange: #f97316;
+  /* #1E293B thay #0B1F3A — logo "Web" navy đọc rõ hơn trên footer */
+  --footer-navy: #1e293b;
+  --logo-nha: #f97316;
+  --logo-web: #0b1f3a;
+  --foreground: #0b1f3a;
+  --muted: #6b7280;
+  --card-border: #e8e4de;
+  --card-bg: #ffffff;
+  /* Content max-width: 1280px default; 1536px from 2xl viewport */
+  --site-max: 80rem; /* 1280px */
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --site-max: 96rem; /* 1536px */
+  }
+}
+
+@utility max-w-site {
+  max-width: var(--site-max);
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-cta: var(--cta-orange);
+  --color-footer: var(--footer-navy);
+  --color-logo-nha: var(--logo-nha);
+  --color-logo-web: var(--logo-web);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card-border: var(--card-border);
+  --color-card: var(--card-bg);
+
+  /* Encode Sans Expanded ≈ Surt Expanded (chưa có license Surt) */
+  --font-sans: var(--font-display);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--foreground);
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--cta-orange) 28%, white);
+  color: var(--foreground);
+}
+
+/* Shared hover motion — same ease in and out so scale/lift doesn't snap */
+:root {
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --hover-duration: 600ms;
+}
+
+@utility hover-lift {
+  transition:
+    transform var(--hover-duration) var(--ease-smooth),
+    box-shadow var(--hover-duration) var(--ease-smooth),
+    border-color var(--hover-duration) var(--ease-smooth),
+    background-color var(--hover-duration) var(--ease-smooth);
+}
+
+@utility img-zoom {
+  transform: translate3d(0, 0, 0) scale(1);
+  transform-origin: center center;
+  backface-visibility: hidden;
+  transition: transform var(--hover-duration) var(--ease-smooth);
+}
+
+.group:hover .img-zoom,
+.group\/zoom:hover .img-zoom,
+.group:focus-within .img-zoom {
+  transform: translate3d(0, 0, 0) scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift {
+    transition: none;
+  }
+
+  .img-zoom,
+  .group:hover .img-zoom,
+  .group\/zoom:hover .img-zoom,
+  .group:focus-within .img-zoom {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Interactive affordance — browsers often leave button cursor as default */
+a[href],
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+input[type="button"]:not(:disabled),
+input[type="submit"]:not(:disabled),
+input[type="reset"]:not(:disabled),
+label[for],
+select:not(:disabled),
+summary {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* Contact form modal — open animation */
+@keyframes contact-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes contact-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+dialog.contact-form-dialog[open]::backdrop {
+  animation: contact-backdrop-in 280ms ease-out both;
+}
+
+dialog.contact-form-dialog[open] > [data-contact-panel] {
+  animation: contact-panel-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.contact-form-dialog[open]::backdrop,
+  dialog.contact-form-dialog[open] > [data-contact-panel] {
+    animation: none;
+  }
+}
+
+/* ProcessSection — gentle float up/down per step */
+@keyframes process-float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.process-float {
+  animation: process-float-y 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-float {
+    animation: none;
+  }
+}
+
+/* PremiumServicesSection — cam ngã bóng (ref vinahost.vn title card) + soft lift */
+.premium-service-pill {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0.12) 38%,
+      rgba(255, 255, 255, 0) 55%
+    ),
+    linear-gradient(135deg, #ffb347 0%, #f97316 48%, #ea580c 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(194, 65, 12, 0.22),
+    0 6px 18px rgba(249, 115, 22, 0.32);
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-service-pill:hover,
+.premium-service-pill:focus-visible {
+  transform: translateY(-3px) scale(1.045);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(194, 65, 12, 0.2),
+    0 12px 28px rgba(249, 115, 22, 0.42);
+  filter: brightness(1.06);
+}
+
+.premium-service-pill:active {
+  transform: translateY(-1px) scale(1.02);
+  transition-duration: 160ms;
+}
+
+.premium-service-pill__icon {
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-service-pill:hover .premium-service-pill__icon,
+.premium-service-pill:focus-visible .premium-service-pill__icon {
+  transform: translateX(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-service-pill,
+  .premium-service-pill__icon {
+    transition: none;
+  }
+
+  .premium-service-pill:hover,
+  .premium-service-pill:focus-visible,
+  .premium-service-pill:active {
+    transform: none;
+    filter: brightness(1.04);
+  }
+
+  .premium-service-pill:hover .premium-service-pill__icon,
+  .premium-service-pill:focus-visible .premium-service-pill__icon {
+    transform: none;
+  }
+}
+
+/* ServicesContactSection — slow globe spin (left backdrop) */
+@keyframes services-globe-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.services-globe {
+  animation: services-globe-spin 80s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-globe {
+    animation: none;
+  }
+}
+
+/* Header mobile — panel + item enter */
+@keyframes mobile-nav-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobile-nav-child-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-nav-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-nav-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+  box-shadow: 0 16px 32px -12px rgb(11 31 58 / 0.22);
+}
+
+.mobile-nav-panel__inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mobile-nav-panel[data-open="true"] .mobile-nav-panel__inner {
+  overflow-y: auto;
+  max-height: calc(100dvh - 5rem);
+}
+
+@media (min-width: 640px) {
+  .mobile-nav-panel[data-open="true"] .mobile-nav-panel__inner {
+    max-height: calc(100dvh - 6rem);
+  }
+}
+
+.mobile-nav-panel[data-open="true"] .mobile-nav-item {
+  animation: mobile-nav-item-in 340ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.mobile-nav-submenu {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-nav-submenu[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.mobile-nav-submenu__inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mobile-nav-submenu[data-open="true"] .mobile-nav-child {
+  animation: mobile-nav-child-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav-panel,
+  .mobile-nav-submenu {
+    transition: none;
+  }
+
+  .mobile-nav-panel[data-open="true"] .mobile-nav-item,
+  .mobile-nav-submenu[data-open="true"] .mobile-nav-child {
+    animation: none;
+  }
+}
+
+/* Phone CTA bot — gentle float */
+@keyframes bot-float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.bot-float {
+  animation: bot-float-y 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bot-float {
+    animation: none;
+  }
+}
