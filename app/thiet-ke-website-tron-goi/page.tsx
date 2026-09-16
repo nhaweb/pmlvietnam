@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ServiceLandingPage } from "@/components/sections/ServiceLandingPage";
+import { pageMetadata } from "@/lib/seo";
 import {
   customWebsiteCostContent,
   customWebsiteDetailsContent,
@@ -10,11 +11,12 @@ import {
   customWebsiteWhyChooseContent,
 } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "Thiết kế website theo yêu cầu | PML Vietnam",
+export const metadata: Metadata = pageMetadata({
+  title: "Thiết kế website theo yêu cầu",
   description:
     "Thiết kế website theo yêu cầu, độc quyền giao diện — tùy chỉnh tính năng, tối ưu trải nghiệm, dễ mở rộng cùng PML Vietnam.",
-};
+  path: "/thiet-ke-website-tron-goi",
+});
 
 export default function ThietKeWebsiteTheoYeuCauPage() {
   return (

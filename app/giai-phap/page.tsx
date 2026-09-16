@@ -6,6 +6,7 @@ import { SolutionNeedsSection } from "@/components/sections/SolutionNeedsSection
 import { SolutionProjectsSection } from "@/components/sections/SolutionProjectsSection";
 import { WhyChooseSection } from "@/components/sections/WhyChooseSection";
 import { Reveal } from "@/components/ui/Reveal";
+import { pageMetadata } from "@/lib/seo";
 import {
   solutionPageContent,
   websiteFeaturesComparisonContent,
@@ -13,10 +14,13 @@ import {
   whyChooseContent,
 } from "@/lib/site-config";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: solutionPageContent.meta.title,
   description: solutionPageContent.meta.description,
-};
+  path: "/giai-phap",
+  image: solutionPageContent.banner.image.src,
+  imageAlt: solutionPageContent.banner.image.alt,
+});
 
 export default function GiaiPhapPage() {
   return (
@@ -36,19 +40,18 @@ export default function GiaiPhapPage() {
       </Reveal>
       <Reveal>
         <div className=" bg-bg-secondary">
-        <CareWorkDetailsSection
-          content={websitePackageComparisonContent}
-          showToggle={false}
-        />
+          <CareWorkDetailsSection
+            content={websitePackageComparisonContent}
+            showToggle={false}
+          />
         </div>
-        
       </Reveal>
       <Reveal>
-          <CareWorkDetailsSection
-            content={websiteFeaturesComparisonContent}
-            showToggle={false}
-            bgColor="bg-white"
-          />
+        <CareWorkDetailsSection
+          content={websiteFeaturesComparisonContent}
+          showToggle={false}
+          bgColor="bg-white"
+        />
       </Reveal>
       <Reveal>
         <ServicesContactSection

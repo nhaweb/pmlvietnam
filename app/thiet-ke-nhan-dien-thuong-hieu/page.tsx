@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { ServiceLandingPage } from "@/components/sections/ServiceLandingPage";
+import { pageMetadata } from "@/lib/seo";
 import { brandingServiceContent, brandingWorkComparisonContent } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "Thiết kế nhận diện thương hiệu | PML Vietnam",
+export const metadata: Metadata = pageMetadata({
+  title: "Thiết kế nhận diện thương hiệu",
   description:
     "Thiết kế logo và nhận diện thương hiệu đồng bộ với website — màu sắc, typography, ứng dụng thực tế tại PML Vietnam.",
-};
+  path: "/thiet-ke-nhan-dien-thuong-hieu",
+});
 
 export default function ThietKeNhanDienThuongHieuPage() {
   return (

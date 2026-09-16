@@ -2074,7 +2074,7 @@ export type SolutionProjectItem = {
 
 export const solutionPageContent = {
   meta: {
-    title: "Giải pháp thiết kế & vận hành website | PML Vietnam",
+    title: "Giải pháp thiết kế & vận hành website",
     description:
       "Thiết kế và vận hành website chuyên nghiệp, chuẩn SEO, hiển thị tốt trên mọi thiết bị. Để lại thông tin để PML Vietnam tư vấn giải pháp phù hợp.",
   },

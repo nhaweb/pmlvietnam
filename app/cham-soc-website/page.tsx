@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { ServiceLandingPage } from "@/components/sections/ServiceLandingPage";
+import { pageMetadata } from "@/lib/seo";
 import { careServiceContent } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "Chăm sóc website | PML Vietnam",
+export const metadata: Metadata = pageMetadata({
+  title: "Chăm sóc website",
   description:
     "Dịch vụ chăm sóc website: bảo trì, bảo mật, sao lưu và hỗ trợ cập nhật nội dung cùng PML Vietnam.",
-};
+  path: "/cham-soc-website",
+});
 
 export default function ChamSocWebsitePage() {
   return (

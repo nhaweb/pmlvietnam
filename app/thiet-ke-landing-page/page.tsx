@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { ServiceLandingPage } from "@/components/sections/ServiceLandingPage";
+import { pageMetadata } from "@/lib/seo";
 import { landingPageServiceContent } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "Thiết kế Landing page | PML Vietnam",
+export const metadata: Metadata = pageMetadata({
+  title: "Thiết kế Landing page",
   description:
     "Thiết kế landing page tập trung chuyển đổi, tối ưu tốc độ, sẵn sàng chạy quảng cáo tại PML Vietnam.",
-};
+  path: "/thiet-ke-landing-page",
+});
 
 export default function ThietKeLandingPagePage() {
   return (

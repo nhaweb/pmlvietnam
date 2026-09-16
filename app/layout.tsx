@@ -8,6 +8,17 @@ import { DefaultPageExtras } from "@/components/layout/DefaultPageExtras";
 import { FloatingContactIcons } from "@/components/layout/FloatingContactIcons";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_OG_IMAGE,
+  DEFAULT_TITLE,
+  SITE_NAME,
+  SITE_URL,
+  absoluteUrl,
+  organizationJsonLd,
+  websiteJsonLd,
+} from "@/lib/seo";
 import "./globals.css";
 
 /* Closest free alternative to Surt Expanded (perpetualny.com) — có subset Vietnamese */
@@ -19,9 +30,48 @@ const encodeSansExpanded = Encode_Sans_Expanded({
 });
 
 export const metadata: Metadata = {
-  title: "PML Vietnam | Giải pháp website, Chuyển đổi số cùng doanh nghiệp",
-  description:
-    "PML Vietnam thiết kế website chuyên nghiệp, chuẩn SEO và cung cấp hệ sinh thái chuyển đổi số toàn diện, giúp doanh nghiệp bứt phá doanh thu môi trường số.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "thiết kế website",
+    "website chuẩn SEO",
+    "PML Vietnam",
+    "chuyển đổi số",
+    "landing page",
+    "chăm sóc website",
+  ],
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    siteName: SITE_NAME,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE,
+        alt: `${SITE_NAME} — giải pháp website chuyên nghiệp`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [absoluteUrl(DEFAULT_OG_IMAGE)],
+  },
   verification: {
     other: {
       "facebook-domain-verification": "r262f7qlxtdsgl8nf4kg4vekrjzxn6",
@@ -42,6 +92,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -55,6 +109,8 @@ export default function RootLayout({
       className={`${encodeSansExpanded.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-bg-primary text-foreground">
+        <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={websiteJsonLd()} />
         <AnalyticsScripts />
         <Suspense fallback={null}>
           <AnalyticsTracker />
