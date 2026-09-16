@@ -11,6 +11,9 @@ primary_region = 'sin'
 [env]
   HOSTNAME = '0.0.0.0'
   PORT = '8080'
+  NEXT_PUBLIC_SITE_URL = 'https://pmlvietnam.vn'
+  NEXT_PUBLIC_META_PIXEL_ID = '1458756179420493'
+  NEXT_PUBLIC_GOOGLE_TAG_ID = 'G-B5CPN73ZCZ'
 
 [http_service]
   internal_port = 8080
