@@ -13,4 +13,7 @@ const nextConfig: NextConfig = {
 
 export default nextConfig;
 
-initOpenNextCloudflareForDev();
+// Only for local next dev with Cloudflare bindings — skip in Docker/Fly production.
+if (process.env.NODE_ENV !== "production") {
+  initOpenNextCloudflareForDev();
+}
