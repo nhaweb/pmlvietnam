@@ -992,6 +992,13 @@ export const productsPageContent = {
     width: 1920,
     height: 500,
   },
+  /** Banner mobile riêng — `/mau-giao-dien/baner_mau_giao_dien_mobile.webp` (768×768). */
+  bannerMobile: {
+    src: "/mau-giao-dien/baner_mau_giao_dien_mobile.webp",
+    alt: "Mẫu giao diện website PML Vietnam trên nền cam thương hiệu",
+    width: 768,
+    height: 768,
+  },
   allFilterLabel: "Tất cả",
   emptyFilterMessage: "Chưa có mẫu trong nhóm ngành này.",
   registerHint: "Chọn mẫu để xem chi tiết và đăng ký triển khai",
