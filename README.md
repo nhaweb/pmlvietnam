@@ -1,6 +1,6 @@
 # PML Vietnam
 
-Next.js landing page deployed to Cloudflare Workers via `@opennextjs/cloudflare`.
+Next.js landing page. Production chạy trên [Fly.io](https://fly.io) (app `pmlvietnam`, region `sin`).
 
 ## Local development
 
@@ -11,22 +11,98 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+Copy `.env.example` → `.env.local` rồi điền key. Không commit file `.env*`.
+
 ## Email (Resend)
 
-Contact forms POST to `/api/contact`, which sends mail via Resend.
+Contact form POST tới `/api/contact`, gửi mail qua Resend.
 
-1. Copy `.env.example` → `.env.local` (Next.js) and `.dev.vars` (Wrangler preview).
-2. Set `RESEND_API_KEY` from the Resend dashboard. Do not commit it.
-3. `CONTACT_TO_EMAIL` is the inbox that receives leads. Resend's test sender can only deliver to the Resend account email until you verify a domain.
-4. Optional `RESEND_FROM_EMAIL` — after verifying `nhaweb.vn` on Resend, set it to `PML Vietnam <noreply@nhaweb.vn>` and point `CONTACT_TO_EMAIL` at `hoangviet1807@gmail.com`.
+1. Set `RESEND_API_KEY` từ dashboard Resend.
+2. `CONTACT_TO_EMAIL` là inbox nhận lead. Sender test của Resend chỉ gửi được tới email tài khoản Resend cho đến khi verify domain.
+3. Optional `RESEND_FROM_EMAIL` — sau khi verify `nhaweb.vn` trên Resend, set `PML Vietnam <noreply@nhaweb.vn>` và trỏ `CONTACT_TO_EMAIL` tới inbox thật.
 
-For Cloudflare production, put the API key in an encrypted Worker secret (not `wrangler.jsonc`):
+## Deploy lên Fly.io
+
+App, region, port và biến public đã có trong `fly.toml` + `Dockerfile`. Không chạy `fly launch` lại (sẽ ghi đè config).
+
+`npm run deploy` là lệnh Cloudflare, **không** deploy Fly. Dùng `fly deploy`.
+
+### 1. Cài `flyctl` và đăng nhập
 
 ```bash
-npx wrangler secret put RESEND_API_KEY
+# Windows (PowerShell)
+powershell -Command "iwr https://fly.io/install.ps1 -useb | iex"
+
+# macOS / Linux
+curl -L https://fly.io/install.sh | sh
 ```
 
-## Cloudflare Workers
+```bash
+fly auth login
+fly apps list
+```
+
+Xác nhận app `pmlvietnam` hiện trong list.
+
+### 2. Secrets (chỉ cần làm một lần, hoặc khi xoay key)
+
+Không commit API key. Public analytics / canonical URL nằm trong `[env]` của `fly.toml` (Next.js inline `NEXT_PUBLIC_*` lúc `docker build`).
+
+```bash
+fly secrets set RESEND_API_KEY=re_xxxxxxxx CONTACT_TO_EMAIL=your@email.com -a pmlvietnam
+```
+
+Optional, sau khi verify domain:
+
+```bash
+fly secrets set RESEND_FROM_EMAIL="PML Vietnam <noreply@nhaweb.vn>" -a pmlvietnam
+```
+
+Kiểm tra tên secret (không in value):
+
+```bash
+fly secrets list -a pmlvietnam
+```
+
+### 3. Deploy
+
+Từ root repo:
+
+```bash
+npm run lint
+npm run build
+fly deploy
+```
+
+Build local không bắt buộc nhưng nên chạy trước khi đẩy image. `fly deploy` build Docker (Node 22, `npm run build` trong image) rồi ship lên Machines, listen `0.0.0.0:8080`.
+
+### 4. Verify
+
+```bash
+fly status
+fly checks list
+fly logs
+```
+
+Site production: [https://pmlvietnam.vn](https://pmlvietnam.vn) — mở homepage và gửi thử form liên hệ.
+
+### Thao tác thường dùng
+
+| Command | Mục đích |
+|---|---|
+| `fly deploy` | Build image và deploy |
+| `fly status` | App / Machine health |
+| `fly logs` | Runtime logs |
+| `fly secrets list` | Tên secrets đang set |
+| `fly ssh console` | Shell vào Machine |
+
+Khi deploy lỗi: xem `fly status` → `fly logs` trước khi sửa config. Không tắt health check và không regenerate `fly.toml`.
+
+Đổi `NEXT_PUBLIC_*` thì sửa `[env]` trong `fly.toml` rồi `fly deploy` lại — `fly secrets set` không đủ vì các biến đó được bake lúc build.
+
+## Cloudflare Workers (optional)
+
+Stack OpenNext/Wrangler vẫn còn trong repo, không phải production hiện tại.
 
 | Command | Purpose |
 |---|---|
