@@ -7,7 +7,10 @@ const nextConfig: NextConfig = {
     qualities: [75, 100],
   },
   async redirects() {
-    return [{ source: "/dich-vu", destination: "/lien-he", permanent: true }];
+    return [
+      { source: "/dich-vu", destination: "/lien-he", permanent: true },
+      { source: "/pml-content", destination: "/seo-content", permanent: true },
+    ];
   },
 };
 

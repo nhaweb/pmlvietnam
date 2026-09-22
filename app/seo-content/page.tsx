@@ -7,25 +7,25 @@ export const metadata: Metadata = pageMetadata({
   title: "SEO Content — viết bài chuẩn SEO",
   description:
     "Dịch vụ viết bài SEO Content cho website doanh nghiệp: Standard, Pro và Premium. Nội dung độc quyền, tối ưu từ khóa, bàn giao đúng tiến độ cùng PML Vietnam.",
-  path: "/pml-content",
+  path: "/seo-content",
 });
 
-export default function PmlContentPage() {
+export default function SeoContentPage() {
   return (
     <ServiceLandingPage
       content={{
         hero: contentServiceContent.hero,
-        heroSectionId: "pml-content",
+        heroSectionId: "seo-content",
         intro: contentServiceContent.intro,
         costPackages: contentServiceContent.costPackages,
         why: contentServiceContent.why,
-        whySectionId: "tai-sao-chon-pml-content",
+        whySectionId: "tai-sao-chon-seo-content",
         details: contentServiceContent.details,
         process: contentServiceContent.process,
-        processSectionId: "quy-trinh-pml-content",
+        processSectionId: "quy-trinh-seo-content",
         showProcessImages: false,
         faq: contentServiceContent.faq,
-        faqSectionId: "faq-pml-content",
+        faqSectionId: "faq-seo-content",
       }}
     />
   );
