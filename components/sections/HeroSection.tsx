@@ -12,6 +12,8 @@ export type HeroContent = {
   headline: string;
   bullets: string[];
   ctaLabel: string;
+  /** Ghi đè subheading Form 8 khi bấm CTA hero. */
+  ctaSubheading?: string;
   autoplayMs: number;
   banners: Array<{ src: string; alt: string }>;
 };
@@ -31,7 +33,8 @@ export function HeroSection({
   content = heroContent,
   sectionId = "dich-vu",
 }: HeroSectionProps) {
-  const { eyebrow, headline, bullets, ctaLabel, banners, autoplayMs } = content;
+  const { eyebrow, headline, bullets, ctaLabel, ctaSubheading, banners, autoplayMs } =
+    content;
   const { openContactForm } = useContactForm();
   const count = banners.length;
 
@@ -86,7 +89,12 @@ export function HeroSection({
             <CTAButton
               type="button"
               className="px-8 py-3.5 text-base font-bold"
-              onClick={() => openContactForm({ variant: "register" })}
+              onClick={() =>
+                openContactForm({
+                  variant: "register",
+                  subheading: ctaSubheading,
+                })
+              }
             >
               {ctaLabel}
             </CTAButton>

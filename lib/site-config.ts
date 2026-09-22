@@ -168,7 +168,7 @@ export const serviceNavLinks: NavChild[] = [
     href: "/thiet-ke-website-tron-goi",
   },
   { label: "Chăm sóc website", href: "/cham-soc-website" },
-  { label: "SEO Content", href: "/pml-content" },
+  { label: "SEO Content", href: "/seo-content" },
 ];
 
 /** Menu chính — logo + CTA giữ nguyên ở Header; cấu trúc theo mockup. */
@@ -290,7 +290,7 @@ export const searchPopularSuggestions: SearchSuggestion[] = [
   {
     id: "pml-content",
     label: "SEO Content",
-    href: "/pml-content",
+    href: "/seo-content",
   },
   {
     id: "thiet-ke-tron-goi",
@@ -1960,7 +1960,7 @@ export const premiumServicesContent = {
       id: "pml-content",
       label: "SEO Content",
       icon: "content",
-      href: "/pml-content",
+      href: "/seo-content",
     },
   ] satisfies PremiumServiceItem[],
 };
@@ -3576,7 +3576,7 @@ export const careServiceContent = {
 };
 
 /**
- * Bảng so sánh gói viết bài SEO (`/pml-content`).
+ * Bảng so sánh gói viết bài SEO (`/seo-content`).
  * Nguồn: Google Doc PML Content — 3 gói Standard / Pro / Premium.
  */
 export const contentWorkComparisonContent = {
@@ -3591,7 +3591,7 @@ export const contentWorkComparisonContent = {
   excludedLabel: "Không bao gồm",
   mobileTabsLabel: "Chọn gói PML Content",
   registerSubheading:
-    "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn gói viết bài SEO Content phù hợp.",
+    "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói SEO Content phù hợp.",
   flat: true,
   packages: [
     {
@@ -3641,16 +3641,6 @@ export const contentWorkComparisonContent = {
             "800 – 1.000 từ/bài",
             "1.200 – 1.500 từ/bài",
             "1.800 – 2.500 từ/bài",
-          ),
-        },
-        {
-          id: "muc-gia",
-          label: "Mức giá",
-          highlight: true,
-          values: careQuotaRow(
-            "140.000 đ/bài",
-            "220.000 đ/bài",
-            "290.000 đ/bài",
           ),
         },
         {
@@ -3713,7 +3703,7 @@ export const contentWorkComparisonContent = {
   ],
 } satisfies CareWorkComparisonContent;
 
-/** Trang /pml-content */
+/** Trang /seo-content */
 export const contentServiceContent = {
   hero: {
     eyebrow: "Giải pháp SEO website",
@@ -3725,7 +3715,9 @@ export const contentServiceContent = {
       "Bàn giao đúng tiến độ, hỗ trợ chỉnh sửa theo yêu cầu",
       "Đa dạng gói dịch vụ, phù hợp mọi ngân sách doanh nghiệp",
     ],
-    ctaLabel: "Đăng ký tư vấn",
+    ctaLabel: "Đăng ký ngay",
+    ctaSubheading:
+      "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói SEO Content phù hợp.",
     autoplayMs: 5000,
     banners: [
       {
