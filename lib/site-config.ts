@@ -168,6 +168,7 @@ export const serviceNavLinks: NavChild[] = [
     href: "/thiet-ke-website-tron-goi",
   },
   { label: "Chăm sóc website", href: "/cham-soc-website" },
+  { label: "SEO Content", href: "/pml-content" },
 ];
 
 /** Menu chính — logo + CTA giữ nguyên ở Header; cấu trúc theo mockup. */
@@ -285,6 +286,11 @@ export const searchPopularSuggestions: SearchSuggestion[] = [
     id: "cham-soc-website",
     label: "Chăm sóc website",
     href: "/cham-soc-website",
+  },
+  {
+    id: "pml-content",
+    label: "SEO Content",
+    href: "/pml-content",
   },
   {
     id: "thiet-ke-tron-goi",
@@ -1903,7 +1909,8 @@ export type PremiumServiceIcon =
   | "landing"
   | "branding"
   | "fullpackage"
-  | "care";
+  | "care"
+  | "content";
 
 export type PremiumServiceItem = {
   id: string;
@@ -1948,6 +1955,12 @@ export const premiumServicesContent = {
       label: "Chăm sóc website",
       icon: "care",
       href: "/cham-soc-website",
+    },
+    {
+      id: "pml-content",
+      label: "SEO Content",
+      icon: "content",
+      href: "/pml-content",
     },
   ] satisfies PremiumServiceItem[],
 };
@@ -3557,6 +3570,250 @@ export const careServiceContent = {
         question: "Tôi có thể hủy gói khi không còn nhu cầu?",
         answer:
           "Có. Điều khoản gia hạn / chấm dứt được ghi trong hợp đồng hoặc báo giá gói chăm sóc.",
+      },
+    ] satisfies FaqItem[],
+  },
+};
+
+/**
+ * Bảng so sánh gói viết bài SEO (`/pml-content`).
+ * Nguồn: Google Doc PML Content — 3 gói Standard / Pro / Premium.
+ */
+export const contentWorkComparisonContent = {
+  id: "chi-phi-pml-content",
+  heading: "Chi phí dịch vụ viết bài SEO Content",
+  tagline:
+    "So sánh hạn mức, độ sâu SEO và mức giá để chọn đúng nhu cầu theo từng gói PML Content.",
+  toggleShow: "Xem chi tiết gói viết bài SEO Content",
+  toggleHide: "Ẩn chi tiết gói viết bài SEO Content",
+  ctaLabel: "Đăng ký ngay",
+  includedLabel: "Bao gồm",
+  excludedLabel: "Không bao gồm",
+  mobileTabsLabel: "Chọn gói PML Content",
+  registerSubheading:
+    "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn gói viết bài SEO Content phù hợp.",
+  flat: true,
+  packages: [
+    {
+      id: "standard",
+      name: "PML Content Standard",
+      shortName: "Standard",
+      tagline:
+        "Phù hợp với nhu cầu viết nội dung cơ bản, cập nhật tin tức, sản phẩm/dịch vụ định kỳ cho website.",
+      price: "140.000 đ/bài",
+    },
+    {
+      id: "pro",
+      name: "PML Content Pro",
+      shortName: "Pro",
+      tagline:
+        "Phù hợp với doanh nghiệp cần nội dung có chiều sâu hơn, tối ưu SEO kỹ hơn, tần suất đăng bài đều đặn.",
+      featured: true,
+      price: "220.000 đ/bài",
+    },
+    {
+      id: "premium",
+      name: "PML Content Premium (VIP)",
+      shortName: "Premium",
+      tagline:
+        "Dành cho doanh nghiệp muốn đầu tư nội dung chất lượng cao, mang tính chiến lược dài hạn.",
+      price: "290.000 đ/bài",
+    },
+  ],
+  groups: [
+    {
+      id: "goi-viet-bai",
+      title: "Hạng mục gói viết bài",
+      items: [
+        {
+          id: "so-luong",
+          label: "Số lượng tối thiểu",
+          values: careQuotaRow(
+            "Từ 5 bài / đơn hàng",
+            "Từ 10 bài / đơn hàng",
+            "Từ 20 bài / đơn hàng",
+          ),
+        },
+        {
+          id: "do-dai",
+          label: "Độ dài bài viết",
+          values: careQuotaRow(
+            "800 – 1.000 từ/bài",
+            "1.200 – 1.500 từ/bài",
+            "1.800 – 2.500 từ/bài",
+          ),
+        },
+        {
+          id: "muc-gia",
+          label: "Mức giá",
+          highlight: true,
+          values: careQuotaRow(
+            "140.000 đ/bài",
+            "220.000 đ/bài",
+            "290.000 đ/bài",
+          ),
+        },
+        {
+          id: "toi-uu-seo",
+          label: "Tối ưu SEO",
+          values: careQuotaRow(
+            "Tối ưu từ khóa chính, tiêu đề, thẻ mô tả cơ bản",
+            "Nghiên cứu từ khóa phụ, cấu trúc heading chuẩn SEO",
+            "Nghiên cứu chuyên sâu đối thủ & thị trường ngành",
+          ),
+        },
+        {
+          id: "noi-dung-van-phong",
+          label: "Nội dung / văn phong",
+          values: careQuotaRow(
+            "Rõ ràng, đúng chính tả, dễ đọc, phù hợp đại trà",
+            "Lồng ghép insight khách hàng, tăng khả năng chuyển đổi",
+            "Nội dung độc quyền, tối ưu toàn diện: từ khóa, cấu trúc, CTA",
+          ),
+        },
+        {
+          id: "tu-khoa-chinh",
+          label: "Tối ưu từ khóa chính, tiêu đề, thẻ mô tả",
+          values: careAllIncluded,
+        },
+        {
+          id: "tu-khoa-phu-heading",
+          label: "Từ khóa phụ và cấu trúc heading chuẩn SEO",
+          values: careFlagRow(false, true, true),
+        },
+        {
+          id: "insight-chuyen-doi",
+          label: "Insight khách hàng, tăng khả năng chuyển đổi",
+          values: careFlagRow(false, true, true),
+        },
+        {
+          id: "doi-thu-thi-truong",
+          label: "Nghiên cứu đối thủ và thị trường ngành",
+          values: careFlagRow(false, false, true),
+        },
+        {
+          id: "cta-toan-dien",
+          label: "Tối ưu CTA và cấu trúc bài toàn diện",
+          values: careFlagRow(false, false, true),
+        },
+        {
+          id: "doc-quyen",
+          label: "Nội dung độc quyền, kiểm tra trùng lặp trước bàn giao",
+          values: careAllIncluded,
+        },
+      ],
+    },
+  ],
+  notes: [
+    {
+      id: "gia-linh-hoat",
+      title: "Chi phí linh hoạt theo yêu cầu",
+      body: "Chi phí có thể thay đổi tùy độ dài bài viết, mức độ nghiên cứu từ khóa và yêu cầu chuyên sâu của từng ngành.",
+    },
+  ],
+} satisfies CareWorkComparisonContent;
+
+/** Trang /pml-content */
+export const contentServiceContent = {
+  hero: {
+    eyebrow: "Giải pháp SEO website",
+    headline: "Dịch vụ viết bài SEO Content chuyên nghiệp",
+    bullets: [
+      "Nội dung chuẩn SEO, tối ưu từ khóa theo đúng ngành nghề",
+      "Đội ngũ Content nắm rõ hành vi tìm kiếm & thuật toán Google",
+      "Cam kết nội dung độc quyền, không trùng lặp, không đạo văn",
+      "Bàn giao đúng tiến độ, hỗ trợ chỉnh sửa theo yêu cầu",
+      "Đa dạng gói dịch vụ, phù hợp mọi ngân sách doanh nghiệp",
+    ],
+    ctaLabel: "Đăng ký tư vấn",
+    autoplayMs: 5000,
+    banners: [
+      {
+        src: "/pml-content/banner_seo_content.webp",
+        alt: "SEO Content — PML Vietnam",
+      },
+      {
+        src: "/pml-content/banner_seo_strategy.webp",
+        alt: "SEO Strategy — PML Vietnam",
+      },
+    ],
+  },
+  intro: {
+    id: "gioi-thieu-pml-content",
+    heading: "Vì sao doanh nghiệp cần viết bài chuẩn SEO?",
+    intro:
+      "Một website đẹp nhưng không có nội dung chất lượng thì rất khó lên top Google. Bài viết chuẩn SEO không chỉ giúp website được công cụ tìm kiếm đánh giá cao mà còn mang lại nhiều lợi ích thiết thực cho doanh nghiệp.",
+    highlightTitle: "Bạn nhận được gì khi website có nội dung chuẩn SEO?",
+    points: [
+      "Tăng khả năng hiển thị website trên trang kết quả tìm kiếm (SERP).",
+      "Thu hút đúng khách hàng tiềm năng đang có nhu cầu thực sự.",
+      "Xây dựng uy tín thương hiệu thông qua nội dung giá trị, chuyên sâu.",
+      "Tiết kiệm chi phí quảng cáo về lâu dài so với chạy ads liên tục.",
+      "Hỗ trợ chuyển đổi tốt hơn nhờ nội dung đánh trúng insight khách hàng.",
+    ],
+    note: "Nếu website của bạn chưa có chiến lược nội dung bài bản, đây chính là lúc cần đầu tư vào dịch vụ viết bài chuẩn SEO.",
+    image: {
+      src: "/pml-content/banner_seo_strategy.webp",
+      alt: "SEO Strategy — PML Vietnam",
+    },
+  },
+  costPackages: contentWorkComparisonContent,
+  why: {
+    ...whyChooseContent,
+    heading: "Tại sao giao viết bài SEO Content cho PML Vietnam?",
+    subheading:
+      "Đội ngũ Content nắm hành vi tìm kiếm và thuật toán Google — nội dung độc quyền, đúng ngành, đúng tiến độ.",
+  },
+  details: {
+    id: "ban-nhan-duoc-pml-content",
+    heading: "Bạn nhận được gì khi sử dụng dịch vụ PML Content?",
+    items: [
+      "Bài viết hoàn chỉnh, tối ưu chuẩn SEO Onpage.",
+      "Nghiên cứu từ khóa phù hợp với ngành nghề, khu vực kinh doanh.",
+      "Văn phong tự nhiên, dễ đọc, phù hợp đối tượng khách hàng mục tiêu.",
+      "Cam kết nội dung độc quyền, kiểm tra trùng lặp trước khi bàn giao.",
+      "Hỗ trợ chỉnh sửa theo góp ý sau khi bàn giao (trong phạm vi thỏa thuận).",
+      "Thời gian bàn giao rõ ràng theo từng gói dịch vụ.",
+    ],
+  },
+  process: {
+    ...processStepsContent,
+    heading: "Quy trình nhận viết bài SEO Content tại PML Vietnam",
+  },
+  faq: {
+    heading: "Câu hỏi thường gặp về dịch vụ viết bài SEO Content",
+    image: faqContent.image,
+    items: [
+      {
+        id: "content-faq-1",
+        question:
+          "Tôi có thể chọn gói dịch vụ nào phù hợp với ngân sách của mình?",
+        answer:
+          "PML Vietnam có 3 gói: Standard, Pro và Premium (VIP), tương ứng với các mức chi phí và độ chuyên sâu khác nhau. Bạn có thể trao đổi trực tiếp để được tư vấn gói phù hợp nhất với nhu cầu và ngân sách.",
+      },
+      {
+        id: "content-faq-2",
+        question: "Nội dung bài viết có đảm bảo không trùng lặp không?",
+        answer:
+          "Có. Mỗi bài viết đều được kiểm tra độ trùng lặp trước khi bàn giao cho khách hàng, đảm bảo nội dung độc quyền.",
+      },
+      {
+        id: "content-faq-3",
+        question: "Sau khi nhận bài, tôi có được chỉnh sửa lại không?",
+        answer:
+          "Có, bạn sẽ được hỗ trợ chỉnh sửa theo góp ý trong phạm vi thỏa thuận ban đầu để đảm bảo nội dung đúng ý và đúng định hướng thương hiệu.",
+      },
+      {
+        id: "content-faq-4",
+        question: "Thời gian bàn giao bài viết mất bao lâu?",
+        answer:
+          "Thời gian bàn giao phụ thuộc vào gói dịch vụ và số lượng/độ dài bài viết, sẽ được thông báo rõ khi nhận yêu cầu cụ thể.",
+      },
+      {
+        id: "content-faq-5",
+        question: "Dịch vụ này có bao gồm hình ảnh minh họa không?",
+        answer:
+          "Dịch vụ tập trung vào nội dung văn bản chuẩn SEO. Hình ảnh minh họa (nếu cần) sẽ được trao đổi riêng theo yêu cầu.",
       },
     ] satisfies FaqItem[],
   },

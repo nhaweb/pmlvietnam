@@ -245,5 +245,25 @@ function ServiceIcon({ name }: { name: PremiumServiceIcon }) {
           />
         </svg>
       );
+    case "content":
+      return (
+        <svg {...common}>
+          <rect
+            x="4"
+            y="2.5"
+            width="12"
+            height="15"
+            rx="1.5"
+            stroke="currentColor"
+            strokeWidth="1.6"
+          />
+          <path
+            d="M7 7h6M7 10.5h6M7 14h4"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
   }
 }

@@ -27,7 +27,10 @@ export type ServiceLandingContent = {
   heroSectionId: string;
   showSamples?: boolean;
   intro: ServiceIntroContent;
-  cost: ServiceCostContent;
+  /** Đoạn mô tả chi phí. Bỏ qua nếu dùng `costPackages`. */
+  cost?: ServiceCostContent;
+  /** Bảng so sánh gói (template `/giai-phap`) — thay khối chi phí dạng đoạn văn. */
+  costPackages?: CareWorkComparisonContent;
   why: WhyChooseSectionContent;
   whySectionId: string;
   details?: ServiceDetailsContent;
@@ -51,9 +54,18 @@ export function ServiceLandingPage({ content }: { content: ServiceLandingContent
       <Reveal>
         <CustomWebsiteIntroSection content={content.intro} />
       </Reveal>
-      <Reveal>
-        <CustomWebsiteCostSection content={content.cost} />
-      </Reveal>
+      {content.costPackages ? (
+        <Reveal>
+          <CareWorkDetailsSection
+            content={content.costPackages}
+            showToggle={false}
+          />
+        </Reveal>
+      ) : content.cost ? (
+        <Reveal>
+          <CustomWebsiteCostSection content={content.cost} />
+        </Reveal>
+      ) : null}
       <Reveal>
         <WhyChooseSection content={content.why} sectionId={content.whySectionId} />
       </Reveal>
