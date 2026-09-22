@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import { contentServiceContent } from "@/lib/site-config";
 
 export const metadata: Metadata = pageMetadata({
-  title: "PML Content — viết bài chuẩn SEO",
+  title: "SEO Content — viết bài chuẩn SEO",
   description:
     "Dịch vụ viết bài SEO Content cho website doanh nghiệp: Standard, Pro và Premium. Nội dung độc quyền, tối ưu từ khóa, bàn giao đúng tiến độ cùng PML Vietnam.",
   path: "/pml-content",

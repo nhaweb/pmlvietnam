@@ -168,7 +168,7 @@ export const serviceNavLinks: NavChild[] = [
     href: "/thiet-ke-website-tron-goi",
   },
   { label: "Chăm sóc website", href: "/cham-soc-website" },
-  { label: "PML Content", href: "/pml-content" },
+  { label: "SEO Content", href: "/pml-content" },
 ];
 
 /** Menu chính — logo + CTA giữ nguyên ở Header; cấu trúc theo mockup. */
@@ -289,7 +289,7 @@ export const searchPopularSuggestions: SearchSuggestion[] = [
   },
   {
     id: "pml-content",
-    label: "PML Content",
+    label: "SEO Content",
     href: "/pml-content",
   },
   {
@@ -1958,7 +1958,7 @@ export const premiumServicesContent = {
     },
     {
       id: "pml-content",
-      label: "PML Content",
+      label: "SEO Content",
       icon: "content",
       href: "/pml-content",
     },
@@ -3583,7 +3583,7 @@ export const contentWorkComparisonContent = {
   id: "chi-phi-pml-content",
   heading: "Chi phí dịch vụ viết bài SEO Content",
   tagline:
-    "3 gói PML Content — so sánh hạn mức, độ sâu SEO và mức giá để chọn đúng nhu cầu.",
+    "So sánh hạn mức, độ sâu SEO và mức giá để chọn đúng nhu cầu theo từng gói PML Content.",
   toggleShow: "Xem chi tiết gói viết bài SEO Content",
   toggleHide: "Ẩn chi tiết gói viết bài SEO Content",
   ctaLabel: "Đăng ký ngay",
@@ -3600,7 +3600,7 @@ export const contentWorkComparisonContent = {
       shortName: "Standard",
       tagline:
         "Phù hợp với nhu cầu viết nội dung cơ bản, cập nhật tin tức, sản phẩm/dịch vụ định kỳ cho website.",
-      price: "80.000 – 100.000 đ/bài",
+      price: "140.000 đ/bài",
     },
     {
       id: "pro",
@@ -3609,7 +3609,7 @@ export const contentWorkComparisonContent = {
       tagline:
         "Phù hợp với doanh nghiệp cần nội dung có chiều sâu hơn, tối ưu SEO kỹ hơn, tần suất đăng bài đều đặn.",
       featured: true,
-      price: "120.000 – 180.000 đ/bài",
+      price: "220.000 đ/bài",
     },
     {
       id: "premium",
@@ -3617,7 +3617,7 @@ export const contentWorkComparisonContent = {
       shortName: "Premium",
       tagline:
         "Dành cho doanh nghiệp muốn đầu tư nội dung chất lượng cao, mang tính chiến lược dài hạn.",
-      price: "190.000 – 240.000 đ/bài",
+      price: "290.000 đ/bài",
     },
   ],
   groups: [
@@ -3648,9 +3648,9 @@ export const contentWorkComparisonContent = {
           label: "Mức giá",
           highlight: true,
           values: careQuotaRow(
-            "80.000 – 100.000 đ/bài",
-            "120.000 – 180.000 đ/bài",
-            "190.000 – 240.000 đ/bài",
+            "140.000 đ/bài",
+            "220.000 đ/bài",
+            "290.000 đ/bài",
           ),
         },
         {
@@ -3716,7 +3716,7 @@ export const contentWorkComparisonContent = {
 /** Trang /pml-content */
 export const contentServiceContent = {
   hero: {
-    eyebrow: "PML Content",
+    eyebrow: "Giải pháp SEO website",
     headline: "Dịch vụ viết bài SEO Content chuyên nghiệp",
     bullets: [
       "Nội dung chuẩn SEO, tối ưu từ khóa theo đúng ngành nghề",
@@ -3727,7 +3727,16 @@ export const contentServiceContent = {
     ],
     ctaLabel: "Đăng ký tư vấn",
     autoplayMs: 5000,
-    banners: [...sharedHeroBanners],
+    banners: [
+      {
+        src: "/pml-content/banner_seo_content.webp",
+        alt: "SEO Content — PML Vietnam",
+      },
+      {
+        src: "/pml-content/banner_seo_strategy.webp",
+        alt: "SEO Strategy — PML Vietnam",
+      },
+    ],
   },
   intro: {
     id: "gioi-thieu-pml-content",
@@ -3743,7 +3752,10 @@ export const contentServiceContent = {
       "Hỗ trợ chuyển đổi tốt hơn nhờ nội dung đánh trúng insight khách hàng.",
     ],
     note: "Nếu website của bạn chưa có chiến lược nội dung bài bản, đây chính là lúc cần đầu tư vào dịch vụ viết bài chuẩn SEO.",
-    image: sharedServiceImage,
+    image: {
+      src: "/pml-content/banner_seo_strategy.webp",
+      alt: "SEO Strategy — PML Vietnam",
+    },
   },
   costPackages: contentWorkComparisonContent,
   why: {
