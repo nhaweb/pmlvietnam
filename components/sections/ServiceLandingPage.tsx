@@ -20,11 +20,16 @@ import {
   type WhyChooseSectionContent,
 } from "@/components/sections/WhyChooseSection";
 import { Reveal } from "@/components/ui/Reveal";
-import type { CareWorkComparisonContent } from "@/lib/site-config";
+import type {
+  CareWorkComparisonContent,
+  ContactFormRegisterKey,
+} from "@/lib/site-config";
 
 export type ServiceLandingContent = {
   hero: HeroContent;
   heroSectionId: string;
+  /** Bản copy form CTA hero. Mặc định `contactFormContent.register`. */
+  heroContactFormKey?: ContactFormRegisterKey;
   showSamples?: boolean;
   intro: ServiceIntroContent;
   /** Đoạn mô tả chi phí. Bỏ qua nếu dùng `costPackages`. */
@@ -45,7 +50,11 @@ export type ServiceLandingContent = {
 export function ServiceLandingPage({ content }: { content: ServiceLandingContent }) {
   return (
     <>
-      <HeroSection content={content.hero} sectionId={content.heroSectionId} />
+      <HeroSection
+        content={content.hero}
+        sectionId={content.heroSectionId}
+        contactFormKey={content.heroContactFormKey}
+      />
       {content.showSamples ? (
         <Reveal>
           <WebsiteSamplesSection />

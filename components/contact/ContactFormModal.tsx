@@ -14,6 +14,7 @@ import { trackLead } from "@/lib/analytics/track";
 import {
   contactFormContent,
   siteContact,
+  type ContactFormRegisterKey,
   type ContactFormVariant,
 } from "@/lib/site-config";
 
@@ -25,6 +26,8 @@ export type ContactFormModalProps = {
   selectedSample?: string;
   /** Ghi đè subheading mặc định (vd. gói logo / nhận diện) */
   subheading?: string;
+  /** Bản copy form đăng ký. Mặc định `contactFormContent.register`. */
+  formKey?: ContactFormRegisterKey;
 };
 
 type FormErrors = {
@@ -61,6 +64,7 @@ export function ContactFormModal({
   variant,
   selectedSample,
   subheading: subheadingOverride,
+  formKey = "register",
 }: ContactFormModalProps) {
   const titleId = useId();
   const nameId = useId();
@@ -77,10 +81,9 @@ export function ContactFormModal({
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const registerCopy = contactFormContent[formKey];
   const copy =
-    variant === "consult"
-      ? contactFormContent.consult
-      : contactFormContent.register;
+    variant === "consult" ? contactFormContent.consult : registerCopy;
   const fields = contactFormContent.fields;
 
   const heading =
@@ -88,7 +91,7 @@ export function ContactFormModal({
       ? selectedSample
       : variant === "consult"
         ? contactFormContent.consult.heading
-        : contactFormContent.register.defaultHeading;
+        : registerCopy.defaultHeading;
 
   const subheading = subheadingOverride ?? copy.subheading;
 
@@ -119,7 +122,7 @@ export function ContactFormModal({
       setSubmitting(false);
       setSubmitted(false);
     }
-  }, [open, variant, selectedSample]);
+  }, [open, variant, selectedSample, formKey]);
 
   function handleDialogClose() {
     onClose();

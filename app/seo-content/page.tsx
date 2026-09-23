@@ -16,6 +16,7 @@ export default function SeoContentPage() {
       content={{
         hero: contentServiceContent.hero,
         heroSectionId: "seo-content",
+        heroContactFormKey: "pmlContent",
         intro: contentServiceContent.intro,
         costPackages: contentServiceContent.costPackages,
         why: contentServiceContent.why,

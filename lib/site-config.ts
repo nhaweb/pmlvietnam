@@ -411,7 +411,7 @@ export const heroContent = {
     "Giao diện quản trị dễ sử dụng",
     "Sử dụng công nghệ hiện đại, bền vững",
   ],
-  ctaLabel: "Đăng ký ngay!",
+  ctaLabel: "Đăng ký ngay",
   ctaHref: "/#lien-he",
   autoplayMs: 5000,
   banners: [
@@ -1063,7 +1063,7 @@ export const templateDetailContent = {
     "Bàn giao đầy đủ mã nguồn website",
     "Tặng thêm ngôn ngữ tiếng Anh",
     "Tặng SSL/HTTPS bảo mật",
-    "Tặng gói gửi email: tối đa 20 mail/ngày đến địa chỉ email cá nhân",
+    // "Tặng gói gửi email: tối đa 20 mail/ngày đến địa chỉ email cá nhân",
     "Tặng thiết kế Hero Banner (số lượng tùy theo gói)",
     "Hỗ trợ nhập bài viết/sản phẩm (số lượng tùy theo gói)",
     "Mã nguồn sử dụng: Next.js, Tailwind CSS, Headless CMS",
@@ -1971,6 +1971,13 @@ export const premiumServicesContent = {
  */
 export type ContactFormVariant = "consult" | "register";
 
+/** Bản copy form đăng ký — `register` mặc định, `thietKeWebsite` cho trang thiết kế website, `chamSocWebsite` cho trang chăm sóc website, `pmlContent` cho trang SEO Content. */
+export type ContactFormRegisterKey =
+  | "register"
+  | "thietKeWebsite"
+  | "chamSocWebsite"
+  | "pmlContent";
+
 export const contactFormContent = {
   image: {
     src: "/form/dang_ky_tu_van.png",
@@ -1987,6 +1994,24 @@ export const contactFormContent = {
     defaultHeading: "Đăng ký ngay",
     subheading:
       "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai mẫu website phù hợp.",
+    submitLabel: "Đăng ký ngay",
+  },
+  thietKeWebsite: {
+    defaultHeading: "Đăng ký ngay",
+    subheading:
+      "Để lại thông tin - PML Vietnam sẽ liên hệ tư vấn và triển khai gói logo phù hợp.",
+    submitLabel: "Đăng ký ngay",
+  },
+  chamSocWebsite: {
+    defaultHeading: "Đăng ký ngay",
+    subheading:
+      "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói chăm sóc website phù hợp.",
+    submitLabel: "Đăng ký ngay",
+  },
+  pmlContent: {
+    defaultHeading: "Đăng ký ngay",
+    subheading:
+      "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói SEO Content phù hợp.",
     submitLabel: "Đăng ký ngay",
   },
   fields: {
@@ -2362,7 +2387,7 @@ export const websiteServiceContent = {
       "Giao diện quản trị dễ sử dụng",
       "Chuẩn SEO kỹ thuật từ ngày bàn giao",
     ],
-    ctaLabel: "Đăng ký tư vấn",
+    ctaLabel: "Đăng ký ngay",
     autoplayMs: 5000,
     banners: [...sharedHeroBanners],
   },
@@ -3487,7 +3512,7 @@ export const careServiceContent = {
       "Tối ưu tốc độ theo thời gian",
       "Đầu mối kỹ thuật rõ ràng, phản hồi nhanh",
     ],
-    ctaLabel: "Đăng ký tư vấn",
+    ctaLabel: "Đăng ký ngay",
     autoplayMs: 5000,
     banners: [
       {

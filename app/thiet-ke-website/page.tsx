@@ -16,6 +16,7 @@ export default function ThietKeWebsitePage() {
       content={{
         hero: websiteServiceContent.hero,
         heroSectionId: "thiet-ke-website",
+        heroContactFormKey: "thietKeWebsite",
         showSamples: true,
         intro: websiteServiceContent.intro,
         cost: websiteServiceContent.cost,

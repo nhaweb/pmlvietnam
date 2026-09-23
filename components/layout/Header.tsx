@@ -171,7 +171,6 @@ export function Header() {
             alt="PML Vietnam"
             width={1995}
             height={1038}
-            priority
             className={cx(
               "w-auto object-contain transition-[height] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
               scrolled ? "h-10 sm:h-12" : "h-12 sm:h-14",

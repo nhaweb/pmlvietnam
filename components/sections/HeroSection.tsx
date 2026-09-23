@@ -5,7 +5,7 @@ import { useContactForm } from "@/components/contact/ContactFormProvider";
 import { Carousel, CarouselSlide } from "@/components/ui/Carousel";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { RevealItem, RevealStagger } from "@/components/ui/Reveal";
-import { heroContent } from "@/lib/site-config";
+import { heroContent, type ContactFormRegisterKey } from "@/lib/site-config";
 
 export type HeroContent = {
   eyebrow?: string;
@@ -23,6 +23,8 @@ type HeroSectionProps = {
   content?: HeroContent;
   /** Section id — trang dịch vụ có thể đổi để tránh trùng `#dich-vu`. */
   sectionId?: string;
+  /** Bản copy form khi bấm CTA. Mặc định `contactFormContent.register`. */
+  contactFormKey?: ContactFormRegisterKey;
 };
 
 /**
@@ -32,6 +34,7 @@ type HeroSectionProps = {
 export function HeroSection({
   content = heroContent,
   sectionId = "dich-vu",
+  contactFormKey = "register",
 }: HeroSectionProps) {
   const { eyebrow, headline, bullets, ctaLabel, ctaSubheading, banners, autoplayMs } =
     content;
@@ -92,6 +95,7 @@ export function HeroSection({
               onClick={() =>
                 openContactForm({
                   variant: "register",
+                  formKey: contactFormKey,
                   subheading: ctaSubheading,
                 })
               }

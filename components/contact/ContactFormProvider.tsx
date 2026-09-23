@@ -10,12 +10,17 @@ import {
 } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { trackConsultationClick } from "@/lib/analytics/track";
-import type { ContactFormVariant } from "@/lib/site-config";
+import type {
+  ContactFormRegisterKey,
+  ContactFormVariant,
+} from "@/lib/site-config";
 
 type OpenContactFormOptions = {
   variant?: ContactFormVariant;
   selectedSample?: string;
   subheading?: string;
+  /** Bản copy khi `variant` là register. Mặc định `contactFormContent.register`. */
+  formKey?: ContactFormRegisterKey;
 };
 
 type ContactFormContextValue = {
@@ -30,12 +35,14 @@ export function ContactFormProvider({ children }: { children: ReactNode }) {
   const [variant, setVariant] = useState<ContactFormVariant>("register");
   const [selectedSample, setSelectedSample] = useState<string | undefined>();
   const [subheading, setSubheading] = useState<string | undefined>();
+  const [formKey, setFormKey] = useState<ContactFormRegisterKey>("register");
 
   const openContactForm = useCallback((options?: OpenContactFormOptions) => {
     const nextVariant = options?.variant ?? "register";
     setVariant(nextVariant);
     setSelectedSample(options?.selectedSample);
     setSubheading(options?.subheading);
+    setFormKey(options?.formKey ?? "register");
     setOpen(true);
     trackConsultationClick({ variant: nextVariant });
   }, []);
@@ -58,6 +65,7 @@ export function ContactFormProvider({ children }: { children: ReactNode }) {
         variant={variant}
         selectedSample={selectedSample}
         subheading={subheading}
+        formKey={formKey}
       />
     </ContactFormContext.Provider>
   );
