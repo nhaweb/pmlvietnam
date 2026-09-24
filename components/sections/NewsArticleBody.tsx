@@ -101,10 +101,22 @@ function ArticleBlock({ block }: { block: NewsArticleBlock }) {
             alt={block.alt}
             width={1200}
             height={675}
+            quality={100}
             className="h-auto w-full object-cover"
             sizes="(max-width: 768px) 100vw, 80rem"
           />
         </figure>
+      );
+    case "link":
+      return (
+        <p className="text-sm leading-relaxed sm:text-[0.9375rem] sm:leading-[1.75]">
+          <Link
+            href={block.href}
+            className="font-semibold text-cta underline decoration-cta/40 underline-offset-4 transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
+          >
+            {block.text}
+          </Link>
+        </p>
       );
     case "tagline":
       return (

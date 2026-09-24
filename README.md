@@ -46,7 +46,7 @@ Xác nhận app `pmlvietnam` hiện trong list.
 
 ### 2. Secrets (chỉ cần làm một lần, hoặc khi xoay key)
 
-Không commit API key. Public analytics / canonical URL nằm trong `[env]` của `fly.toml` (Next.js inline `NEXT_PUBLIC_*` lúc `docker build`).
+Không commit API key. Public analytics / canonical URL nằm trong `[build.args]` của `fly.toml` (Next.js inline `NEXT_PUBLIC_*` lúc `docker build`; `[env]` runtime không đủ).
 
 ```bash
 fly secrets set RESEND_API_KEY=re_xxxxxxxx CONTACT_TO_EMAIL=your@email.com -a pmlvietnam
@@ -98,7 +98,7 @@ Site production: [https://pmlvietnam.vn](https://pmlvietnam.vn) — mở homepag
 
 Khi deploy lỗi: xem `fly status` → `fly logs` trước khi sửa config. Không tắt health check và không regenerate `fly.toml`.
 
-Đổi `NEXT_PUBLIC_*` thì sửa `[env]` trong `fly.toml` rồi `fly deploy` lại — `fly secrets set` không đủ vì các biến đó được bake lúc build.
+Đổi `NEXT_PUBLIC_*` thì sửa `[build.args]` (và `[env]` cho đồng bộ) trong `fly.toml` rồi `fly deploy` lại — `fly secrets set` không đủ vì các biến đó được bake lúc build.
 
 ## Cloudflare Workers (optional)
 

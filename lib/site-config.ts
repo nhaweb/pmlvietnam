@@ -1123,6 +1123,14 @@ export const NEWS_ARTICLE_SLUG_TRENDS_2026 =
 export const NEWS_ARTICLE_SLUG_SEO =
   "vi-sao-website-chuan-seo-giup-tang-khach-hang-tiem-nang" as const;
 
+/** Slug bài Next.js + Tailwind (`public/tin-tuc/Nextjs_Tailwindcss`). */
+export const NEWS_ARTICLE_SLUG_NEXTJS =
+  "nextjs-tailwind-css-xay-dung-website-nhanh-dep-de-mo-rong" as const;
+
+/** Slug bài bảng giá (`public/tin-tuc/bang_gia`). */
+export const NEWS_ARTICLE_SLUG_PRICING =
+  "bang-gia-thiet-ke-website-tai-pml-vietnam" as const;
+
 export function newsArticleHref(slug: string) {
   return `/tin-tuc/${slug}`;
 }
@@ -1135,6 +1143,33 @@ export const newsContent = {
   /** Số tin / hàng (desktop) */
   itemsPerRow: 5 as const,
   items: [
+    {
+      id: "news-nextjs",
+      title:
+        "Next.js + Tailwind CSS: xây dựng website nhanh, đẹp và dễ mở rộng",
+      excerpt:
+        "Next.js là bộ máy giúp website hoạt động, Tailwind CSS giúp giao diện đẹp trên mọi thiết bị. Kết hợp hai công nghệ này, website nhanh, dễ dùng và dễ phát triển lâu dài.",
+      date: "24/09/2026",
+      href: newsArticleHref(NEWS_ARTICLE_SLUG_NEXTJS),
+      category: "Công nghệ",
+      image: {
+        src: "/tin-tuc/Nextjs_Tailwindcss/thumbnail-tin-tuc-nextjs-tailwindcss.webp",
+        alt: "Next.js và Tailwind CSS giúp xây dựng website hiện đại",
+      },
+    },
+    {
+      id: "news-bang-gia",
+      title: "Bảng giá thiết kế website tại PML Vietnam",
+      excerpt:
+        "Bảng giá thiết kế website trọn gói theo từng nhu cầu — PMLWeb Standard, Pro và Custom, minh bạch tính năng và không phát sinh chi phí ẩn.",
+      date: "18/09/2026",
+      href: newsArticleHref(NEWS_ARTICLE_SLUG_PRICING),
+      category: "Bảng giá",
+      image: {
+        src: "/tin-tuc/bang_gia/thumbnail-tin-tuc-bang-gia-website.webp",
+        alt: "Bảng giá thiết kế website trọn gói tại PML Vietnam",
+      },
+    },
     {
       id: "news-1",
       title: "5 xu hướng thiết kế website doanh nghiệp năm 2026",
@@ -1285,12 +1320,14 @@ export const newsPageContent = {
 
 /**
  * Bài viết chi tiết tại `/tin-tuc/[slug]`.
- * Nguồn: `public/tin-tuc/PML Vietnam_Tin tức.docx`, `public/tin-tuc/vi-sao`.
+ * Nguồn: `public/tin-tuc/PML Vietnam_Tin tức.docx`, `public/tin-tuc/vi-sao`,
+ * `public/tin-tuc/Nextjs_Tailwindcss`, `public/tin-tuc/bang_gia`.
  */
 export type NewsArticleBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; level: 2 | 3; text: string }
   | { type: "image"; src: string; alt: string }
+  | { type: "link"; href: string; text: string }
   | { type: "tagline"; text: string };
 
 export type NewsArticle = {
@@ -1697,6 +1734,368 @@ export const newsArticles: NewsArticle[] = [
       },
     ] satisfies NewsArticleBlock[],
   },
+  {
+    slug: NEWS_ARTICLE_SLUG_NEXTJS,
+    meta: {
+      title:
+        "Next.js + Tailwind CSS: Sự kết hợp hiện đại giúp xây dựng website nhanh, đẹp và dễ mở rộng",
+      description:
+        "Next.js là bộ máy giúp website hoạt động, Tailwind CSS giúp giao diện đẹp và phù hợp mọi thiết bị. Tìm hiểu vì sao PML Vietnam kết hợp hai công nghệ này cho website hiện đại.",
+    },
+    banner: {
+      src: "/tin-tuc/banner_tin_tuc.webp",
+      alt: "Banner tin tức — Next.js và Tailwind CSS",
+      badge: "Công nghệ",
+      publishedAt: "10:14 - 24/09/2026",
+      publishedAtIso: "2026-09-24T10:14:00+07:00",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Next.js là phần \"bộ máy\" giúp website hoạt động, còn Tailwind CSS là công cụ giúp website có giao diện đẹp, hiện đại và phù hợp với nhiều thiết bị. Khi kết hợp hai công nghệ này, doanh nghiệp có thể xây dựng những website không chỉ đẹp mà còn nhanh, thân thiện với người dùng và có khả năng phát triển lâu dài.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Next.js và Tailwind CSS là gì?",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/Nextjs_Tailwindcss/nextjs-react.webp",
+        alt: "Next.js được xây dựng trên React để phát triển website hiện đại",
+      },
+      {
+        type: "paragraph",
+        text: "Next.js là một framework được xây dựng trên React, được sử dụng để phát triển website và các ứng dụng web hiện đại. Thay vì chỉ tạo ra những trang web tĩnh, Next.js có thể hỗ trợ xây dựng những website có nhiều chức năng hơn như: website doanh nghiệp, website bán hàng, blog, website dịch vụ, landing page, website có hệ thống quản trị nội dung, website kết nối cơ sở dữ liệu, các ứng dụng web theo yêu cầu.",
+      },
+      {
+        type: "paragraph",
+        text: "Điểm đáng chú ý là Next.js hỗ trợ nhiều cơ chế giúp website cải thiện hiệu năng, khả năng SEO và khả năng mở rộng.",
+      },
+      {
+        type: "paragraph",
+        text: "Nói một cách dễ hiểu: Next.js giống như phần khung và hệ thống vận hành bên trong của một ngôi nhà. Người truy cập không nhìn thấy toàn bộ phần này, nhưng nó quyết định website hoạt động như thế nào.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Tailwind CSS – phần \"diện mạo\" của website",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/Nextjs_Tailwindcss/tailwindcss.webp",
+        alt: "Tailwind CSS giúp xây dựng giao diện website linh hoạt",
+      },
+      {
+        type: "paragraph",
+        text: "Nếu Next.js là phần bộ máy thì Tailwind CSS có thể được hiểu là một công cụ giúp xây dựng giao diện. Tailwind CSS cung cấp sẵn rất nhiều lớp tiện ích để lập trình viên có thể nhanh chóng thiết kế như: màu sắc, khoảng cách, kích thước, font chữ, nút bấm, khung nội dung, bố cục, menu, card, form và responsive trên điện thoại, tablet và máy tính.",
+      },
+      {
+        type: "paragraph",
+        text: "Nhờ đó, việc xây dựng giao diện có thể nhanh chóng và linh hoạt hơn. Ví dụ, cùng một nội dung nhưng website có thể được thiết kế theo phong cách:",
+      },
+      {
+        type: "paragraph",
+        text: "Tối giản — phù hợp với công ty công nghệ.",
+      },
+      {
+        type: "paragraph",
+        text: "Sang trọng — phù hợp với bất động sản, nội thất hoặc thương hiệu cao cấp.",
+      },
+      {
+        type: "paragraph",
+        text: "Năng động — phù hợp với thương hiệu trẻ, dịch vụ hoặc bán lẻ.",
+      },
+      {
+        type: "paragraph",
+        text: "Chuyên nghiệp — phù hợp với website doanh nghiệp B2B.",
+      },
+      {
+        type: "paragraph",
+        text: "Tailwind CSS không quyết định website phải đẹp theo một khuôn mẫu cố định. Người thiết kế vẫn có thể tạo giao diện riêng theo yêu cầu.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Vì sao Next.js và Tailwind CSS thường được kết hợp?",
+      },
+      {
+        type: "paragraph",
+        text: "Hai công nghệ này giải quyết hai vấn đề khác nhau. Có thể hình dung: Next.js quyết định website hoạt động như thế nào, Tailwind CSS quyết định website được trình bày như thế nào.",
+      },
+      {
+        type: "paragraph",
+        text: "Khi kết hợp Next.js và Tailwind CSS, doanh nghiệp có một nền tảng thuận tiện để xây dựng website hiện đại, có giao diện linh hoạt và khả năng mở rộng. Đây cũng là lý do sự kết hợp này ngày càng được sử dụng trong các dự án website hiện đại.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Những ưu điểm nổi bật của Next.js + Tailwind CSS",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/Nextjs_Tailwindcss/uu-diem-nextjs-tailwindcss.webp",
+        alt: "Sáu ưu điểm của Next.js kết hợp Tailwind CSS",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "1. Website có thể được thiết kế theo yêu cầu",
+      },
+      {
+        type: "paragraph",
+        text: "Một trong những ưu điểm quan trọng là khả năng tùy biến giao diện. Doanh nghiệp không nhất thiết phải sử dụng một mẫu website giống hàng trăm website khác.",
+      },
+      {
+        type: "paragraph",
+        text: "Có thể xây dựng riêng như: màu thương hiệu, font chữ, bố cục, hình ảnh, menu, trang sản phẩm, trang dịch vụ, form liên hệ và landing page. Điều này đặc biệt phù hợp với doanh nghiệp muốn website thể hiện được hình ảnh và thương hiệu riêng.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "2. Giao diện phù hợp với điện thoại và máy tính",
+      },
+      {
+        type: "paragraph",
+        text: "Ngày nay, khách hàng có thể truy cập website bằng rất nhiều thiết bị. Một website chỉ đẹp trên máy tính nhưng hiển thị không tốt trên điện thoại sẽ tạo ra trải nghiệm không tốt. Tailwind CSS hỗ trợ xây dựng giao diện responsive, giúp website có thể thích nghi với hầu hết mọi thiết bị.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "3. Có thể tối ưu tốc độ website",
+      },
+      {
+        type: "paragraph",
+        text: "Next.js cung cấp nhiều cơ chế hỗ trợ tối ưu hiệu năng website. Khi được lập trình và triển khai đúng cách, website có thể tải nội dung hiệu quả hơn, tối ưu hình ảnh, chỉ tải những phần cần thiết, tối ưu tài nguyên và cải thiện trải nghiệm người dùng. Tốc độ website đặc biệt quan trọng đối với doanh nghiệp, vì khách hàng thường không muốn chờ quá lâu để một trang web hiển thị.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "4. Hỗ trợ xây dựng website thân thiện với SEO",
+      },
+      {
+        type: "paragraph",
+        text: "Một website đẹp nhưng khách hàng không thể tìm thấy trên Google thì giá trị kinh doanh cũng bị hạn chế. Next.js hỗ trợ lập trình viên xây dựng nhiều thành phần kỹ thuật phục vụ SEO như: title, meta description, Open Graph, sitemap, robots.txt, canonical, structured data.",
+      },
+      {
+        type: "paragraph",
+        text: "Tuy nhiên, cần hiểu rõ: dùng Next.js không có nghĩa website tự động lên top Google. SEO còn phụ thuộc vào rất nhiều yếu tố khác như nội dung, từ khóa, cấu trúc website, tốc độ, trải nghiệm người dùng, liên kết nội bộ và nhiều yếu tố khác. Next.js chỉ cung cấp một nền tảng kỹ thuật tốt để xây dựng website thân thiện với SEO.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "5. Dễ phát triển thêm tính năng trong tương lai",
+      },
+      {
+        type: "paragraph",
+        text: "Doanh nghiệp có thể bắt đầu bằng một website tương đối đơn giản, sau này có thể phát triển thêm như: blog, sản phẩm, danh mục, form đăng ký, hệ thống quản trị, cơ sở dữ liệu, thành viên, đặt lịch, thanh toán, API và các chức năng riêng theo nhu cầu.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "6. Có thể tái sử dụng nhiều thành phần",
+      },
+      {
+        type: "paragraph",
+        text: "Đây là một ưu điểm rất lớn đối với đơn vị phát triển website. Ví dụ, một website có những thành phần như header, footer, button, form, hero section. Những thành phần này có thể được xây dựng thành các component và tái sử dụng trong những website khác. Điều này giúp quá trình phát triển website mới nhanh và nhất quán hơn.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Next.js + Tailwind CSS và định hướng của PML Vietnam",
+      },
+      {
+        type: "paragraph",
+        text: "Tại PML Vietnam, chúng tôi lựa chọn hướng phát triển website hiện đại với mục tiêu không chỉ tạo ra một website đẹp mà còn xây dựng một nền tảng có thể đồng hành cùng doanh nghiệp trong quá trình chuyển đổi số. Website không chỉ là nơi doanh nghiệp giới thiệu mình là ai, mà còn là một công cụ để khách hàng tìm thấy, tìm hiểu và kết nối với doanh nghiệp.",
+      },
+      {
+        type: "paragraph",
+        text: "Một website tốt không nhất thiết phải sử dụng công nghệ phức tạp nhất. Quan trọng hơn là lựa chọn đúng công nghệ, xây dựng đúng cách và phù hợp với nhu cầu thực tế của doanh nghiệp.",
+      },
+      {
+        type: "tagline",
+        text: "PML Vietnam - Cung cấp giải pháp website hiện đại cho cá nhân, hộ kinh doanh và doanh nghiệp.",
+      },
+    ] satisfies NewsArticleBlock[],
+  },
+  {
+    slug: NEWS_ARTICLE_SLUG_PRICING,
+    meta: {
+      title: "Bảng giá thiết kế website tại PML Vietnam",
+      description:
+        "Bảng giá thiết kế website trọn gói tại PML Vietnam theo từng gói PMLWeb Standard, Pro và Custom. Minh bạch tính năng, không phát sinh chi phí ẩn.",
+    },
+    banner: {
+      src: "/tin-tuc/banner_tin_tuc.webp",
+      alt: "Banner tin tức — bảng giá thiết kế website tại PML Vietnam",
+      badge: "Bảng giá",
+      publishedAt: "10:14 - 18/09/2026",
+      publishedAtIso: "2026-09-18T10:14:00+07:00",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Bạn đang băn khoăn chi phí thiết kế website hợp lý? Mỗi lần tìm kiếm báo giá thiết kế website, bạn lại gặp hàng chục con số khác nhau — từ vài triệu đến vài chục triệu đồng — mà không hiểu tại sao chênh lệch lại lớn đến vậy.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Bạn đang băn khoăn chi phí thiết kế website hợp lý?",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/bang_gia/chi-phi-thiet-ke-website.webp",
+        alt: "Chi phí thiết kế website phụ thuộc vào nhu cầu và phạm vi dự án",
+      },
+      {
+        type: "paragraph",
+        text: "Chi phí thiết kế website phụ thuộc vào nhiều yếu tố như: loại hình doanh nghiệp, số lượng tính năng cần tích hợp, mức độ tùy chỉnh giao diện, và cả chất lượng đội ngũ thực thi đứng sau sản phẩm. Một website giá vài triệu và một website giá vài chục triệu có thể trông giống nhau khi demo, nhưng hiệu quả thực tế khi vận hành lại là một câu chuyện hoàn toàn khác — đặc biệt về chuẩn SEO, tốc độ tải trang, và khả năng mở rộng lâu dài.",
+      },
+      {
+        type: "paragraph",
+        text: "Vậy thiết kế website bao nhiêu tiền là hợp lý? Câu trả lời không nằm ở con số rẻ nhất, mà nằm ở giá trị bạn nhận được tương xứng với khoản đầu tư. Một website được xây dựng bài bản — đạt chuẩn kỹ thuật, tối ưu công cụ tìm kiếm, giao diện chuyên nghiệp và có hỗ trợ hậu mãi — chính là tài sản số sinh ra doanh thu liên tục cho doanh nghiệp, không chỉ là một trang giới thiệu trực tuyến.",
+      },
+      {
+        type: "paragraph",
+        text: "Bài viết này cung cấp cho bạn bảng giá thiết kế website chi tiết, minh bạch theo từng gói dịch vụ, kèm phân tích rõ ràng về những gì bạn thực sự nhận được ở mỗi mức phí thiết kế website. Không có con số mơ hồ, không có ẩn phí — chỉ là thông tin thực tế giúp bạn ra quyết định đúng đắn với mong muốn cho doanh nghiệp của mình.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Bảng giá thiết kế website trọn gói tại PML Vietnam",
+      },
+      {
+        type: "paragraph",
+        text: "Dưới đây là bảng giá thiết kế website trọn gói được xây dựng theo từng nhóm nhu cầu thực tế cho cá nhân và doanh nghiệp — từ khi mới bắt đầu cho đến khi tổ chức cần giải pháp thương mại điện tử quy mô lớn. Mỗi gói được thiết kế để đảm bảo giá trị tương xứng với chi phí đầu tư, minh bạch về tính năng và không phát sinh chi phí ẩn sau bàn giao.",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/bang_gia/pmlweb-tinh-nang-noi-dung-website.webp",
+        alt: "So sánh tính năng và nội dung website theo gói PMLWeb",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "1. PMLWeb Standard",
+      },
+      {
+        type: "paragraph",
+        text: "Gói tiêu chuẩn được thiết kế phù hợp với cá nhân, doanh nghiệp cần một website chuyên nghiệp để giới thiệu thương hiệu, sản phẩm hoặc dịch vụ. Đây là lựa chọn tối ưu khi bạn cần một website giá phải chăng nhưng vẫn đảm bảo chất lượng — không phải hàng rẻ làm tạm, mà là giải pháp được thiết kế thông minh để phù hợp với ngân sách khởi nghiệp.",
+      },
+      {
+        type: "paragraph",
+        text: "Chi phí thiết kế trang web ở gói này thường dao động từ 4.000.000 – 5.900.000 VNĐ. Trong mức phí thiết kế website đó, bạn được hưởng trọn bộ: thiết kế theo template có sẵn được tùy chỉnh theo thương hiệu, tên miền .com hoặc .vn miễn phí năm đầu (tùy vào thời điểm khuyến mãi), hosting cơ bản, và chứng chỉ SSL bảo mật đi kèm.",
+      },
+      {
+        type: "paragraph",
+        text: "Điểm mấu chốt mà nhiều người bỏ qua: dù là gói tiêu chuẩn, website của bạn vẫn phải đạt chuẩn SEO và tương thích hoàn toàn trên mọi thiết bị. Đây là yêu cầu tối thiểu để Google có thể lập chỉ mục và xếp hạng trang web của bạn — nếu thiếu hai yếu tố này, coi như bạn đang vận hành một cửa hàng không có biển hiệu.",
+      },
+      {
+        type: "paragraph",
+        text: "Thời gian triển khai gói tiêu chuẩn thường chỉ từ 3–7 ngày làm việc, phù hợp với các doanh nghiệp cần ra mắt nhanh để kịp thời cơ thị trường. Gói này cũng được thiết kế để nâng cấp linh hoạt lên gói cao hơn về sau mà không làm mất dữ liệu hay phải làm lại từ đầu — một lợi thế quan trọng khi doanh nghiệp của bạn bắt đầu tăng trưởng.",
+      },
+      {
+        type: "link",
+        href: "/giai-phap#tinh-nang-noi-dung-website",
+        text: "Chi tiết tính năng và nội dung website xem tại đây",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "2. PMLWeb Pro",
+      },
+      {
+        type: "paragraph",
+        text: "Khi doanh nghiệp bạn đã có định hướng rõ ràng và cần một website chuyên nghiệp thực sự đại diện cho thương hiệu, gói PMLWeb Pro phù hợp với doanh nghiệp muốn website có khả năng quản trị nội dung và hỗ trợ hoạt động kinh doanh, marketing. Đây không chỉ là mẫu thiết kế theo giao diện có sẵn mà còn được nghiên cứu và xây dựng riêng theo đặc thù ngành nghề, đối tượng khách hàng mục tiêu và định hướng kinh doanh cụ thể của bạn.",
+      },
+      {
+        type: "paragraph",
+        text: "Bảng giá thiết kế website chuyên nghiệp ở phân khúc này thường nằm trong khoảng 5.900.000 – 8.000.000 VNĐ. Khoản đầu tư này bao gồm đầy đủ: thiết kế giao diện custom hoàn toàn, tích hợp CMS đầy đủ và tính năng nâng cao để doanh nghiệp tự quản lý nội dung dễ dàng, hỗ trợ đa ngôn ngữ nếu cần mở rộng thị trường quốc tế để bạn chủ động hoàn toàn.",
+      },
+      {
+        type: "paragraph",
+        text: "Một trong những giá trị cốt lõi của thiết kế website doanh nghiệp là khả năng tối ưu SEO chuyên sâu ngay từ giai đoạn lập trình — bao gồm cấu trúc URL chuẩn, schema markup, tốc độ tải trang cao và metadata được thiết lập bài bản. Điều này rút ngắn đáng kể thời gian để website xuất hiện trên trang đầu Google.",
+      },
+      {
+        type: "paragraph",
+        text: "Gói doanh nghiệp còn đi kèm hỗ trợ nạp nội dung ban đầu — bao gồm upload sản phẩm, bài viết giới thiệu công ty, banner và hình ảnh — giúp website sẵn sàng vận hành ngay sau bàn giao mà không tốn thêm thời gian. Với bảo hành trọn đời và hỗ trợ kỹ thuật 24/7, đây là giải pháp được thiết kế để phát triển cùng doanh nghiệp trong dài hạn.",
+      },
+      {
+        type: "link",
+        href: "/giai-phap#tinh-nang-noi-dung-website",
+        text: "Chi tiết tính năng và nội dung website xem tại đây",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "3. PMLWeb Custom",
+      },
+      {
+        type: "paragraph",
+        text: "Nếu mục tiêu của bạn là bán hàng trực tuyến và tạo ra doanh thu trực tiếp từ website, hay có yêu cầu riêng về tính năng, giao diện, hoặc cần xây dựng hệ thống website theo mô hình kinh doanh, thì gói PMLWeb Custom được thiết kế để làm đúng điều đó — không chỉ là một trang web đẹp, mà là một cỗ máy bán hàng online vận hành 24/7 với đầy đủ tính năng cao cấp. Đây là lựa chọn cho các doanh nghiệp kinh doanh sản phẩm vật lý, dịch vụ đặt lịch trực tuyến, hoặc các sàn giao dịch nội bộ lẫn quốc tế.",
+      },
+      {
+        type: "paragraph",
+        text: "Chi phí thiết kế website cho gói này từ 7.900.000 – 50.000.000 VNĐ tùy quy mô và tính năng yêu cầu. Ở mức báo giá gói thiết kế website này, hệ thống của bạn sẽ được tích hợp đầy đủ các tính năng như: giỏ hàng, cổng thanh toán trực tuyến (VNPay, Momo, thẻ quốc tế), quản lý tồn kho tự động, tích hợp đơn vị vận chuyển, và hệ thống quản lý đơn hàng cùng báo cáo doanh thu theo thời gian thực.",
+      },
+      {
+        type: "paragraph",
+        text: "Điểm khác biệt quan trọng so với các giải pháp website thông thường là khả năng tích hợp chatbot AI để hỗ trợ tư vấn khách hàng tự động, cùng với các tính năng marketing tích hợp như mã giảm giá, flash sale và các chương trình khuyến mãi. Những tính năng này trực tiếp tác động đến tỷ lệ chuyển đổi và giá trị đơn hàng trung bình của cửa hàng online của bạn.",
+      },
+      {
+        type: "paragraph",
+        text: "Về hạ tầng, gói này cần hosting hiệu năng cao với băng thông không giới hạn và thời gian hoạt động (uptime) đảm bảo 99.9% — đặc biệt quan trọng trong các chiến dịch sale lớn khi lưu lượng truy cập đột biến. Toàn bộ hạ tầng này được thiết kế riêng biệt.",
+      },
+      {
+        type: "link",
+        href: "/giai-phap#tinh-nang-noi-dung-website",
+        text: "Chi tiết tính năng và nội dung website xem tại đây",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Dịch vụ đi kèm trong mỗi gói thiết kế website",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/bang_gia/dich-vu-di-kem-website.webp",
+        alt: "Dịch vụ đi kèm trong mỗi gói thiết kế website PML Vietnam",
+      },
+      {
+        type: "paragraph",
+        text: "Khi nhìn vào bảng báo giá thiết kế website của bất kỳ đơn vị nào, điều quan trọng không chỉ là con số mà là những gì bạn thực sự nhận được bên trong gói đó. Dưới đây là toàn bộ dịch vụ đi kèm được tích hợp trong mỗi gói, giúp bạn so sánh và đánh giá đúng giá trị thực của từng khoản phí thiết kế website.",
+      },
+      {
+        type: "paragraph",
+        text: "Tên miền và hosting miễn phí hay giảm giá năm đầu là điều kiện tiên quyết một đơn vị uy tín cần cung cấp. Tên miền .com hoặc .vn tương đương khoảng 300.000–550.000 VNĐ/năm, trong khi hosting chất lượng có thể từ 1 triệu đến vài triệu đồng tùy gói — khi được tặng kèm hay giảm giá, bạn đang tiết kiệm một khoản không nhỏ ngay từ đầu. Lưu ý rằng chất lượng hosting ảnh hưởng trực tiếp đến tốc độ tải trang và SEO, nên đừng bỏ qua thông số kỹ thuật của máy chủ.",
+      },
+      {
+        type: "paragraph",
+        text: "Chứng chỉ SSL (HTTPS) không còn là tùy chọn. Đây là yêu cầu bắt buộc của Google và là dấu hiệu tin cậy đầu tiên mà khách truy cập nhận thấy. Mọi gói thiết kế nghiêm túc đều phải đi kèm SSL miễn phí và tự động gia hạn, không để website của bạn rơi vào trạng thái Not Secure gây mất uy tín thương hiệu.",
+      },
+      {
+        type: "paragraph",
+        text: "Quan trọng không kém là chính sách bảo hành website. Một đơn vị thiết kế web đáng tin cậy sẽ cam kết bảo hành lỗi kỹ thuật trọn đời, hỗ trợ sửa lỗi phát sinh trong vòng 24–48 giờ, và thực hiện quét virus cùng kiểm tra bảo mật định kỳ để bảo vệ dữ liệu doanh nghiệp. Ngoài ra, nhiều đơn vị còn cung cấp dịch vụ nâng cấp giao diện miễn phí sau 1–3 năm, đảm bảo website luôn bắt kịp xu hướng thị trường mà không cần đầu tư làm lại từ đầu.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Nhận báo giá chi tiết theo nhu cầu của bạn",
+      },
+      {
+        type: "paragraph",
+        text: "Bạn đã có đủ thông tin để so sánh, đánh giá và hình dung rõ ràng về chi phí thiết kế website phù hợp với doanh nghiệp của mình. Bước tiếp theo rất đơn giản: để chúng tôi phân tích nhu cầu cụ thể của bạn và gửi báo giá thiết kế website chi tiết, minh bạch.",
+      },
+      {
+        type: "paragraph",
+        text: "Hàng trăm doanh nghiệp đã bắt đầu hành trình số hóa của mình từ đúng bước này. Đừng để sự không chắc chắn về giá cả làm chậm lại cơ hội phát triển của bạn — khi mỗi ngày không có website chuẩn SEO là một ngày đối thủ đang thu hút khách hàng mà lẽ ra thuộc về bạn. Liên hệ ngay hôm nay để nhận báo giá thiết kế website doanh nghiệp được cá nhân hóa, kèm lộ trình triển khai cụ thể và cam kết bằng văn bản từ đội ngũ chuyên gia.",
+      },
+      {
+        type: "tagline",
+        text: "PML Vietnam - Cung cấp giải pháp website hiện đại cho cá nhân, hộ kinh doanh và doanh nghiệp.",
+      },
+    ] satisfies NewsArticleBlock[],
+  },
 ];
 
 export function getNewsArticleBySlug(slug: string): NewsArticle | undefined {
@@ -1999,7 +2398,7 @@ export const contactFormContent = {
   thietKeWebsite: {
     defaultHeading: "Đăng ký ngay",
     subheading:
-      "Để lại thông tin - PML Vietnam sẽ liên hệ tư vấn và triển khai gói logo phù hợp.",
+      "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn gói thiết kế website phù hợp.",
     submitLabel: "Đăng ký ngay",
   },
   chamSocWebsite: {
@@ -2474,7 +2873,7 @@ export const landingPageServiceContent = {
       "Bố cục hiện đại, đúng thông điệp chiến dịch",
       "Dễ chỉnh nội dung khi đổi offer",
     ],
-    ctaLabel: "Đăng ký tư vấn",
+    ctaLabel: "Đăng ký ngay",
     autoplayMs: 5000,
     banners: [
       {
@@ -2577,7 +2976,9 @@ export const brandingServiceContent = {
       "Định vị thương hiệu dễ nhớ",
       "Đồng bộ trải nghiệm online – offline",
     ],
-    ctaLabel: "Đăng ký tư vấn",
+    ctaLabel: "Đăng ký ngay",
+    ctaSubheading:
+      "Để lại thông tin - PML Vietnam sẽ liên hệ tư vấn và triển khai gói logo phù hợp.",
     autoplayMs: 5000,
     banners: [
       {

@@ -17,6 +17,15 @@ ENV NODE_ENV="production" \
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
+# NEXT_PUBLIC_* must be present at `next build` (inlined into the client bundle).
+# Values come from fly.toml [build.args] / `fly deploy --build-arg`.
+ARG NEXT_PUBLIC_SITE_URL
+ARG NEXT_PUBLIC_META_PIXEL_ID
+ARG NEXT_PUBLIC_GOOGLE_TAG_ID
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
+    NEXT_PUBLIC_META_PIXEL_ID=$NEXT_PUBLIC_META_PIXEL_ID \
+    NEXT_PUBLIC_GOOGLE_TAG_ID=$NEXT_PUBLIC_GOOGLE_TAG_ID
+
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3

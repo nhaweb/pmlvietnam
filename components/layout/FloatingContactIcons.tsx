@@ -11,7 +11,7 @@ export function FloatingContactIcons() {
     >
       <a
         href={`tel:${siteContact.phoneTel}`}
-        className="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-cta text-white shadow-lg shadow-cta/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+        className="contact-glow pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-cta text-white shadow-lg shadow-cta/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
         aria-label={`Gọi ${siteContact.phoneDisplay}`}
       >
         <PhoneIcon />
@@ -21,7 +21,7 @@ export function FloatingContactIcons() {
         href={siteContact.zaloUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="pointer-events-auto flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-[#0068FF] shadow-lg shadow-[#0068FF]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0068FF] focus-visible:ring-offset-2"
+        className="contact-glow contact-glow-zalo pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#0068FF] shadow-lg shadow-[#0068FF]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0068FF] focus-visible:ring-offset-2"
         aria-label="Chat Zalo"
       >
         <ZaloIcon />

@@ -363,3 +363,81 @@ dialog.contact-form-dialog[open] > [data-contact-panel] {
     animation: none;
   }
 }
+
+/* Floating phone + Zalo — halo breathes, ring expands. Transform/opacity only. */
+@keyframes contact-glow-halo {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes contact-glow-ring {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+}
+
+.contact-glow {
+  --contact-glow: var(--cta-orange);
+  position: relative;
+  isolation: isolate;
+}
+
+.contact-glow::before,
+.contact-glow::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  background: var(--contact-glow);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.contact-glow::before {
+  inset: -5px;
+  filter: blur(8px);
+  animation: contact-glow-halo 2.4s ease-in-out infinite;
+}
+
+.contact-glow::after {
+  inset: 0;
+  animation: contact-glow-ring 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.contact-glow-zalo {
+  --contact-glow: #0068ff;
+}
+
+.contact-glow-zalo::before,
+.contact-glow-zalo::after {
+  animation-duration: 2.8s;
+  animation-delay: -1.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-glow::before,
+  .contact-glow::after {
+    animation: none;
+  }
+
+  .contact-glow::before {
+    opacity: 0.45;
+    transform: none;
+  }
+
+  .contact-glow::after {
+    opacity: 0;
+  }
+}
