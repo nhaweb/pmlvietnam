@@ -1131,6 +1131,13 @@ export const NEWS_ARTICLE_SLUG_NEXTJS =
 export const NEWS_ARTICLE_SLUG_PRICING =
   "bang-gia-thiet-ke-website-tai-pml-vietnam" as const;
 
+/** Slug bài hướng dẫn bắt đầu làm website (`public/tin-tuc/website_can_gi`). */
+export const NEWS_ARTICLE_SLUG_GETTING_STARTED =
+  "website-cho-ca-nhan-ho-kinh-doanh-doanh-nghiep-nen-bat-dau-tu-dau" as const;
+
+/** Slug bài giới thiệu PML Vietnam (`public/tin-tuc/pml_la_ai`). */
+export const NEWS_ARTICLE_SLUG_ABOUT_PML = "pml-vietnam-la-ai" as const;
+
 export function newsArticleHref(slug: string) {
   return `/tin-tuc/${slug}`;
 }
@@ -1143,6 +1150,33 @@ export const newsContent = {
   /** Số tin / hàng (desktop) */
   itemsPerRow: 5 as const,
   items: [
+    {
+      id: "news-pml-la-ai",
+      title: "PML Vietnam là ai? Giải pháp website & chuyển đổi số cùng doanh nghiệp",
+      excerpt:
+        "PML Vietnam cung cấp giải pháp thiết kế website, landing page, nhận diện thương hiệu, chăm sóc website và SEO Content cho cá nhân, hộ kinh doanh và doanh nghiệp.",
+      date: "29/09/2026",
+      href: newsArticleHref(NEWS_ARTICLE_SLUG_ABOUT_PML),
+      category: "Về PML",
+      image: {
+        src: "/tin-tuc/pml_la_ai/thumbnail-pml-vietnam-la-ai.webp",
+        alt: "PML Vietnam — giải pháp website và chuyển đổi số",
+      },
+    },
+    {
+      id: "news-bat-dau-website",
+      title:
+        "Website cho cá nhân, hộ kinh doanh và doanh nghiệp: Nên bắt đầu từ đâu?",
+      excerpt:
+        "Những điều cần chuẩn bị trước khi làm website — mục tiêu, tính năng, tên miền, hosting, SEO, chi phí và 5 bước đơn giản để bắt đầu đúng hướng.",
+      date: "28/09/2026",
+      href: newsArticleHref(NEWS_ARTICLE_SLUG_GETTING_STARTED),
+      category: "Hướng dẫn",
+      image: {
+        src: "/tin-tuc/website_can_gi/thumbnail-website-can-gi.webp",
+        alt: "Website cho cá nhân, hộ kinh doanh và doanh nghiệp nên bắt đầu từ đâu",
+      },
+    },
     {
       id: "news-nextjs",
       title:
@@ -1321,11 +1355,13 @@ export const newsPageContent = {
 /**
  * Bài viết chi tiết tại `/tin-tuc/[slug]`.
  * Nguồn: `public/tin-tuc/PML Vietnam_Tin tức.docx`, `public/tin-tuc/vi-sao`,
- * `public/tin-tuc/Nextjs_Tailwindcss`, `public/tin-tuc/bang_gia`.
+ * `public/tin-tuc/Nextjs_Tailwindcss`, `public/tin-tuc/bang_gia`,
+ * `public/tin-tuc/website_can_gi`, `public/tin-tuc/pml_la_ai`.
  */
 export type NewsArticleBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; level: 2 | 3; text: string }
+  | { type: "list"; ordered?: boolean; items: string[] }
   | { type: "image"; src: string; alt: string }
   | { type: "link"; href: string; text: string }
   | { type: "tagline"; text: string };
@@ -2089,6 +2125,579 @@ export const newsArticles: NewsArticle[] = [
       {
         type: "paragraph",
         text: "Hàng trăm doanh nghiệp đã bắt đầu hành trình số hóa của mình từ đúng bước này. Đừng để sự không chắc chắn về giá cả làm chậm lại cơ hội phát triển của bạn — khi mỗi ngày không có website chuẩn SEO là một ngày đối thủ đang thu hút khách hàng mà lẽ ra thuộc về bạn. Liên hệ ngay hôm nay để nhận báo giá thiết kế website doanh nghiệp được cá nhân hóa, kèm lộ trình triển khai cụ thể và cam kết bằng văn bản từ đội ngũ chuyên gia.",
+      },
+      {
+        type: "tagline",
+        text: "PML Vietnam - Cung cấp giải pháp website hiện đại cho cá nhân, hộ kinh doanh và doanh nghiệp.",
+      },
+    ] satisfies NewsArticleBlock[],
+  },
+  {
+    slug: NEWS_ARTICLE_SLUG_GETTING_STARTED,
+    meta: {
+      title:
+        "Website cho cá nhân, hộ kinh doanh và doanh nghiệp: Nên bắt đầu từ đâu?",
+      description:
+        "Tìm hiểu cách bắt đầu xây dựng website cho cá nhân, hộ kinh doanh và doanh nghiệp. Những điều cần chuẩn bị, chi phí, tính năng và cách lựa chọn giải pháp phù hợp.",
+    },
+    banner: {
+      src: "/tin-tuc/banner_tin_tuc.webp",
+      alt: "Banner tin tức — website cho cá nhân, hộ kinh doanh và doanh nghiệp nên bắt đầu từ đâu",
+      badge: "Hướng dẫn",
+      publishedAt: "10:14 - 28/09/2026",
+      publishedAtIso: "2026-09-28T10:14:00+07:00",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Ngày nay, website không còn là công cụ chỉ dành cho những doanh nghiệp lớn. Một cá nhân đang xây dựng thương hiệu, một hộ kinh doanh muốn tiếp cận thêm khách hàng hay một doanh nghiệp đang phát triển đều có thể cần đến một website chuyên nghiệp. Tuy nhiên, khi bắt đầu tìm hiểu về website, rất nhiều người gặp cùng một câu hỏi: Tôi nên bắt đầu từ đâu? Làm website như thế nào? Cần bao nhiêu tiền? Có cần tên miền, hosting, logo hay chức năng bán hàng không?",
+      },
+      {
+        type: "paragraph",
+        text: "Trong bài viết này, PML Vietnam sẽ giúp bạn hiểu rõ các bước cơ bản để bắt đầu xây dựng website phù hợp với cá nhân, hộ kinh doanh và doanh nghiệp.",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/website_can_gi/website-dung-de-lam-gi.webp",
+        alt: "Xác định website dùng để làm gì trước khi bắt đầu thiết kế",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Trước tiên, hãy xác định website dùng để làm gì?",
+      },
+      {
+        type: "paragraph",
+        text: "Đây là câu hỏi quan trọng nhất trước khi bắt đầu thiết kế website. Không phải website nào cũng cần nhiều tính năng — một website giới thiệu cá nhân sẽ rất khác với website bán hàng của một doanh nghiệp. Bạn có thể bắt đầu bằng việc trả lời 3 câu hỏi:",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "1. Website của tôi phục vụ ai?",
+      },
+      {
+        type: "paragraph",
+        text: "Chẳng hạn như: khách hàng cá nhân, khách hàng doanh nghiệp, đối tác, người tìm kiếm sản phẩm hoặc dịch vụ trên Google, người muốn tìm hiểu thương hiệu trước khi liên hệ.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "2. Website cần giúp tôi đạt mục tiêu gì?",
+      },
+      {
+        type: "paragraph",
+        text: "Có thể là: giới thiệu bản thân hoặc thương hiệu, giới thiệu sản phẩm, dịch vụ, tìm kiếm khách hàng mới, nhận yêu cầu tư vấn, bán sản phẩm trực tuyến, xây dựng thương hiệu chuyên nghiệp, hỗ trợ hoạt động marketing và quảng cáo.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "3. Khách hàng cần làm gì sau khi truy cập website?",
+      },
+      {
+        type: "paragraph",
+        text: "Ví dụ: gọi điện, nhắn Zalo, gửi form liên hệ, đặt lịch tư vấn, xem sản phẩm, mua hàng, đọc bài viết, đến cửa hàng hoặc văn phòng.",
+      },
+      {
+        type: "paragraph",
+        text: "Khi trả lời được những câu hỏi này, bạn đã có nền tảng để xác định loại website phù hợp.",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/website_can_gi/website-ca-nhan-hkd-doanh-nghiep.webp",
+        alt: "Website cho cá nhân, hộ kinh doanh và doanh nghiệp",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Website cho cá nhân: Không cần quá lớn nhưng phải chuyên nghiệp",
+      },
+      {
+        type: "paragraph",
+        text: "Với cá nhân, website có thể được sử dụng để xây dựng thương hiệu cá nhân, giới thiệu chuyên môn hoặc tạo một kênh thông tin độc lập trên Internet. Website cá nhân phù hợp với: freelancer, chuyên gia tư vấn, người làm dịch vụ, kiến trúc sư, luật sư, kế toán, tư vấn viên, photographer, designer, nhà sáng tạo nội dung, người kinh doanh cá nhân, người xây dựng thương hiệu cá nhân.",
+      },
+      {
+        type: "paragraph",
+        text: "Một website cá nhân cơ bản có thể gồm: Trang chủ → Giới thiệu → Dịch vụ → Dự án/Portfolio → Bài viết → Liên hệ.",
+      },
+      {
+        type: "paragraph",
+        text: "Điểm quan trọng không phải là có thật nhiều chức năng mà là website phải thể hiện được bạn là ai, bạn cung cấp giá trị gì và khách hàng có thể liên hệ với bạn bằng cách nào. Nếu mục tiêu là xây dựng thương hiệu cá nhân lâu dài, việc sở hữu một tên miền riêng cũng giúp hình ảnh chuyên nghiệp hơn so với việc chỉ phụ thuộc vào Facebook, TikTok hoặc các nền tảng mạng xã hội.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Website cho hộ kinh doanh: Tập trung vào khách hàng và sản phẩm",
+      },
+      {
+        type: "paragraph",
+        text: "Đối với hộ kinh doanh, website thường có mục tiêu thực tế hơn: giúp khách hàng tìm thấy, hiểu và liên hệ với cửa hàng hoặc thương hiệu. Ví dụ, một hộ kinh doanh có thể hoạt động trong các lĩnh vực: nhà hàng, quán cà phê, thời trang, mỹ phẩm, nội thất, du lịch, dịch vụ sửa chữa, đào tạo, làm đẹp, thực phẩm, phân phối sản phẩm, các dịch vụ chuyên môn.",
+      },
+      {
+        type: "paragraph",
+        text: "Website có thể đóng vai trò như một \"bộ mặt chính thức\" của thương hiệu trên Internet. Một website cho hộ kinh doanh có thể bao gồm: trang giới thiệu, danh mục sản phẩm/dịch vụ, hình ảnh thực tế, bảng giá hoặc thông tin sản phẩm, địa chỉ cửa hàng, Google Maps, nút gọi điện, Zalo hoặc Messenger, form liên hệ, bài viết tư vấn và các chính sách.",
+      },
+      {
+        type: "paragraph",
+        text: "Nếu chưa có nhu cầu bán hàng trực tuyến trực tiếp, bạn không nhất thiết phải xây dựng một hệ thống thương mại điện tử phức tạp ngay từ đầu. Một website giới thiệu sản phẩm kết hợp nút \"Liên hệ tư vấn\", \"Đặt hàng\" hoặc \"Nhắn Zalo\" đôi khi đã đáp ứng tốt nhu cầu ban đầu. Sau khi hoạt động kinh doanh phát triển, website có thể tiếp tục được nâng cấp thêm chức năng giỏ hàng, thanh toán, quản lý đơn hàng và khách hàng.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Website cho doanh nghiệp: Cần tính đến khả năng phát triển lâu dài",
+      },
+      {
+        type: "paragraph",
+        text: "Đối với doanh nghiệp, website thường đóng nhiều vai trò hơn một trang giới thiệu đơn thuần. Website có thể trở thành trung tâm kết nối giữa thương hiệu, khách hàng, marketing và các hoạt động kinh doanh. Một website doanh nghiệp có thể bao gồm: giới thiệu doanh nghiệp, sản phẩm và dịch vụ, dự án đã thực hiện, khách hàng/đối tác, tin tức, blog chuyên môn, tuyển dụng, form nhận yêu cầu tư vấn, tích hợp CRM, Google Analytics, Meta Pixel, công cụ marketing, hệ thống quản trị nội dung, website đa ngôn ngữ.",
+      },
+      {
+        type: "paragraph",
+        text: "Với doanh nghiệp có sản phẩm và đơn hàng lớn, website còn có thể phát triển thành hệ thống thương mại điện tử với: quản lý sản phẩm, quản lý tồn kho, giỏ hàng, đặt hàng, thanh toán trực tuyến, quản lý đơn hàng, tài khoản khách hàng, khuyến mãi, báo cáo doanh thu. Do đó, khi thiết kế website doanh nghiệp, nên suy nghĩ không chỉ về nhu cầu hiện tại mà còn về khả năng mở rộng trong tương lai.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Có nhất thiết phải có thật nhiều tính năng ngay từ đầu?",
+      },
+      {
+        type: "paragraph",
+        text: "Câu trả lời là không cần thiết. Một trong những sai lầm phổ biến khi làm website là cố gắng đưa tất cả chức năng vào phiên bản đầu tiên. Điều này có thể khiến website tốn nhiều chi phí, thời gian triển khai lâu, có nhiều chức năng nhưng ít được sử dụng. Thay vào đó, bạn có thể áp dụng cách tiếp cận \"bắt đầu vừa đủ và mở rộng khi cần\". Ví dụ:",
+      },
+      {
+        type: "list",
+        items: [
+          "Giai đoạn 1: Website giới thiệu + sản phẩm/dịch vụ + Blog + SEO + liên hệ.",
+          "Giai đoạn 2: Bán hàng trực tuyến + quản lý đơn hàng.",
+          "Giai đoạn 3: Tích hợp CRM, automation, AI hoặc các hệ thống quản trị khác.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Cách làm này giúp bạn kiểm soát chi phí và đồng thời có thời gian đánh giá khách hàng thực sự cần gì.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Tên miền, hosting và SSL là gì?",
+      },
+      {
+        type: "paragraph",
+        text: "Nếu bạn chưa từng làm website, đây là ba khái niệm thường gây khó hiểu.",
+      },
+      {
+        type: "list",
+        items: [
+          "Tên miền — Là địa chỉ website mà khách hàng nhập vào trình duyệt. Tên miền nên ngắn, dễ nhớ và liên quan đến thương hiệu, ví dụ như pmlvietnam.vn.",
+          "Hosting — Là nơi lưu trữ website và dữ liệu để website có thể hoạt động trên Internet. Tùy loại website mà nhu cầu hosting sẽ khác nhau: website giới thiệu đơn giản thường không cần hạ tầng quá lớn, trong khi website thương mại điện tử hoặc website có lượng truy cập cao có thể cần máy chủ và cơ sở dữ liệu mạnh hơn.",
+          "SSL/HTTPS — Giúp kết nối giữa người dùng và website được mã hóa. Khi website sử dụng HTTPS, trình duyệt thường hiển thị biểu tượng ổ khóa bên cạnh địa chỉ website. Đây gần như là thành phần tiêu chuẩn đối với website hiện nay.",
+        ],
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Website có cần SEO không?",
+      },
+      {
+        type: "paragraph",
+        text: "Nếu bạn muốn khách hàng tìm thấy website thông qua Google, SEO là yếu tố nên được quan tâm ngay từ giai đoạn thiết kế. Một website chuẩn SEO không có nghĩa là chỉ cần cài một công cụ SEO là có thể đứng đầu Google. SEO liên quan đến nhiều yếu tố như: cấu trúc website, nội dung, tốc độ tải trang, khả năng hiển thị trên mobile, URL, title và meta description, heading, hình ảnh, internal link, sitemap, schema, chất lượng nội dung và độ tin cậy của website.",
+      },
+      {
+        type: "paragraph",
+        text: "Vì vậy, ngay từ đầu nên xây dựng website theo hướng thân thiện với công cụ tìm kiếm, sau đó tiếp tục phát triển nội dung và SEO theo thời gian.",
+      },
+      {
+        type: "link",
+        href: "/seo-content",
+        text: "Xem thêm thông tin về dịch vụ viết bài SEO Content tại đây",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Chi phí làm website phụ thuộc vào những yếu tố nào?",
+      },
+      {
+        type: "paragraph",
+        text: "Không có một mức giá cố định cho tất cả website. Chi phí thường phụ thuộc vào: loại website, số lượng trang, mức độ thiết kế riêng, chức năng quản trị, có cơ sở dữ liệu hay không, tính năng bán hàng, tích hợp thanh toán, tích hợp bên thứ ba, đa ngôn ngữ, hosting, tên miền, yêu cầu bảo mật, khả năng mở rộng. Ví dụ, một website giới thiệu cơ bản sẽ có yêu cầu hoàn toàn khác một website thương mại điện tử có hàng nghìn sản phẩm và lượng truy cập lớn.",
+      },
+      {
+        type: "paragraph",
+        text: "Vì vậy, thay vì chỉ hỏi \"Làm website bao nhiêu tiền?\", bạn nên xác định trước \"Website cần giải quyết vấn đề gì cho hoạt động kinh doanh của tôi?\". Từ đó mới có thể lựa chọn giải pháp phù hợp với ngân sách.",
+      },
+      {
+        type: "link",
+        href: newsArticleHref(NEWS_ARTICLE_SLUG_PRICING),
+        text: "Xem thêm thông tin về bảng giá thiết kế website tại đây",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Vậy nên bắt đầu từ đâu?",
+      },
+      {
+        type: "paragraph",
+        text: "Nếu bạn đang có ý định làm website nhưng chưa biết bắt đầu từ đâu, hãy đi theo 5 bước đơn giản:",
+      },
+      {
+        type: "list",
+        ordered: true,
+        items: [
+          "Xác định mục tiêu — Website dùng để giới thiệu, tìm kiếm khách hàng hay bán hàng?",
+          "Xác định khách hàng — Ai sẽ là người truy cập website và họ cần thông tin gì?",
+          "Xác định chức năng — Chỉ lựa chọn những chức năng thực sự cần thiết ở giai đoạn đầu.",
+          "Xác định ngân sách — Đừng chỉ tính chi phí thiết kế, hãy tính cả tên miền, hosting, bảo trì, nội dung và marketing nếu cần.",
+          "Chọn đơn vị triển khai — Hãy tìm một đơn vị có thể tư vấn giải pháp phù hợp thay vì chỉ báo một mức giá cố định.",
+        ],
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "PML Vietnam - Đồng hành chuyển đổi số cùng bạn",
+      },
+      {
+        type: "paragraph",
+        text: "PML Vietnam cung cấp các giải pháp website hiện đại cho cá nhân, hộ kinh doanh và doanh nghiệp với định hướng xây dựng website phù hợp với nhu cầu thực tế và ngân sách của từng khách hàng.",
+      },
+      {
+        type: "paragraph",
+        text: "Thay vì áp dụng một mẫu giải pháp cho tất cả, PML Vietnam tập trung tìm hiểu: Bạn đang kinh doanh lĩnh vực gì? Khách hàng của bạn là ai? Website cần đạt mục tiêu gì? Bạn cần giới thiệu dịch vụ hay bán hàng? Có cần quản lý sản phẩm và đơn hàng không? Có cần SEO và phát triển nội dung không? Ngân sách hiện tại của bạn là bao nhiêu? Website có cần mở rộng trong tương lai không?",
+      },
+      {
+        type: "paragraph",
+        text: "Từ những thông tin đó, giải pháp website có thể được xây dựng theo từng mức độ phù hợp. Bên cạnh thiết kế website, landing page, PML Vietnam còn phát triển các dịch vụ liên quan như thiết kế logo và nhận diện thương hiệu, vận hành và chăm sóc website và SEO Content.",
+      },
+      {
+        type: "paragraph",
+        text: "Điều này giúp khách hàng không chỉ có một website để \"đưa lên Internet\", mà còn có một nền tảng có thể tiếp tục phát triển cùng hoạt động kinh doanh.",
+      },
+      {
+        type: "link",
+        href: "/lien-he",
+        text: "Để lại thông tin, đội ngũ PML Vietnam sẽ tư vấn giải pháp website phù hợp với nhu cầu của bạn",
+      },
+      {
+        type: "tagline",
+        text: "PML Vietnam - Cung cấp giải pháp website hiện đại cho cá nhân, hộ kinh doanh và doanh nghiệp.",
+      },
+    ] satisfies NewsArticleBlock[],
+  },
+  {
+    slug: NEWS_ARTICLE_SLUG_ABOUT_PML,
+    meta: {
+      title:
+        "PML Vietnam là ai? Giải pháp website & Chuyển đổi số cùng doanh nghiệp",
+      description:
+        "PML Vietnam là đơn vị cung cấp giải pháp thiết kế website, landing page, nhận diện thương hiệu, chăm sóc website và SEO Content cho cá nhân, hộ kinh doanh và doanh nghiệp.",
+    },
+    banner: {
+      src: "/tin-tuc/banner_tin_tuc.webp",
+      alt: "Banner tin tức — PML Vietnam là ai",
+      badge: "Về PML",
+      publishedAt: "10:14 - 29/09/2026",
+      publishedAtIso: "2026-09-29T10:14:00+07:00",
+    },
+    blocks: [
+      {
+        type: "heading",
+        level: 2,
+        text: "PML Vietnam là ai?",
+      },
+      {
+        type: "paragraph",
+        text: "PML Vietnam là đơn vị chuyên cung cấp giải pháp website hiện đại cho cá nhân, hộ kinh doanh và doanh nghiệp với hơn 19 năm kinh nghiệm trong lĩnh vực công nghệ và đội ngũ phát triển website giàu kinh nghiệm. PML Vietnam được thành lập với mong muốn đưa kinh nghiệm công nghệ vào những giải pháp thực tế, phù hợp với khả năng đầu tư của cá nhân, hộ kinh doanh và doanh nghiệp.",
+      },
+      {
+        type: "paragraph",
+        text: "PML Vietnam hiện đang xây dựng các nhóm giao diện theo nhiều lĩnh vực như bán lẻ & thương mại điện tử, dịch vụ & thương mại, xây dựng, bất động sản, giáo dục, y tế & sức khỏe, du lịch & khách sạn, công nghệ, sản xuất, công nghiệp và thương hiệu cá nhân.",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/pml_la_ai/pml-vietnam-la-ai.webp",
+        alt: "PML Vietnam — đơn vị cung cấp giải pháp website hiện đại",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "PML Vietnam cung cấp những dịch vụ gì?",
+      },
+      {
+        type: "paragraph",
+        text: "Các dịch vụ hiện được PML Vietnam phát triển gồm:",
+      },
+      {
+        type: "list",
+        items: [
+          "Thiết kế website chuyên nghiệp",
+          "Thiết kế website theo yêu cầu",
+          "Thiết kế Landing Page",
+          "Thiết kế nhận diện thương hiệu",
+          "Chăm sóc và vận hành website",
+          "SEO Content",
+          "Các giải pháp website dành cho nhiều ngành nghề khác nhau",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Hệ sinh thái dịch vụ của PML Vietnam được xây dựng xoay quanh website, thương hiệu và hoạt động vận hành trên môi trường số.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "Thiết kế website chuyên nghiệp",
+      },
+      {
+        type: "paragraph",
+        text: "Đây là nhóm dịch vụ cốt lõi của PML Vietnam. Website được xây dựng dựa trên nhu cầu và lĩnh vực hoạt động của khách hàng, từ website giới thiệu doanh nghiệp, website dịch vụ, website thương mại đến những website có yêu cầu riêng.",
+      },
+      {
+        type: "paragraph",
+        text: "PML Vietnam chú trọng giao diện hiện đại, responsive, khả năng tối ưu SEO, tốc độ tải trang và trải nghiệm quản trị. Quy trình triển khai gồm các bước từ tiếp nhận yêu cầu, lập kế hoạch, thiết kế và xây dựng, kiểm thử – tối ưu đến nghiệm thu, bàn giao và vận hành.",
+      },
+      {
+        type: "link",
+        href: "/thiet-ke-website",
+        text: "Xem chi tiết nội dung tại đây",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "Thiết kế Landing Page",
+      },
+      {
+        type: "paragraph",
+        text: "Landing page phù hợp với các chiến dịch quảng cáo, giới thiệu một sản phẩm hoặc dịch vụ cụ thể, thu thập khách hàng tiềm năng hoặc hỗ trợ hoạt động marketing.",
+      },
+      {
+        type: "paragraph",
+        text: "Một landing page hiệu quả không chỉ cần đẹp mà còn phải có bố cục rõ ràng, nội dung phù hợp và hướng người dùng đến hành động cụ thể.",
+      },
+      {
+        type: "link",
+        href: "/thiet-ke-landing-page",
+        text: "Xem chi tiết nội dung tại đây",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "Thiết kế logo và nhận diện thương hiệu",
+      },
+      {
+        type: "paragraph",
+        text: "Website là một phần trong hình ảnh thương hiệu. PML Vietnam cung cấp giải pháp thiết kế nhận diện thương hiệu nhằm giúp khách hàng xây dựng hình ảnh nhất quán từ logo, màu sắc, phong cách hình ảnh đến cách thể hiện thương hiệu trên môi trường số.",
+      },
+      {
+        type: "link",
+        href: "/thiet-ke-nhan-dien-thuong-hieu",
+        text: "Xem chi tiết nội dung tại đây",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "Chăm sóc và vận hành website",
+      },
+      {
+        type: "paragraph",
+        text: "Sau khi website được bàn giao, công việc không kết thúc. Website cần được cập nhật nội dung, kiểm tra, sao lưu, theo dõi và xử lý các vấn đề phát sinh trong quá trình sử dụng.",
+      },
+      {
+        type: "paragraph",
+        text: "Dịch vụ chăm sóc website của PML Vietnam hướng đến những khách hàng không có đội ngũ kỹ thuật riêng hoặc muốn có một đơn vị đồng hành trong quá trình vận hành website lâu dài.",
+      },
+      {
+        type: "link",
+        href: "/cham-soc-website",
+        text: "Xem chi tiết nội dung tại đây",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "SEO Content",
+      },
+      {
+        type: "paragraph",
+        text: "Một website có nội dung tốt sẽ giúp doanh nghiệp có thêm cơ hội tiếp cận khách hàng thông qua các công cụ tìm kiếm. PML Vietnam cung cấp dịch vụ SEO Content nhằm hỗ trợ doanh nghiệp xây dựng nội dung phù hợp với khách hàng và định hướng phát triển website trên môi trường tìm kiếm.",
+      },
+      {
+        type: "link",
+        href: "/seo-content",
+        text: "Xem chi tiết nội dung tại đây",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "Thiết kế website theo yêu cầu (trọn gói)",
+      },
+      {
+        type: "paragraph",
+        text: "Ngoài website theo mẫu giao diện có sẵn được tuyển chọn kỹ lưỡng bởi chuyên gia, PML Vietnam còn triển khai thiết kế website theo yêu cầu (trọn gói) dựa vào nhu cầu, sở thích riêng biệt của mỗi khách hàng về website, từ đó chúng tôi sẽ xây dựng một trang web đúng như khách hàng mong muốn.",
+      },
+      {
+        type: "link",
+        href: "/thiet-ke-website-tron-goi",
+        text: "Xem chi tiết nội dung tại đây",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "PML Vietnam phục vụ ai và mang lại giá trị gì cho bạn?",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/pml_la_ai/ca-nhan-hkd-doanh-nghiep.webp",
+        alt: "PML Vietnam phục vụ cá nhân, hộ kinh doanh và doanh nghiệp",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "Cá nhân và thương hiệu cá nhân",
+      },
+      {
+        type: "paragraph",
+        text: "Một website có thể trở thành nơi tập trung toàn bộ thông tin về một cá nhân, chuyên gia, freelancer hoặc người cung cấp dịch vụ. Website có thể được sử dụng cho portfolio, giới thiệu năng lực, dịch vụ cá nhân, dự án đã thực hiện hoặc xây dựng thương hiệu cá nhân.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "Hộ kinh doanh và cửa hàng",
+      },
+      {
+        type: "paragraph",
+        text: "Đối với hộ kinh doanh, website giúp khách hàng tìm hiểu sản phẩm, dịch vụ, địa chỉ, thông tin liên hệ và thương hiệu một cách chuyên nghiệp hơn.",
+      },
+      {
+        type: "paragraph",
+        text: "Đặc biệt trong bối cảnh khách hàng thường tìm kiếm thông tin trước khi mua hàng, website có thể trở thành một kênh quan trọng bên cạnh mạng xã hội và các nền tảng thương mại điện tử.",
+      },
+      {
+        type: "heading",
+        level: 3,
+        text: "Doanh nghiệp",
+      },
+      {
+        type: "paragraph",
+        text: "Đối với doanh nghiệp, website không chỉ là một trang giới thiệu mà còn đóng vai trò như một trung tâm thông tin của doanh nghiệp, nơi khách hàng tìm hiểu về công ty, sản phẩm, dịch vụ, dự án, đội ngũ và các hoạt động của thương hiệu. Với những doanh nghiệp có nhu cầu cao hơn, website còn có thể được xây dựng theo yêu cầu riêng và mở rộng theo quá trình phát triển.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Vì sao PML Vietnam được thành lập?",
+      },
+      {
+        type: "paragraph",
+        text: "PML Vietnam được thành lập từ mong muốn giải quyết bài toán khó khăn của các cá nhân và doanh nghiệp khi tìm kiếm giải pháp thiết kế website: công nghệ cũ thì lỗi thời, còn công nghệ mới lại vượt quá ngân sách. Xuất phát từ kinh nghiệm thực chiến trong lĩnh vực công nghệ, chúng tôi quy tụ một đội ngũ chuyên gia với sứ mệnh cung cấp website hiện đại, tối ưu trải nghiệm người dùng với chi phí hợp lý nhất, giúp mọi doanh nghiệp tự tin bước vào kỷ nguyên kinh doanh số.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Điều gì tạo nên sự khác biệt của PML Vietnam?",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/pml_la_ai/nen-tang-cong-nghe-pml-vietnam.webp",
+        alt: "Nền tảng công nghệ tạo nên sự khác biệt của PML Vietnam",
+      },
+      {
+        type: "paragraph",
+        text: "Nền tảng công nghệ tạo nên sự khác biệt của PML Vietnam:",
+      },
+      {
+        type: "list",
+        items: [
+          "9+ năm kinh nghiệm thiết kế website — Có bề dày lâu năm chuyên về sáng tạo và tối ưu giao diện web.",
+          "19+ năm kinh nghiệm công nghệ — Đội ngũ chuyên môn cao, am hiểu sâu về hạ tầng và giải pháp kỹ thuật.",
+          "Mã nguồn riêng hoàn toàn — Tự phát triển hệ thống từ đầu, đảm bảo tính bảo mật cao và tối ưu hiệu năng.",
+          "Mẫu web hiện đại theo ngành nghề — Cung cấp các thiết kế đa dạng, tối ưu trải nghiệm người dùng phù hợp với từng lĩnh vực kinh doanh.",
+          "Công nghệ hiện đại, bền vững — Áp dụng các chuẩn công nghệ tiên tiến nhất giúp hệ thống vận hành ổn định lâu dài.",
+          "Giao diện quản trị dễ sử dụng — Hệ thống admin thân thiện, giúp người dùng dễ dàng thao tác và quản lý nội dung mà không cần giỏi kỹ thuật.",
+          "Dễ nâng cấp và mở rộng — Cấu trúc linh hoạt, dễ dàng tích hợp thêm các tính năng mới khi doanh nghiệp phát triển.",
+          "Đội ngũ hỗ trợ chuyên nghiệp — Dịch vụ chăm sóc khách hàng và hỗ trợ kỹ thuật tận tâm, sẵn sàng giải quyết khi gặp sự cố.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "PML Vietnam không chỉ tạo ra một website đẹp, mà xây dựng nền tảng số phù hợp để doanh nghiệp vận hành, phát triển và mở rộng lâu dài.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "PML Vietnam không chỉ \"làm website\" mà còn đồng hành trong quá trình vận hành",
+      },
+      {
+        type: "image",
+        src: "/tin-tuc/pml_la_ai/pml-vietnam-cham-soc-website.webp",
+        alt: "PML Vietnam đồng hành chăm sóc và vận hành website",
+      },
+      {
+        type: "paragraph",
+        text: "Đây là một trong những định hướng quan trọng của PML Vietnam: một website sau khi hoàn thành mới chỉ là điểm bắt đầu. Trong quá trình kinh doanh, doanh nghiệp có thể cần:",
+      },
+      {
+        type: "list",
+        items: [
+          "Cập nhật sản phẩm và dịch vụ.",
+          "Đăng bài viết mới.",
+          "Thay đổi hình ảnh và nội dung.",
+          "Tối ưu tốc độ và trải nghiệm.",
+          "Sao lưu dữ liệu.",
+          "Theo dõi hoạt động website.",
+          "Xử lý các vấn đề kỹ thuật.",
+          "Phát triển thêm chức năng.",
+          "Xây dựng nội dung SEO.",
+          "Mở rộng website khi doanh nghiệp phát triển.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "PML Vietnam vì vậy định hướng kết hợp giữa thiết kế và vận hành website, giúp khách hàng có thể tìm kiếm sự hỗ trợ không chỉ trong giai đoạn xây dựng mà cả sau khi website đi vào hoạt động. Mục tiêu là giúp khách hàng có thể tập trung vào hoạt động kinh doanh, trong khi website được duy trì và phát triển theo nhu cầu.",
+      },
+      {
+        type: "link",
+        href: "/cham-soc-website",
+        text: "Xem chi tiết nội dung tại đây",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Định hướng phát triển của PML Vietnam",
+      },
+      {
+        type: "paragraph",
+        text: "Trong giai đoạn đầu, PML Vietnam tập trung xây dựng những giải pháp website hiện đại, dễ quản trị, phù hợp với nhu cầu và ngân sách của cá nhân, hộ kinh doanh và doanh nghiệp. Tiếp theo, hệ sinh thái dịch vụ có thể được mở rộng xoay quanh những nhu cầu liên quan như nhận diện thương hiệu, nội dung, SEO, chăm sóc và vận hành website.",
+      },
+      {
+        type: "paragraph",
+        text: "Về lâu dài, PML Vietnam hướng đến việc trở thành một đơn vị đồng hành cùng doanh nghiệp trong quá trình xây dựng hiện diện số và từng bước chuyển đổi hoạt động kinh doanh lên môi trường trực tuyến. Đó cũng chính là ý nghĩa của định hướng — \"Đồng hành chuyển đổi số cùng bạn\".",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "PML Vietnam phù hợp với doanh nghiệp như thế nào?",
+      },
+      {
+        type: "list",
+        items: [
+          "Nếu bạn đang bắt đầu kinh doanh và cần một website chuyên nghiệp, PML Vietnam có thể hỗ trợ từ bước tư vấn và xây dựng giải pháp.",
+          "Nếu bạn đã có website nhưng giao diện cũ, khó quản trị hoặc không còn phù hợp với thương hiệu, PML Vietnam có thể cùng bạn xem xét phương án cải thiện hoặc xây dựng lại.",
+          "Nếu bạn đã có website nhưng không có người phụ trách kỹ thuật, dịch vụ chăm sóc và vận hành có thể giúp giảm bớt áp lực quản lý.",
+          "Nếu doanh nghiệp muốn phát triển nội dung và tăng khả năng tiếp cận khách hàng trên Google, SEO Content có thể trở thành một phần trong chiến lược phát triển website.",
+          "Nếu doanh nghiệp đang tìm kiếm một giải pháp website theo yêu cầu, PML Vietnam có thể bắt đầu từ việc tìm hiểu bài toán cụ thể trước khi đề xuất phương án phù hợp.",
+        ],
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "PML Vietnam muốn đồng hành cùng doanh nghiệp từ website đến chuyển đổi số",
+      },
+      {
+        type: "paragraph",
+        text: "Đằng sau một website đẹp không chỉ là giao diện. Một website hiệu quả cần phù hợp với ngành nghề, mục tiêu kinh doanh, khách hàng mục tiêu và ngân sách đầu tư. Đó cũng là cách PML Vietnam tiếp cận từng dự án: không bắt đầu bằng câu hỏi \"website cần bao nhiêu tính năng?\", mà bắt đầu bằng câu hỏi \"doanh nghiệp đang cần website để giải quyết vấn đề gì?\".",
+      },
+      {
+        type: "paragraph",
+        text: "Bạn đang muốn xây dựng website mới, làm mới website hiện tại hay cần một đơn vị đồng hành vận hành website lâu dài? PML Vietnam sẵn sàng cùng bạn xây dựng giải pháp phù hợp với nhu cầu và ngân sách thực tế.",
+      },
+      {
+        type: "link",
+        href: "/lien-he",
+        text: "Để lại thông tin, đội ngũ PML Vietnam sẽ tư vấn giải pháp website phù hợp với nhu cầu của bạn",
       },
       {
         type: "tagline",

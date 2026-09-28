@@ -223,26 +223,37 @@ export function Carousel({
 
           {showDotNav ? (
             <div
-              className="flex items-center gap-2"
+              className="flex items-center"
               role="tablist"
               aria-label={dotsLabel}
             >
-              {scrollSnaps.map((_, index) => (
-                <button
-                  key={`carousel-dot-${index}`}
-                  type="button"
-                  role="tab"
-                  aria-selected={index === selectedIndex}
-                  aria-label={`${dotsLabel} ${index + 1}`}
-                  className={cx(
-                    "h-2.5 rounded-full transition-all duration-200",
-                    index === selectedIndex
-                      ? "w-7 bg-cta"
-                      : "w-2.5 bg-card-border hover:bg-muted/50",
-                  )}
-                  onClick={() => scrollTo(index)}
-                />
-              ))}
+              {scrollSnaps.map((_, index) => {
+                const distance = dotDistance(
+                  index,
+                  selectedIndex,
+                  slideCount,
+                  Boolean(options?.loop),
+                );
+                const { scale, opacity } =
+                  DOT_STEPS[Math.min(distance, DOT_STEPS.length - 1)];
+                return (
+                  <button
+                    key={`carousel-dot-${index}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={index === selectedIndex}
+                    aria-label={`${dotsLabel} ${index + 1}`}
+                    className="group grid h-6 w-5 place-items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
+                    onClick={() => scrollTo(index)}
+                  >
+                    <span
+                      aria-hidden
+                      className="block size-2.5 rounded-full bg-cta transition-[transform,opacity] duration-300 ease-out group-hover:opacity-100! motion-reduce:transition-none"
+                      style={{ transform: `scale(${scale})`, opacity }}
+                    />
+                  </button>
+                );
+              })}
             </div>
           ) : null}
 
@@ -259,6 +270,24 @@ export function Carousel({
       ) : null}
     </div>
   );
+}
+
+/** Dot size/opacity by distance from the active snap (index 0 = active). */
+const DOT_STEPS = [
+  { scale: 1, opacity: 1 },
+  { scale: 0.6, opacity: 0.3 },
+  { scale: 0.4, opacity: 0.2 },
+  { scale: 0.3, opacity: 0.15 },
+] as const;
+
+function dotDistance(
+  index: number,
+  selected: number,
+  count: number,
+  loop: boolean,
+) {
+  const direct = Math.abs(index - selected);
+  return loop ? Math.min(direct, count - direct) : direct;
 }
 
 /** Slide shell — default full-basis page; override `className` for multi-per-view. */
@@ -363,12 +392,12 @@ function CarouselButton({
       onClick={onClick}
       className={cx(
         "h-10 w-10 shrink-0 items-center justify-center rounded-full",
-        "border border-card-border bg-bg-primary text-foreground shadow-sm",
-        "transition-colors hover:border-cta hover:text-cta",
+        "border-2 border-cta bg-transparent text-cta",
+        "transition-[color,background-color,transform] duration-200 hover:bg-cta hover:text-white active:scale-95 motion-reduce:transition-none",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta",
         "disabled:pointer-events-none disabled:opacity-35",
         variant === "side" && "hidden sm:inline-flex",
-        variant === "bottom" && "inline-flex bg-card",
+        variant === "bottom" && "inline-flex",
       )}
     >
       <ChevronIcon direction={direction} />

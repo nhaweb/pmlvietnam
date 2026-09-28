@@ -364,80 +364,125 @@ dialog.contact-form-dialog[open] > [data-contact-panel] {
   }
 }
 
-/* Floating phone + Zalo — halo breathes, ring expands. Transform/opacity only. */
-@keyframes contact-glow-halo {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.85;
-    transform: scale(1.14);
-  }
-}
-
-@keyframes contact-glow-ring {
+/* Floating phone + Zalo (ref vinahost.vn) — sóng lan, icon đổ chuông, nhãn trượt vào. */
+@keyframes contact-alo-wave {
   0% {
-    opacity: 0.5;
-    transform: scale(1);
+    opacity: 0;
+    transform: scale(0.9);
   }
-  75%,
+  25% {
+    opacity: 0.45;
+  }
   100% {
     opacity: 0;
-    transform: scale(1.75);
+    transform: scale(1.4);
   }
 }
 
-.contact-glow {
-  --contact-glow: var(--cta-orange);
-  position: relative;
+@keyframes contact-alo-shake {
+  0%,
+  40%,
+  100% {
+    transform: rotate(0);
+  }
+  5%,
+  15%,
+  25% {
+    transform: rotate(-22deg);
+  }
+  10%,
+  20%,
+  30% {
+    transform: rotate(22deg);
+  }
+}
+
+@keyframes contact-alo-bob {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  70% {
+    transform: translateY(-3px) scale(1.06);
+  }
+  80% {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+.contact-alo {
+  --contact-alo: var(--cta-orange);
   isolation: isolate;
 }
 
-.contact-glow::before,
-.contact-glow::after {
-  content: "";
+.contact-alo-zalo {
+  --contact-alo: #0068ff;
+}
+
+.contact-alo-ring {
   position: absolute;
-  border-radius: inherit;
-  background: var(--contact-glow);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.contact-glow::before {
-  inset: -5px;
-  filter: blur(8px);
-  animation: contact-glow-halo 2.4s ease-in-out infinite;
-}
-
-.contact-glow::after {
   inset: 0;
-  animation: contact-glow-ring 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  z-index: -1;
+  border-radius: 9999px;
+  background: var(--contact-alo);
+  pointer-events: none;
+  animation: contact-alo-wave 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
-.contact-glow-zalo {
-  --contact-glow: #0068ff;
+.contact-alo-ring-delay {
+  animation-delay: 1s;
 }
 
-.contact-glow-zalo::before,
-.contact-glow-zalo::after {
-  animation-duration: 2.8s;
-  animation-delay: -1.2s;
+.contact-alo-zalo .contact-alo-ring {
+  animation-duration: 2.4s;
+}
+
+.contact-alo-zalo .contact-alo-ring-delay {
+  animation-delay: 1.2s;
+}
+
+.contact-alo-phone .contact-alo-icon {
+  animation: contact-alo-shake 2s ease-in-out infinite;
+}
+
+.contact-alo-zalo .contact-alo-icon {
+  animation: contact-alo-bob 2.4s ease-in-out infinite;
+}
+
+.group:hover .contact-alo-icon,
+.group:focus-visible .contact-alo-icon {
+  animation-play-state: paused;
+}
+
+/* Ẩn mặc định; không nhận pointer khi ẩn để vùng trống không kích hoạt hover. */
+.contact-alo-label {
+  opacity: 0;
+  transform: translateX(16px);
+  pointer-events: none;
+  transition:
+    opacity 250ms ease,
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .contact-alo-label,
+.group:focus-visible .contact-alo-label {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .contact-glow::before,
-  .contact-glow::after {
+  .contact-alo-ring,
+  .contact-alo-icon {
     animation: none;
   }
 
-  .contact-glow::before {
-    opacity: 0.45;
+  .contact-alo-label {
     transform: none;
   }
 
-  .contact-glow::after {
+  .contact-alo-ring {
     opacity: 0;
   }
 }

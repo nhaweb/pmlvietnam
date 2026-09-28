@@ -93,6 +93,22 @@ function ArticleBlock({ block }: { block: NewsArticleBlock }) {
           {block.text}
         </h3>
       );
+    case "list": {
+      const ListTag = block.ordered ? "ol" : "ul";
+      const listClass = block.ordered
+        ? "list-decimal space-y-3 pl-5 text-sm leading-relaxed text-foreground/85 marker:font-semibold marker:text-cta sm:text-[0.9375rem] sm:leading-[1.75]"
+        : "list-disc space-y-2 pl-5 text-sm leading-relaxed text-foreground/85 marker:text-cta sm:text-[0.9375rem] sm:leading-[1.75]";
+
+      return (
+        <ListTag className={listClass}>
+          {block.items.map((item) => (
+            <li key={item} className="pl-1">
+              {item}
+            </li>
+          ))}
+        </ListTag>
+      );
+    }
     case "image":
       return (
         <figure className="overflow-hidden py-1 sm:py-2">

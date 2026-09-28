@@ -1,32 +1,83 @@
+import type { ReactNode } from "react";
 import { siteContact } from "@/lib/site-config";
 
 /**
- * Phone → Zalo — fixed góc dưới phải, luôn hiện.
+ * Phone → Zalo — fixed góc dưới phải, luôn hiện (ref vinahost.vn).
+ * Desktop: nhãn dạng pill bên trái icon; mobile: chỉ icon tròn.
  */
 export function FloatingContactIcons() {
   return (
     <div
-      className="pointer-events-none fixed bottom-5 right-4 z-50 flex flex-col items-center gap-3 sm:bottom-6 sm:right-6"
+      className="pointer-events-none fixed bottom-5 right-4 z-50 flex flex-col items-end gap-5 sm:bottom-6 sm:right-6"
       aria-label="Liên hệ nhanh"
     >
-      <a
+      <ContactButton
         href={`tel:${siteContact.phoneTel}`}
-        className="contact-glow pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-cta text-white shadow-lg shadow-cta/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
-        aria-label={`Gọi ${siteContact.phoneDisplay}`}
+        ariaLabel={`Gọi ${siteContact.phoneDisplay}`}
+        label={
+          <>
+            Hotline: <span className="text-cta">{siteContact.phoneDisplay}</span>
+          </>
+        }
+        circleClassName="bg-cta text-white shadow-cta/40 focus-visible:ring-cta"
+        variant="phone"
       >
         <PhoneIcon />
-      </a>
+      </ContactButton>
 
-      <a
+      <ContactButton
         href={siteContact.zaloUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="contact-glow contact-glow-zalo pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#0068FF] shadow-lg shadow-[#0068FF]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0068FF] focus-visible:ring-offset-2"
-        aria-label="Chat Zalo"
+        external
+        ariaLabel="Chat Zalo"
+        label={
+          <>
+            Zalo <span className="font-medium text-muted">(08:00 - 18:00)</span>
+          </>
+        }
+        circleClassName="bg-[#0068FF] shadow-[#0068FF]/40 focus-visible:ring-[#0068FF]"
+        variant="zalo"
       >
         <ZaloIcon />
-      </a>
+      </ContactButton>
     </div>
+  );
+}
+
+function ContactButton({
+  href,
+  external,
+  ariaLabel,
+  label,
+  circleClassName,
+  variant,
+  children,
+}: {
+  href: string;
+  external?: boolean;
+  ariaLabel: string;
+  label: ReactNode;
+  circleClassName: string;
+  variant: "phone" | "zalo";
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      aria-label={ariaLabel}
+      className="group pointer-events-auto flex items-center focus-visible:outline-none"
+    >
+      <span className="contact-alo-label -mr-6 hidden whitespace-nowrap rounded-full border border-black/5 bg-white py-2.5 pl-4 pr-9 text-sm font-semibold text-footer shadow-lg shadow-black/10 lg:inline-flex lg:gap-1">
+        {label}
+      </span>
+      <span
+        className={`contact-alo contact-alo-${variant} relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full shadow-lg transition-transform duration-300 ease-out group-hover:scale-110 group-focus-visible:ring-2 group-focus-visible:ring-offset-2 ${circleClassName}`}
+      >
+        <span className="contact-alo-ring" aria-hidden />
+        <span className="contact-alo-ring contact-alo-ring-delay" aria-hidden />
+        <span className="contact-alo-icon flex items-center justify-center">{children}</span>
+      </span>
+    </a>
   );
 }
 
