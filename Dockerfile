@@ -48,12 +48,20 @@ RUN npm prune --omit=dev
 # Final stage for app image
 FROM base
 
+# sharp (next/image) fragments glibc malloc until the 512MB machine OOMs;
+# jemalloc keeps RSS flat. https://sharp.pixelplumbing.com/install#linux-memory-allocator
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y libjemalloc2 && \
+    rm -rf /var/lib/apt/lists/*
+ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
+
 # Copy built application
 COPY --from=build /app /app
 
 # Invoke node directly so a Windows CRLF shebang cannot break the container.
 ENTRYPOINT [ "node", "/app/docker-entrypoint.js" ]
 
-# Start the server by default, this can be overwritten at runtime
+# Start the server by default, this can be overwritten at runtime.
+# Call next directly — an extra `npm` process costs ~50-70MB RSS.
 EXPOSE 8080
-CMD [ "npm", "run", "start" ]
+CMD [ "node", "node_modules/next/dist/bin/next", "start" ]
