@@ -146,7 +146,7 @@ Research dựa trên các trường khách đã cung cấp ở mục 5 (sản ph
   4. **Thông tin gói dịch vụ** (bảng mục 2)
 
 ## 9. Hướng dẫn cho agent khi hỗ trợ dự án này
-- Skill viết bài: `.cursor/skills/pml-seo-article/SKILL.md` — giọng **bản 1 chuyên nghiệp** (heading, lịch sự, CTA). Không humanize khẩu ngữ.
+- Skill viết bài: `.cursor/skills/pml-seo-article/SKILL.md` — giọng **bản 1 chuyên nghiệp** (heading, lịch sự, CTA). Trong bài: **đậm** từ khóa/CTA, *nghiêng* thuật ngữ/USP, `<u>` gạch chân CTA và SĐT/URL. Không humanize khẩu ngữ.
 - Skill QC sau draft: `.cursor/skills/seo-content-qc/SKILL.md` — đếm từ, đạo văn, không đuổi % AI detector.
 - Mẫu đạt: `local/seo-content/bai-1-website-chuyen-nghiep.md`.
 - Luôn giữ nguyên thứ tự 6 section ở mục 1 khi viết/chỉnh **trang giới thiệu dịch vụ** (khác bài SEO cho khách).

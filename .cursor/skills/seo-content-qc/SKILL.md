@@ -11,10 +11,11 @@ Chạy **sau** draft. Giọng và bố cục: `.cursor/skills/pml-seo-article/SK
 
 1. Đếm từ khối **Nội dung bài** — đúng gói.
 2. Title / meta / slug / 1 H1 / từ khóa / CTA còn đủ.
-3. Nhắc user chạy **đạo văn** (SmallSEOTools, Copyscape, Originality). Agent không bịa % nếu chưa chạy.
-4. AI detector (nếu user chạy): ghi nhận. **Không** viết lại giọng trò chuyện / bỏ heading để hạ %. Trang lớn cũng hay bị cờ cao.
-5. Chỉ sửa nếu: đạo văn trùng đoạn, sai sự thật, nhồi từ khóa, lệch số từ, thiếu CTA, sai checklist gói.
-6. Điểm AI tăng sau “humanize” → revert bản chuyên nghiệp (bài 1 vs bản khẩu ngữ).
+3. Format chữ: đậm từ khóa chính (không nhồi), nghiêng thuật ngữ/USP, `<u>` CTA + SĐT/URL — đúng bảng trong `pml-seo-article`. Thiếu hoặc nhồi format thì sửa.
+4. Nhắc user chạy **đạo văn** (SmallSEOTools, Copyscape, Originality). Agent không bịa % nếu chưa chạy.
+5. AI detector (nếu user chạy): ghi nhận. **Không** viết lại giọng trò chuyện / bỏ heading để hạ %. Trang lớn cũng hay bị cờ cao.
+6. Chỉ sửa nếu: đạo văn trùng đoạn, sai sự thật, nhồi từ khóa, lệch số từ, thiếu CTA, sai format chữ, sai checklist gói.
+7. Điểm AI tăng sau “humanize” → revert bản chuyên nghiệp (bài 1 vs bản khẩu ngữ).
 
 ## Không làm
 
@@ -29,6 +30,7 @@ Chạy **sau** draft. Giọng và bố cục: `.cursor/skills/pml-seo-article/SK
 - Đạo văn: chưa chạy | tool + kết quả
 - AI detector: không bắt buộc | tool + % (chỉ ghi nhận)
 - Số từ: …
+- Format chữ: đậm / nghiêng / gạch chân theo pml-seo-article
 - Giọng: bản chuyên nghiệp (pml-seo-article)
 ```
 
