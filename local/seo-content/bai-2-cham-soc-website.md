@@ -58,7 +58,7 @@ Dịch vụ dành cho *cá nhân, hộ kinh doanh và doanh nghiệp* trên toà
 
 Ra mắt chỉ là bước đầu. Không có nhân sự IT nội bộ thì ít ai rảnh theo hosting, SSL, backup. Cần sửa bài, form, thông tin liên hệ mà không muốn tự mò quản trị. Site chậm, lỗi hoặc bị spam thì cần đầu mối rõ, phản hồi đúng kênh đã thỏa thuận.
 
-PML Vietnam nhận **chăm sóc website** để trang luôn chạy, an toàn và còn cập nhật. Phần kỹ thuật có đội ngũ theo sát; bạn không phải “nhắn anh ơi sửa giúp” mỗi lần đổi số điện thoại.
+PML Vietnam nhận **chăm sóc website** để trang luôn chạy, an toàn và còn cập nhật. Phần kỹ thuật có đội ngũ theo sát. Bạn không phải “nhắn anh ơi sửa giúp” mỗi lần đổi số điện thoại.
 
  <Chèn hình ở đây: website-sau-ban-giao-can-cham-soc.webp>
 
@@ -73,7 +73,9 @@ Các hạng mục thường gặp:
 - Hỗ trợ cập nhật nội dung trong *hạn mức gói* (banner, bài, thông tin liên hệ).
 - Tư vấn cải thiện tốc độ hoặc SEO kỹ thuật khi phát hiện vấn đề.
 
-Chi tiết so sánh gói **PMLCare Standard**, **PMLCare Pro** và **PMLCare Premium** nằm trên trang dịch vụ. Bài này không thay bảng đó; khi đăng ký, đội ngũ sẽ chốt đúng nhu cầu.
+Chi tiết so sánh gói **PMLCare Standard**, **PMLCare Pro** và **PMLCare Premium** nằm trên trang dịch vụ. Bài này không thay bảng đó. Khi đăng ký, đội ngũ sẽ chốt đúng nhu cầu.
+
+Bảo hành sau bàn giao website khác gói chăm sóc. Bảo hành xử lý lỗi trong thời hạn đã ký. Chăm sóc là việc định kỳ: theo dõi uptime, sao lưu, SSL, cập nhật nội dung trong hạn mức — kéo dài khi bạn còn nhu cầu vận hành.
 
 Xem chi tiết nội dung tại đây
 (href: /cham-soc-website)
@@ -90,7 +92,7 @@ Banner, bài viết, form, SĐT — nằm trong hạn mức. Viết bài SEO chu
 
 ### 3. Sự cố: chậm, lỗi, spam
 
-Có đầu mối xử lý. Gói tiêu chuẩn phản hồi trong giờ làm việc; sự cố nghiêm trọng ưu tiên theo thỏa thuận *SLA*.
+Có đầu mối xử lý. Gói tiêu chuẩn phản hồi trong giờ làm việc. Sự cố nghiêm trọng ưu tiên theo thỏa thuận *SLA*.
 
 ### 4. Site không làm tại PML Vietnam
 
@@ -104,11 +106,15 @@ Có thể hủy theo điều khoản gia hạn / chấm dứt trong hợp đồn
 
 ## Chi phí chăm sóc website tính thế nào
 
-Thường theo tháng hoặc quý, tùy chỉ bảo trì hay kèm nội dung. Không có một mức “cố định cho mọi site”: stack, số lần cập nhật, mức SLA khác nhau. PML Vietnam báo sau khảo sát — bạn biết mình trả cho việc gì.
+Thường theo tháng hoặc quý, tùy chỉ bảo trì hay kèm nội dung. Không có một mức “cố định cho mọi site”: công nghệ đang dùng trên website (hosting, hệ quản trị, plugin), số lần cập nhật, mức SLA khác nhau. PML Vietnam báo sau khảo sát — bạn biết mình trả cho việc gì.
+
+Để khảo sát nhanh, chuẩn bị: địa chỉ site, quyền hosting/CMS (hoặc người giữ quyền), kênh liên hệ sự cố, và việc bạn muốn đội ngũ làm giúp (chỉ kỹ thuật, hay cả banner/bài). Site không làm tại PML vẫn nhận được sau khi xem công nghệ. Hệ thống đặc thù sẽ được báo phạm vi trước khi ký.
 
 ## Quy trình nhận chăm sóc tại PML Vietnam
 
 Cùng năm bước làm việc của PML: tiếp nhận yêu cầu và tư vấn, lập kế hoạch và chốt phạm vi, triển khai (bàn giao quyền truy cập, kênh hỗ trợ), kiểm thử / rà soát hiện trạng, nghiệm thu và vận hành theo gói. Thời gian nhận phụ thuộc khảo sát, không phải “ký xong là xong trong một giờ”. Quyền hosting, CMS, email thông báo SSL nên giao đủ từ đầu — thiếu quyền thì không thể sao lưu hay vá bảo mật đúng hạn.
+
+Gói tiêu chuẩn xử lý trong giờ làm việc. Sự cố nghiêm trọng (site không vào được, form ngừng gửi) được ưu tiên theo thỏa thuận SLA đã ký — hỏi rõ lúc báo giá, đừng mặc định “24/7 mọi gói”. Viết nội dung SEO chuyên sâu không nằm trong chăm sóc. Chăm sóc đăng bài bạn đã soạn hoặc sửa trang trong hạn mức.
 
 ## Kết luận
 
@@ -137,7 +143,7 @@ PML Vietnam - Cung cấp giải pháp website hiện đại cho cá nhân, hộ 
 - Đạo văn: SmallSEOTools / Copyscape trước khi gửi.
 - AI %: không đổi giọng để hạ điểm.
 - Format: **chăm sóc website** (mở, gồm những gì, kết) + tên gói PMLCare; *bảo trì kỹ thuật*, *hạn mức gói*, *SLA*; `<u>` CTA + Zalo + URL.
-- Số từ: đếm sau khi lưu (mục tiêu 800–1.000).
+- Số từ: ~858 thân bài (H1 → trước Kết luận; mục tiêu 800–1.000, không tính kết + CTA).
 
 ## Checklist 18 hạng mục — vì sao bài đạt Standard
 
@@ -149,7 +155,7 @@ PML Vietnam - Cung cấp giải pháp website hiện đại cho cá nhân, hộ 
 | 4 | H1–H3 | Standard+ | 1 H1 đúng tên bài khách; H2/H3. |
 | 5 | Từ khóa chính | Standard+ | *chăm sóc website* — SEO Engineer (khách để trống form). |
 | 6 | Từ khóa phụ | Pro/Premium | Không bắt. |
-| 7 | Độ dài | Standard+ | Khối nội dung 800–1.000 từ (đếm H1 → tagline). |
+| 7 | Độ dài | Standard+ | ~858 từ thân bài (trừ Kết luận). |
 | 8–9 | Internal / external | Pro / Premium | Link `/cham-soc-website` và `/lien-he`. Không tính đủ Pro. |
 | 10 | Ảnh + Alt | Standard+ | Hai placeholder + alt. |
 | 11 | CTA | Standard+ | <u>**Đăng ký tư vấn**</u> + hotline + form. |

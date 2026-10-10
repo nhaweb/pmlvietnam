@@ -1,7 +1,7 @@
 ---
-name: pml-seo-article
+
+## name: pml-seo-article
 description: Writes PML Content SEO articles in the professional Standard voice (bản 1): structured H2/H3, brand-safe Vietnamese, package word counts, onpage pack, 18-item checklist. Use when writing or revising SEO Content articles, bài Standard/Pro/Premium, form khách, local/seo-content, or pml-seo-content.mdc.
----
 
 # Viết bài PML Content (giọng bản 1)
 
@@ -14,17 +14,22 @@ description: Writes PML Content SEO articles in the professional Standard voice 
 - Tiếng Việt trang trọng, dễ đọc, đúng chính tả. Câu vừa, đoạn không quá dài.
 - Được: H2/H3, 3–5 luận điểm đánh số, gạch đầu dòng, kết + CTA.
 - Cấm: giọng chat, “nói thiệt”, anecdote bịa, phá heading để hạ % AI.
+- Không lạm dụng dấu chấm phẩy `;` trong khối nội dung khách đọc. Tách câu bằng dấu chấm, hoặc dùng phẩy / “và” / gạch đầu dòng. Phản hồi khách sau bàn giao 5 bài: `;` làm bài khó đọc.
 - Chi tiết chỉ lấy từ form, site PML (`lib/site-config.ts`: SĐT, địa chỉ, quy trình 5 bước, USP), không bịa case study.
+
+
 
 ## Chữ đậm / nghiêng / gạch chân (bắt buộc trong khối Nội dung bài)
 
 Dùng đúng ba kiểu này; không bỏ, không thay bằng CAPS hay màu.
 
-| Kiểu | Markdown | Dùng cho | Không dùng cho |
-|---|---|---|---|
-| **Đậm** | `**…**` | Từ khóa chính (lần đầu ở mở bài + 1–2 lần nhấn ở H2/kết, không mỗi câu). Nút/câu CTA chính. Tên gói khi so sánh (Standard/Pro/Premium). | Cả đoạn, cả heading, mọi lần xuất hiện từ khóa |
-| *Nghiêng* | `*…*` | Thuật ngữ phụ, tên sản phẩm/dịch vụ khách, USP ngắn, trích ý khách. Từ khóa phụ (gói Pro+) lần nhấn. | CTA chính, H1 |
-| Gạch chân | `<u>…</u>` | Câu kêu gọi hành động (vd. `<u>**Đăng ký tư vấn**</u>`). Số điện thoại / Zalo / URL liên hệ ở khối CTA. | Từ khóa giữa bài, heading |
+
+| Kiểu      | Markdown   | Dùng cho                                                                                                                                | Không dùng cho                                 |
+| --------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **Đậm**   | `**…`**    | Từ khóa chính (lần đầu ở mở bài + 1–2 lần nhấn ở H2/kết, không mỗi câu). Nút/câu CTA chính. Tên gói khi so sánh (Standard/Pro/Premium). | Cả đoạn, cả heading, mọi lần xuất hiện từ khóa |
+| *Nghiêng* | `*…`*      | Thuật ngữ phụ, tên sản phẩm/dịch vụ khách, USP ngắn, trích ý khách. Từ khóa phụ (gói Pro+) lần nhấn.                                    | CTA chính, H1                                  |
+| Gạch chân | `<u>…</u>` | Câu kêu gọi hành động (vd. `<u>**Đăng ký tư vấn**</u>`). Số điện thoại / Zalo / URL liên hệ ở khối CTA.                                 | Từ khóa giữa bài, heading                      |
+
 
 Quy tắc CTA cuối bài: vừa **đậm** vừa `<u>` gạch chân cho đúng một cụm hành động. Link vẫn markdown `[text](url)`; phần text CTA được `<u>`.
 
@@ -40,25 +45,31 @@ PML Vietnam nổi bật nhờ *nền tảng công nghệ riêng*.
 
 Ít hơn vẫn hơn: tối đa ~6–8 cụm đậm, ~4 nghiêng, 1 cụm CTA gạch chân (+ SĐT/URL). Nhồi format = fail QC.
 
+Khi publish `/tin-tuc`, `NewsArticleBody` parse `**` / `*` / `<u>` từ Word. Heading H2/H3 đã CSS đậm — không bọc cả heading trong `**`.
+
 ## Gói (số từ / độ sâu)
 
-| Gói | Từ | Bắt checklist mdc mục 4 |
-|---|---|---|
-| Standard | 800–1.000 | 1–5, 7, 10–13, 17–18. Không bắt 6, 8, 9, 14–16 |
-| Pro | 1.200–1.500 | Thêm từ khóa phụ, internal, readability |
-| Premium | 1.800–2.500 | Thêm external, đối thủ (có nguồn), FAQ |
 
-Đếm từ **chỉ khối nội dung bài**. Lệch hạn mức thì cắt/bổ trước khi giao.
+| Gói      | Từ          | Bắt checklist mdc mục 4                        |
+| -------- | ----------- | ---------------------------------------------- |
+| Standard | 800–1.000   | 1–5, 7, 10–13, 17–18. Không bắt 6, 8, 9, 14–16 |
+| Pro      | 1.200–1.500 | Thêm từ khóa phụ, internal, readability        |
+| Premium  | 1.800–2.500 | Thêm external, đối thủ (có nguồn), FAQ         |
+
+
+Đếm từ **khối nội dung bài, trừ phần Kết luận** (từ H1 đến ngay trước `## Kết luận`; không tính CTA, hotline, tagline). Kết luận vẫn viết gọn — không kéo dài kết để đủ hạn mức. Lệch hạn thì bổ **thân bài**.
 
 ## Onpage (mọi gói)
 
 - 1 H1 = tên bài khách đặt (hoặc gần đúng).
 - Title SEO < 60 ký tự; meta < 160; có từ khóa chính.
 - Slug không dấu, có từ khóa.
-- Từ khóa chính: ô khách nếu có; không thì SEO Engineer chọn 1 cụm khớp title + ngành — ghi rõ nguồn.
+- Từ khóa chính: ô khách nếu có; không thì SEO Engineer chọn 1 cụm khớp title + ngành — ghi rõ nguồn trước khi chọn, tra nhanh volume + intent qua Google Keyword Planner/Trends, ưu tiên cụm có intent thương mại nếu CTA là bán hàng..
 - CTA: ô khách; trống thì form `/lien-he` + `siteContact`.
 - Ảnh: không generate; ghi alt + gợi ý asset. PML tự làm hình.
 - Lưu `local/seo-content/<slug>.md` (nhánh `pml-content`). Không commit `app/` `/tin-tuc` trừ khi user bảo publish.
+
+
 
 ## File bài — cấu trúc
 
@@ -74,3 +85,4 @@ Trang giới thiệu dịch vụ (6 section) ≠ bài SEO cho khách: 6 section 
 - Nhồi từ khóa mỗi H2.
 - Số liệu giá/gói bịa; giá gói dịch vụ content lấy mdc mục 2 trừ khi user nói lấy giá trên site.
 - Trộn Next.js/Supabase vào bài khách.
+

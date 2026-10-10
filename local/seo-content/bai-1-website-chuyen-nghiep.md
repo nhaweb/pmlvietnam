@@ -43,7 +43,7 @@ Mẫu Word: [PML Vietnam là ai?](https://docs.google.com/document/d/1mMmV83OBFy
 | Dòng chốt thương hiệu           | `{ type: "tagline" }`                                      |
 
 
-`**` `*` `<u>`: giữ khi dán Docs. `NewsArticleBody` hiện **chưa** parse inline — strip hoặc bổ sung renderer lúc publish.
+`**` `*` `<u>`: giữ khi dán Docs. `NewsArticleBody` parse đậm / nghiêng / gạch chân trên `/tin-tuc`.
 
 ---
 
@@ -75,10 +75,12 @@ Website như *cửa hàng mở 24/7*: dịch vụ, quy trình, cách liên hệ.
 Fanpage và Zalo cần, nhưng không thay website.
 
 - Bạn không làm chủ thuật toán mạng xã hội. Bài hôm nay, ngày mai có thể ít người thấy.
-- Thông tin trên mạng xã hội dễ bị cắt; khách phải lướt lâu mới ra giá, địa chỉ, chính sách.
+- Thông tin trên mạng xã hội dễ bị cắt. Khách phải lướt lâu mới ra giá, địa chỉ, chính sách.
 - Website là tài sản: tên miền, nội dung, form liên hệ, vị trí trên công cụ tìm kiếm.
 
 **Website chuyên nghiệp** gom đúng thứ khách cần: dịch vụ, bằng chứng làm việc, nút gọi hoặc form. PML Vietnam xây trên nền tảng công nghệ riêng, giao diện hiện đại, dễ quản trị — bạn tự cập nhật bài và sản phẩm, không phải nhờ sửa hộ mỗi lần đổi giá.
+
+Một trang đủ dùng thường có: Trang chủ nói rõ bạn làm gì, Giới thiệu, Dịch vụ hoặc Sản phẩm, Liên hệ kèm Maps và form. Thiếu form và SĐT trên điện thoại thì khách tìm thấy rồi vẫn bỏ. Chuẩn SEO kỹ thuật (tốc độ, thẻ, hiển thị mobile) nằm trong việc dựng site. Viết bài dài là bước sau.
 
 ## Năm lý do nên đầu tư ngay hôm nay
 
@@ -108,11 +110,13 @@ Bàn giao xong chưa phải hết. Bạn đăng tin, thêm dịch vụ, gắn ch
 
 ## “Để sau” thường đắt hơn làm đúng lúc
 
-Ba tình huống hay gặp: đối thủ đã có web còn bạn chưa; ads đổ vào landing chậm, form lỗi; bán qua nhóm bạn bè rồi muốn khách lạ tự tìm thấy. Không cần đợi “đủ lớn”. Cá nhân, shop nhỏ, công ty dịch vụ đều bắt đầu được với gói phù hợp rồi mở rộng.
+Ba tình huống hay gặp: đối thủ đã có web còn bạn chưa. Ads đổ vào landing chậm, form lỗi. Hoặc bạn đang bán qua nhóm bạn bè rồi muốn khách lạ tự tìm thấy. Không cần đợi “đủ lớn”. Cá nhân, shop nhỏ, công ty dịch vụ đều bắt đầu được với gói phù hợp rồi mở rộng.
+
+Trước khi làm, chỉ cần ngành nghề, việc khách phải làm trên site (gọi, đặt lịch, xem bảng giá), logo nếu có, và vài dòng giới thiệu. Chưa có màu hay slogan thì đội ngũ tư vấn hướng phù hợp — không phải lý do để hoãn. Gói theo mẫu ra mắt tính bằng ngày làm việc sau khi chốt nội dung. Nếu cần giao diện độc quyền thì chuyển thiết kế theo yêu cầu, thời gian và chi phí cao hơn cho đúng phạm vi.
 
 ## Bắt đầu với PML Vietnam
 
-PML Vietnam tư vấn ngành nghề và chức năng, rồi thiết kế, kiểm thử, bàn giao tài khoản quản trị. Bạn mô tả nhu cầu; đội ngũ biến thành website chuyên nghiệp, xem tốt trên điện thoại, sẵn sàng cho nội dung và SEO.
+PML Vietnam tư vấn ngành nghề và chức năng, rồi thiết kế, kiểm thử, bàn giao tài khoản quản trị. Bạn mô tả nhu cầu. Đội ngũ biến thành website chuyên nghiệp, xem tốt trên điện thoại, sẵn sàng cho nội dung và SEO.
 
 Năm bước gọn: tiếp nhận yêu cầu, chốt phạm vi, xây dựng, kiểm thử, bàn giao và hướng dẫn vận hành. Triển khai theo mẫu tính bằng ngày làm việc, không phải vài tháng không rõ hạn.
 
@@ -146,7 +150,7 @@ PML Vietnam - Cung cấp giải pháp website hiện đại cho cá nhân, hộ 
 - Đạo văn: chạy SmallSEOTools / Copyscape trước khi gửi anh Luân.
 - AI detector: không đuổi % bằng đổi giọng; giữ bản chuyên nghiệp.
 - Format chữ: đậm từ khóa + CTA; nghiêng USP/đối tượng; `<u>` CTA + Zalo + URL.
-- Số từ khối nội dung: ~845+ (Standard 800–1.000; đếm từ H1 đến tagline, không tính bảng).
+- Số từ khối nội dung: ~887 (Standard 800–1.000; đếm H1 → trước Kết luận, không tính CTA/tagline).
 - Ảnh: PML chèn webp đúng placeholder.
 
 
@@ -164,7 +168,7 @@ Chuẩn **PML Content Standard**: 800–1.000 từ; tối ưu từ khóa chính;
 | 4     | H1–H3                       | Standard+     | 1 H1; H2/H3 markdown.                                                                                                  |
 | 5     | Từ khóa chính               | Standard+     | *website chuyên nghiệp* ở title, H1, mở, vài chỗ nhấn, kết.                                                            |
 | 6     | Từ khóa phụ                 | Pro/Premium   | Không bắt.                                                                                                             |
-| 7     | Độ dài                      | Standard+     | ~845 từ khối nội dung.                                                                                                 |
+| 7     | Độ dài                      | Standard+     | ~887 từ thân bài (trừ Kết luận).                                                                                   |
 | 8–9   | Internal / external         | Pro / Premium | Thêm `link` `/thiet-ke-website` và `/lien-he` (mẫu Word “Xem chi tiết”). Không tính đủ Pro.                            |
 | 10    | Ảnh + Alt                   | Standard+     | Hai placeholder webp + alt; PML gắn file lúc đăng.                                                                     |
 | 11    | CTA                         | Standard+     | ++**Đăng ký tư vấn**++ + hotline + form.                                                                               |
