@@ -1,0 +1,157 @@
+---
+description: Context chi tiết đầy đủ về dự án SEO Content "PML Content" cho PML Vietnam — layout, 3 gói dịch vụ, checklist bàn giao, form thu thập thông tin, bộ tool, nội dung bài viết mẫu. Dùng để AI agent hiểu toàn bộ bối cảnh trước khi nhận lệnh viết/chỉnh content.
+alwaysApply: true
+---
+
+# PML Vietnam — Dự án "PML Content" (SEO Content Service)
+
+> Context đầy đủ cho dự án viết/bán dịch vụ SEO Content của **PML Vietnam** (pmlvietnam.vn). Dùng để agent nắm chắc số liệu, cấu trúc, và tiêu chuẩn chất lượng trước khi hỗ trợ viết, chỉnh sửa, hoặc lên kế hoạch nội dung.
+
+## 0. Bối cảnh & người liên quan
+- Công ty: **PML Vietnam** — pmlvietnam.vn, chuyên giải pháp website & chuyển đổi số cho doanh nghiệp.
+- Dịch vụ mới: **"PML Content"** — gói viết bài SEO Content bán cho khách hàng của PML Vietnam.
+- Người duyệt/review: **anh Luân** (pmluanvn@gmail.com) — giao việc ban đầu qua email ngày 19/9/2026, yêu cầu Nhat (hoặc vợ) viết thử 1 bài trước khi chốt hợp tác chính thức.
+- Người thực hiện: Nhat (viết content/code), có thể có vợ hỗ trợ viết bài.
+- PML Vietnam **không tự viết bài/làm hình** — đây là lý do dịch vụ "PML Content" ra đời, để PML có thể bán trọn gói content cho khách của họ.
+- Layout tham khảo gốc: trang **pmlvietnam.vn/cham-soc-website** (dùng làm khung bố cục cho trang giới thiệu dịch vụ).
+
+## 1. Cấu trúc trang giới thiệu dịch vụ (6 section cố định — do anh Luân yêu cầu)
+
+1. **Section 1 — Banner mở đầu:** bên trái là 5 ý nổi bật (bullet ngắn), bên phải là hình ảnh (anh Luân tự làm, không cần agent tạo ảnh).
+2. **Section 2 — Lý do cần viết bài chuẩn SEO:** giải thích vì sao doanh nghiệp cần đầu tư content chuẩn SEO.
+3. **Section 3 — Chi phí:** bảng giá, phụ thuộc gói khách chọn.
+4. **Section 4 — Bạn nhận được gì từ dịch vụ này:** liệt kê lợi ích cụ thể.
+5. **Section 5 — Chi tiết gói viết bài SEO Content:** mô tả riêng từng gói (Standard/Pro/Premium).
+6. **Section 6 — Câu hỏi thường gặp (FAQ):** 4-5 câu hỏi + trả lời.
+
+**Thứ tự này là bắt buộc, không tự ý đổi khi viết lại hoặc mở rộng bài.**
+
+## 2. Ba gói dịch vụ — số liệu đã chốt (nguồn chuẩn, không tự đổi)
+
+| Gói | Số bài tối thiểu/đơn | Độ dài bài viết | Mức giá | Thời gian bàn giao ước tính | Năng suất trung bình* |
+|---|---|---|---|---|---|
+| **PML Content Standard** | Từ 5 bài | 800 – 1.000 từ/bài | 80.000 – 100.000 đ/bài | 2 – 3 ngày làm việc | ~1,5–2 bài/ngày |
+| **PML Content Pro** | Từ 10 bài | 1.200 – 1.500 từ/bài | 120.000 – 180.000 đ/bài | 7 – 10 ngày làm việc | ~1 bài/ngày (cần research từ khóa phụ) |
+| **PML Content Premium (VIP)** | Từ 20 bài | 1.800 – 2.500 từ/bài | 190.000 – 240.000 đ/bài | 3 – 4 tuần | ~0,5–0,7 bài/ngày (research đối thủ/thị trường) |
+
+*Năng suất tính cho 1 người viết làm đều đặn, đã gồm thời gian research + viết + tự kiểm tra chính tả/trùng lặp, chưa tính thời gian khách phản hồi/duyệt. Nếu 2 người cùng viết, thời gian có thể rút ngắn gần một nửa, đặc biệt ở gói Pro/Premium. Gói Premium nên buffer thêm 20–30% thời gian vì độ phức tạp research khó lường trước.
+
+### Mô tả chi tiết từng gói (dùng cho Section 5)
+
+**1. PML Content Standard**
+Phù hợp với nhu cầu viết nội dung cơ bản, cập nhật tin tức, sản phẩm/dịch vụ định kỳ cho website.
+- Độ dài 800–1.000 từ, tối ưu từ khóa chính
+- Văn phong rõ ràng, đúng chính tả, dễ đọc, phù hợp đại trà
+
+**2. PML Content Pro**
+Phù hợp với doanh nghiệp cần nội dung có chiều sâu hơn, tối ưu SEO kỹ hơn, tần suất đăng bài đều đặn.
+- Độ dài 1.200–1.500 từ, cấu trúc heading chuẩn SEO
+- Nghiên cứu từ khóa phụ, lồng ghép insight khách hàng, tăng khả năng chuyển đổi
+
+**3. PML Content Premium (VIP)**
+Dành cho doanh nghiệp muốn đầu tư nội dung chất lượng cao, mang tính chiến lược dài hạn.
+- Độ dài 1.800–2.500 từ, nghiên cứu chuyên sâu đối thủ & thị trường ngành
+- Nội dung độc quyền, tối ưu toàn diện: từ khóa, cấu trúc, CTA
+
+## 3. Nội dung mẫu đã soạn cho từng section (bản nháp tham khảo)
+
+### Section 1 — 5 ý nổi bật
+- Nội dung chuẩn SEO, tối ưu từ khóa theo đúng ngành nghề
+- Đội ngũ Content nắm rõ hành vi tìm kiếm & thuật toán Google
+- Cam kết nội dung độc quyền, không trùng lặp, không đạo văn
+- Bàn giao đúng tiến độ, hỗ trợ chỉnh sửa theo yêu cầu
+- Đa dạng gói dịch vụ, phù hợp mọi ngân sách doanh nghiệp
+
+### Section 2 — Vì sao cần viết bài chuẩn SEO
+Một website đẹp nhưng không có nội dung chất lượng thì rất khó lên top Google. Bài viết chuẩn SEO mang lại:
+- Tăng khả năng hiển thị website trên trang kết quả tìm kiếm (SERP)
+- Thu hút đúng khách hàng tiềm năng đang có nhu cầu thực sự
+- Xây dựng uy tín thương hiệu thông qua nội dung giá trị, chuyên sâu
+- Tiết kiệm chi phí quảng cáo về lâu dài so với chạy ads liên tục
+- Hỗ trợ chuyển đổi (conversion) tốt hơn nhờ nội dung đánh trúng insight khách hàng
+
+### Section 4 — Bạn nhận được gì từ dịch vụ này
+- Bài viết hoàn chỉnh, tối ưu chuẩn SEO Onpage
+- Nghiên cứu từ khóa phù hợp với ngành nghề, khu vực kinh doanh
+- Văn phong tự nhiên, dễ đọc, phù hợp đối tượng khách hàng mục tiêu
+- Cam kết nội dung độc quyền, kiểm tra trùng lặp trước khi bàn giao
+- Hỗ trợ chỉnh sửa theo góp ý sau khi bàn giao (trong phạm vi thỏa thuận)
+- Thời gian bàn giao rõ ràng theo từng gói dịch vụ
+
+### Section 6 — FAQ mẫu (5 câu)
+1. **Tôi có thể chọn gói dịch vụ nào phù hợp với ngân sách của mình?** — PML Vietnam có 3 gói: Standard, Pro và Premium (VIP), tương ứng với các mức chi phí và độ chuyên sâu khác nhau. Khách có thể trao đổi trực tiếp để được tư vấn gói phù hợp.
+2. **Nội dung bài viết có đảm bảo không trùng lặp không?** — Có, mỗi bài đều được kiểm tra độ trùng lặp trước khi bàn giao.
+3. **Sau khi nhận bài, tôi có được chỉnh sửa lại không?** — Có, hỗ trợ chỉnh sửa theo góp ý trong phạm vi thỏa thuận ban đầu.
+4. **Thời gian bàn giao bài viết mất bao lâu?** — Phụ thuộc gói dịch vụ và số lượng/độ dài bài viết (xem bảng mục 2).
+5. **Dịch vụ này có bao gồm hình ảnh minh họa không?** — Dịch vụ tập trung vào nội dung văn bản chuẩn SEO; hình ảnh minh họa trao đổi riêng theo yêu cầu.
+
+## 4. Checklist bàn giao 1 bài SEO Content (18 hạng mục — chuẩn chất lượng bắt buộc)
+
+| # | Hạng mục | Yêu cầu chi tiết | Tool gợi ý | Áp dụng gói |
+|---|---|---|---|---|
+| 1 | Tiêu đề bài viết (Title) | Chứa từ khóa chính, hấp dẫn, dưới 60 ký tự | Surfer SEO / Semrush SEO Writing Assistant; Yoast SEO nếu WordPress | Standard/Pro/Premium |
+| 2 | Meta description | Tóm tắt nội dung, chứa từ khóa chính, dưới 160 ký tự | Yoast SEO / Rank Math | Standard/Pro/Premium |
+| 3 | URL/slug thân thiện SEO | Ngắn gọn, có từ khóa chính, không dấu, không ký tự đặc biệt | Yoast SEO / Rank Math | Standard/Pro/Premium |
+| 4 | Cấu trúc Heading (H1-H3) | 1 H1 duy nhất, H2/H3 chia rõ bố cục | Surfer SEO / kiểm tra thủ công | Standard/Pro/Premium |
+| 5 | Từ khóa chính | Xuất hiện tự nhiên ở tiêu đề, đoạn mở, heading, kết bài | Google Keyword Planner / Surfer SEO | Standard/Pro/Premium |
+| 6 | Từ khóa phụ | Lồng ghép tự nhiên trong bài | Keywords Everywhere / sheet Nghiên cứu từ khóa | Pro/Premium |
+| 7 | Độ dài bài viết đúng gói | Xem bảng mục 2. Đếm thân bài (H1 → trước Kết luận), không lấy kết/CTA để đủ từ | Word count — Google Docs / Surfer SEO | Standard/Pro/Premium |
+| 8 | Internal link | Liên kết đến trang/bài liên quan cùng website | Kiểm tra thủ công / Yoast SEO | Pro/Premium |
+| 9 | External link | Liên kết nguồn uy tín, tăng độ tin cậy, Không copy cấu trúc heading hoặc diễn đạt gần giống bài đối thủ đã đọc — chỉ lấy insight, viết lại hoàn toàn bằng góc nhìn riêng | Kiểm tra thủ công | Premium |
+| 10 | Hình ảnh kèm Alt text | Ít nhất 1 hình minh hoạ, Alt text có từ khóa | Kiểm tra thủ công / Yoast SEO | Standard/Pro/Premium |
+| 11 | Call-to-action (CTA) | Kêu gọi hành động rõ ràng cuối bài | Kiểm tra thủ công | Standard/Pro/Premium |
+| 12 | Kiểm tra trùng lặp nội dung | Chạy qua tool đạo văn trước khi bàn giao | Copyscape / Originality.AI / SmallSEOTools | Standard/Pro/Premium |
+| 13 | Kiểm tra chính tả & ngữ pháp | Đọc lại hoặc dùng tool hỗ trợ | Gợi ý chính tả Google Docs; Grammarly nếu có bài tiếng Anh | Standard/Pro/Premium |
+| 14 | Tối ưu khả năng đọc (Readability) | Câu ngắn, đoạn không quá dài, dễ quét thông tin | Hemingway Editor | Pro/Premium |
+| 15 | Nghiên cứu đối thủ & thị trường | Phân tích bài đối thủ đang lên top cùng từ khóa | Frase.io | Premium |
+| 16 | FAQ/schema câu hỏi thường gặp | Thêm phần hỏi-đáp liên quan chủ đề nếu phù hợp | Frase.io / kiểm tra thủ công | Premium |
+| 17 | Định dạng file bàn giao | Google Docs hoặc Word, chỉnh sửa được trực tiếp | Kiểm tra thủ công | Standard/Pro/Premium |
+| 18 | Link bài viết sau khi đăng | Gửi lại link thực tế sau khi khách đăng bài | Google Search Console | Standard/Pro/Premium |
+
+## 5. Form thu thập thông tin khách hàng (19 trường)
+
+**Nguyên tắc phân công điền:**
+- **Khách hàng bắt buộc điền:** tên công ty/thương hiệu, website hiện tại, ngành nghề, sản phẩm/dịch vụ cần viết bài, mô tả sản phẩm, USP, đối tượng khách hàng mục tiêu, khu vực/thị trường mục tiêu, tone & giọng văn, gói dịch vụ đã chọn, số lượng bài, tài liệu/hình ảnh đính kèm, CTA mong muốn, thông tin liên hệ chèn vào bài, ngày mong muốn nhận bài.
+- **Khách hàng điền tùy chọn (không bắt buộc):** đối thủ cạnh tranh (nếu biết), từ khóa chính mong muốn (nếu có ý tưởng — không rành thì để trống), ghi chú thêm.
+- **SEO Engineer tự điền (không gửi cho khách thấy):** từ khóa phụ — nghiên cứu dựa trên thông tin sản phẩm/đối thủ/khu vực khách đã cung cấp.
+
+**Lý do tách:** khách hàng thường không rành kỹ thuật SEO (volume tìm kiếm, độ khó từ khóa, search intent), nên các trường đòi hỏi chuyên môn SEO phải do đội ngũ tự nghiên cứu, không bắt khách điền.
+
+## 6. Sheet nghiên cứu từ khóa nội bộ (dành cho SEO Engineer)
+
+Các cột cần điền khi research: **Từ khóa | Loại (Chính/Phụ/LSI) | Volume tìm kiếm (ước tính) | Độ khó (Thấp/Trung bình/Cao) | Search Intent (Thông tin/So sánh/Thương mại/Mua hàng) | Áp dụng cho bài viết # | Nguồn nghiên cứu/Ghi chú**.
+
+Research dựa trên các trường khách đã cung cấp ở mục 5 (sản phẩm, USP, khu vực, đối thủ) — không tự nghĩ ra từ khóa không liên quan đến thông tin khách cung cấp.
+
+## 7. Bộ công cụ hỗ trợ theo từng giai đoạn làm việc
+
+| Giai đoạn | Công cụ | Ghi chú |
+|---|---|---|
+| Nghiên cứu từ khóa | Google Keyword Planner (free), Google Trends (free), Keywords Everywhere (freemium) | Keyword Planner tra volume + cạnh tranh; Trends xem xu hướng theo thời gian/khu vực |
+| Research đối thủ & content brief | Frase.io | AI tự tạo outline/brief từ các bài đang lên top; hoặc đọc thủ công 3-5 bài top đầu |
+| Tối ưu khi viết (on-page) | Surfer SEO, Semrush SEO Writing Assistant, Yoast SEO/Rank Math (nếu WordPress) | Chấm điểm mật độ từ khóa, độ dài, cấu trúc heading ngay trong lúc viết |
+| Kiểm tra trùng lặp/đạo văn | Copyscape, Originality.AI (free 20 lượt/ngày), SmallSEOTools (free, hợp tiếng Việt) | **Bắt buộc trước khi bàn giao** |
+| Chính tả & ngữ pháp | Google Docs (gợi ý sẵn có) cho tiếng Việt; Grammarly cho tiếng Anh | Tiếng Việt chưa có tool chuyên sâu đáng tin cậy — ưu tiên đọc lại thủ công |
+| Readability | Hemingway Editor (free) | Chỉ ra câu quá dài, thể bị động |
+| Đo hiệu quả sau khi đăng | Google Search Console (free), Google Analytics (free) | Dùng để báo cáo hiệu quả bài viết cho khách |
+
+**Combo miễn phí ưu tiên khi ngân sách hạn chế:** Google Keyword Planner + Google Trends (research) → viết theo checklist mục 4 → Copyscape hoặc SmallSEOTools (check trùng lặp) → Hemingway (readability) → Search Console (đo hiệu quả).
+
+## 8. File đã tạo cho dự án này
+- `PML_Content_SEO.docx` — bản nháp bài giới thiệu dịch vụ, đúng layout 6 section ở mục 1, nội dung theo mục 3.
+- `PML_SEO_Content_Planner.xlsx` — 4 sheet:
+  1. **Form thu thập thông tin** (mục 5)
+  2. **Nghiên cứu từ khóa (SEO)** (mục 6)
+  3. **Checklist bàn giao** với cột Tool gợi ý (mục 4 & 7)
+  4. **Thông tin gói dịch vụ** (bảng mục 2)
+
+## 9. Hướng dẫn cho agent khi hỗ trợ dự án này
+- Skill viết bài: `.cursor/skills/pml-seo-article/SKILL.md` — giọng **bản 1 chuyên nghiệp** (heading, lịch sự, CTA). Trong bài: **đậm** từ khóa/CTA, *nghiêng* thuật ngữ/USP, `<u>` gạch chân CTA và SĐT/URL. Không humanize khẩu ngữ.
+- Skill QC sau draft: `.cursor/skills/seo-content-qc/SKILL.md` — đếm từ, đạo văn, không đuổi % AI detector.
+- Mẫu đạt: `local/seo-content/bai-1-website-chuyen-nghiep.md`.
+- Luôn giữ nguyên thứ tự 6 section ở mục 1 khi viết/chỉnh **trang giới thiệu dịch vụ** (khác bài SEO cho khách).
+- Số liệu giá/số từ/số bài/thời gian: mục 2, trừ khi người dùng yêu cầu cập nhật (vd. giá trên site 140/220/290).
+- Bài mẫu theo form khách: đủ checklist mục 4 theo **gói** (Standard không bắt hạng mục Pro/Premium).
+- Từ khóa: tách “khách gợi ý” vs “SEO engineer nghiên cứu”, không gộp.
+- Tool: ưu tiên miễn phí mục 7.
+- Không nhét Next.js/Supabase vào bài SEO Content.

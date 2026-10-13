@@ -3,6 +3,11 @@
  * Swap values here without editing layout components.
  */
 
+import {
+  pmlContentNewsArticles,
+  pmlContentNewsItems,
+} from "./news-pml-content-articles";
+
 export type NavChild = {
   label: string;
   href: string;
@@ -1150,6 +1155,7 @@ export const newsContent = {
   /** Số tin / hàng (desktop) */
   itemsPerRow: 5 as const,
   items: [
+    ...pmlContentNewsItems,
     {
       id: "news-pml-la-ai",
       title: "PML Vietnam là ai? Giải pháp website & chuyển đổi số cùng doanh nghiệp",
@@ -1383,6 +1389,7 @@ export type NewsArticle = {
 };
 
 export const newsArticles: NewsArticle[] = [
+  ...pmlContentNewsArticles,
   {
   slug: NEWS_ARTICLE_SLUG_TRENDS_2026,
   meta: {

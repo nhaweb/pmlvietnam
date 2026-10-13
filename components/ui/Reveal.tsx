@@ -1,7 +1,18 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+
+/** `useReducedMotion()` is null on the server. Keep the first paint static so
+ *  SSR HTML matches hydration; enable motion only after mount. */
+function useCanAnimate() {
+  const reduceMotion = useReducedMotion();
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    setReady(true);
+  }, []);
+  return ready && reduceMotion !== true;
+}
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -24,9 +35,9 @@ export function Reveal({
   amount = "some",
   trigger = "view",
 }: RevealProps) {
-  const reduceMotion = useReducedMotion();
+  const canAnimate = useCanAnimate();
 
-  if (reduceMotion) {
+  if (!canAnimate) {
     return <div className={className}>{children}</div>;
   }
 
@@ -86,12 +97,12 @@ export function RevealStagger({
   role,
   "aria-label": ariaLabel,
 }: RevealStaggerProps) {
-  const reduceMotion = useReducedMotion();
+  const canAnimate = useCanAnimate();
   const MotionTag =
     Tag === "ul" ? motion.ul : Tag === "ol" ? motion.ol : motion.div;
   const a11y = { role, "aria-label": ariaLabel };
 
-  if (reduceMotion) {
+  if (!canAnimate) {
     const StaticTag = Tag;
     return (
       <StaticTag className={className} {...a11y}>
@@ -130,10 +141,10 @@ export function RevealItem({
   className,
   as: Tag = "div",
 }: RevealItemProps) {
-  const reduceMotion = useReducedMotion();
+  const canAnimate = useCanAnimate();
   const MotionTag = Tag === "li" ? motion.li : motion.div;
 
-  if (reduceMotion) {
+  if (!canAnimate) {
     const StaticTag = Tag;
     return <StaticTag className={className}>{children}</StaticTag>;
   }

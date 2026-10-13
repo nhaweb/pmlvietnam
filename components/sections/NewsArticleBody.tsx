@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
+import { RichText } from "@/components/ui/RichText";
 import {
   newsPageContent,
   type NewsArticle,
@@ -10,6 +11,7 @@ import {
 /**
  * Thân bài tin tức — nền kem hai bên, cột trắng giữa (brief PML).
  * Reveal từng block (không wrap cả bài) để tránh opacity:0 kẹt trên nội dung dài.
+ * Inline: `**` `*` `<u>` `[text](href)`.
  */
 export function NewsArticleBody({ article }: { article: NewsArticle }) {
   const { blocks, meta } = article;
@@ -77,7 +79,7 @@ function ArticleBlock({ block }: { block: NewsArticleBlock }) {
     case "paragraph":
       return (
         <p className="text-sm leading-relaxed text-foreground/85 sm:text-[0.9375rem] sm:leading-[1.75]">
-          {block.text}
+          <RichText text={block.text} />
         </p>
       );
     case "heading":
@@ -103,7 +105,7 @@ function ArticleBlock({ block }: { block: NewsArticleBlock }) {
         <ListTag className={listClass}>
           {block.items.map((item) => (
             <li key={item} className="pl-1">
-              {item}
+              <RichText text={item} />
             </li>
           ))}
         </ListTag>
@@ -130,14 +132,14 @@ function ArticleBlock({ block }: { block: NewsArticleBlock }) {
             href={block.href}
             className="font-semibold text-cta underline decoration-cta/40 underline-offset-4 transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
           >
-            {block.text}
+            <RichText text={block.text} />
           </Link>
         </p>
       );
     case "tagline":
       return (
         <p className="pt-2 text-center text-sm font-semibold leading-relaxed text-foreground sm:pt-3 sm:text-base">
-          {block.text}
+          <RichText text={block.text} />
         </p>
       );
     default:
