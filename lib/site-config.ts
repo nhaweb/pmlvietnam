@@ -784,8 +784,8 @@ const TEMPLATE_DETAIL_IMAGES: Record<
 > = {
   "Cửa hàng thời trang": {
     src: "/san-pham/ban-le-&-tmdt/cua_hang_thoi_trang_chi_tiet.png",
-    width: 376,
-    height: 1024,
+    width: 1654,
+    height: 4499,
   },
 };
 
