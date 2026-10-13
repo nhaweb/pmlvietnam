@@ -1,14 +1,5 @@
 import type { Metadata } from "next";
-import { Encode_Sans_Expanded } from "next/font/google";
-import { Suspense } from "react";
-import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
-import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
-import { ContactFormProvider } from "@/components/contact/ContactFormProvider";
-import { DefaultPageExtras } from "@/components/layout/DefaultPageExtras";
-import { FloatingContactIcons } from "@/components/layout/FloatingContactIcons";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { JsonLd } from "@/components/seo/JsonLd";
+import { SiteShell } from "@/components/layout/SiteShell";
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_OG_IMAGE,
@@ -16,18 +7,8 @@ import {
   SITE_NAME,
   SITE_URL,
   absoluteUrl,
-  organizationJsonLd,
-  websiteJsonLd,
 } from "@/lib/seo";
-import "./globals.css";
-
-/* Closest free alternative to Surt Expanded (perpetualny.com) — có subset Vietnamese */
-const encodeSansExpanded = Encode_Sans_Expanded({
-  variable: "--font-display",
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+import "../globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -103,28 +84,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html
-      lang="vi"
-      className={`${encodeSansExpanded.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col font-sans bg-bg-primary text-foreground">
-        <JsonLd data={organizationJsonLd()} />
-        <JsonLd data={websiteJsonLd()} />
-        <AnalyticsScripts />
-        <Suspense fallback={null}>
-          <AnalyticsTracker />
-        </Suspense>
-        <ContactFormProvider>
-          <Header />
-          <main className="flex flex-1 flex-col">
-            {children}
-            <DefaultPageExtras />
-          </main>
-          <Footer />
-          <FloatingContactIcons />
-        </ContactFormProvider>
-      </body>
-    </html>
-  );
+  return <SiteShell>{children}</SiteShell>;
 }
