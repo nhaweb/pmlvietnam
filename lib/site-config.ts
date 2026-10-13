@@ -749,6 +749,8 @@ export type ProductSampleItem = {
   groupId: string;
   groupLabel: string;
   image: { src: string; alt: string; width?: number; height?: number };
+  /** Ảnh riêng cho trang chi tiết — không ảnh hưởng thumbnail catalog. */
+  detailImage?: { src: string; alt: string; width?: number; height?: number };
   /** URL xem thực tế — hiện nút "Xem thực tế" khi có */
   liveUrl?: string;
   /**
@@ -772,6 +774,19 @@ function slugifyOccupation(value: string) {
 /** Demo live theo nghề — bổ sung khi có site thật. */
 const TEMPLATE_LIVE_DEMOS: Record<string, string> = {
   "Thực phẩm & Đồ uống": "https://luvini.vn",
+  "Cửa hàng thời trang": "https://fashion-dev-livid.vercel.app/",
+};
+
+/** Screenshot trang chi tiết khi khác thumbnail catalog. */
+const TEMPLATE_DETAIL_IMAGES: Record<
+  string,
+  { src: string; width: number; height: number }
+> = {
+  "Cửa hàng thời trang": {
+    src: "/san-pham/ban-le-&-tmdt/cua_hang_thoi_trang_chi_tiet.png",
+    width: 376,
+    height: 1024,
+  },
 };
 
 const TEMPLATE_IMAGE_SIZE = { width: 1080, height: 720 } as const;
@@ -966,6 +981,7 @@ function buildProductSamples(groups: IndustryGroup[]): ProductSampleItem[] {
   for (const group of groups) {
     for (const occupation of group.occupations) {
       const preview = TEMPLATE_PREVIEW_IMAGES[occupation];
+      const detail = TEMPLATE_DETAIL_IMAGES[occupation];
       const src =
         preview?.src ?? SAMPLE_IMAGE_SRC[imageIndex % SAMPLE_IMAGE_SRC.length];
       imageIndex += 1;
@@ -982,6 +998,9 @@ function buildProductSamples(groups: IndustryGroup[]): ProductSampleItem[] {
           width: preview?.width,
           height: preview?.height,
         },
+        detailImage: detail
+          ? { ...detail, alt: `Mẫu website ${occupation}` }
+          : undefined,
       });
     }
   }

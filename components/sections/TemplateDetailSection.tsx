@@ -30,6 +30,7 @@ export function TemplateDetailSection({
   const formTitle = `${copy.form1TitlePrefix} ${item.title}`;
   const handover =
     item.isReadyTemplate === false ? copy.customHandover : copy.readyHandover;
+  const previewImage = item.detailImage ?? item.image;
 
   return (
     <section
@@ -85,11 +86,11 @@ export function TemplateDetailSection({
           <div className="relative h-[22rem] min-h-0 sm:h-[28rem] lg:col-start-1 lg:row-start-1 lg:h-auto">
             <div className="h-full overflow-hidden rounded-2xl border border-card-border bg-card shadow-sm lg:absolute lg:inset-0">
               <HoverScrollPreview
-                src={item.image.src}
-                alt={item.image.alt}
-                width={item.image.width ?? 1600}
-                height={item.image.height ?? 1200}
-                unoptimized={item.image.src.endsWith(".svg")}
+                src={previewImage.src}
+                alt={previewImage.alt}
+                width={previewImage.width ?? 1600}
+                height={previewImage.height ?? 1200}
+                unoptimized={previewImage.src.endsWith(".svg")}
                 frameClassName="h-full w-full bg-bg-secondary"
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 priority
