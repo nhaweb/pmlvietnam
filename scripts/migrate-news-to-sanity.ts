@@ -208,13 +208,14 @@ async function main() {
     const article = newsArticles.find((a) => newsArticleHref(a.slug) === item.href);
     if (!article) continue;
 
-    const mainImage = await imageValue(article.banner.src || item.image.src, article.banner.alt || item.image.alt);
+    const mainImage = await imageValue(item.image.src, item.image.alt);
     const body = await convertBlocks(article.blocks);
 
     const fields = {
       title: item.title,
       slug: { _type: "slug", current: article.slug },
       publishedAt: new Date(article.banner.publishedAtIso).toISOString(),
+      category: item.category,
       excerpt: item.excerpt,
       ...(mainImage ? { mainImage } : {}),
       body,

@@ -9,9 +9,14 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { encodeSansExpanded } from "@/lib/fonts";
+import { getPublishedNewsItems } from "@/lib/news";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { publishedNewsItems, type SearchSuggestion } from "@/lib/site-config";
+import { SanityLive } from "@/sanity/lib/live";
 
-export function SiteShell({ children }: { children: ReactNode }) {
+export async function SiteShell({ children }: { children: ReactNode }) {
+  const newsPages = await loadNewsSearchPages();
+
   return (
     <html
       lang="vi"
@@ -25,7 +30,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <AnalyticsTracker />
         </Suspense>
         <ContactFormProvider>
-          <Header />
+          <Header newsPages={newsPages} />
           <main className="flex flex-1 flex-col">
             {children}
             <DefaultPageExtras />
@@ -33,7 +38,26 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <Footer />
           <FloatingContactIcons />
         </ContactFormProvider>
+        <SanityLive />
       </body>
     </html>
   );
+}
+
+async function loadNewsSearchPages(): Promise<SearchSuggestion[]> {
+  try {
+    const items = await getPublishedNewsItems();
+    return items.map((item) => ({
+      id: item.id,
+      label: item.title,
+      href: item.href,
+    }));
+  } catch (error) {
+    console.error("Không tải được tin tức từ Sanity cho ô tìm kiếm.", error);
+    return publishedNewsItems.map((item) => ({
+      id: item.id,
+      label: item.title,
+      href: item.href,
+    }));
+  }
 }

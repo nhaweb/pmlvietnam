@@ -1124,9 +1124,8 @@ export function getRelatedProductSamples(
 /**
  * Task 4 — Tin tức / Sự kiện mới nhất.
  * Carousel trang chủ: 5 item/hàng. Listing đầy đủ tại `/tin-tuc`.
- * Chi tiết bài viết tại `/tin-tuc/[slug]` khi có nội dung trong `newsArticles`.
- * Item chưa có bài chi tiết vẫn giữ trong `items`; site chỉ hiện `publishedNewsItems`.
- * TODO: thay title/excerpt/date/image bằng bài thật khi có CMS / content.
+ * Chi tiết bài viết công khai đọc từ Sanity (`newsArticle`).
+ * Mảng này là nguồn import: `npx sanity exec scripts/migrate-news-to-sanity.ts --with-user-token`.
  */
 export type NewsItem = {
   id: string;

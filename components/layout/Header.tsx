@@ -2,16 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { useContactForm } from "@/components/contact/ContactFormProvider";
 import { CTAButton } from "@/components/ui/CTAButton";
 import {
   logoPath,
   navItems,
+  searchPopularSuggestions,
   type NavItem,
   type SearchSuggestion,
 } from "@/lib/site-config";
-import { filterSearchResults } from "@/lib/search";
+import { filterSearchResults, relatedSearchSuggestions } from "@/lib/search";
 
 function cx(...parts: Array<string | undefined | false>) {
   return parts.filter(Boolean).join(" ");
@@ -21,7 +23,7 @@ function cx(...parts: Array<string | undefined | false>) {
  * Header — nền trắng, logo lớn (ref tma.vn), menu + mega dropdown, icon tìm kiếm cam.
  * Logo + CTA "Đăng ký tư vấn" giữ nguyên theo mockup.
  */
-export function Header() {
+export function Header({ newsPages }: { newsPages?: SearchSuggestion[] }) {
   const [openKey, setOpenKey] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -30,6 +32,8 @@ export function Header() {
   const menuId = useId();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchRootRef = useRef<HTMLDivElement>(null);
+  const searchFieldRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const { openContactForm } = useContactForm();
 
   const {
@@ -37,12 +41,23 @@ export function Header() {
     templates: templateResults,
     pages: pageResults,
     promo: promoResults,
-  } = filterSearchResults(searchQuery);
+  } = filterSearchResults(searchQuery, newsPages);
   const hasResults =
     popularResults.length > 0 ||
     templateResults.length > 0 ||
     pageResults.length > 0 ||
     promoResults.length > 0;
+  const trimmedQuery = searchQuery.trim();
+  const relatedResults = hasResults
+    ? []
+    : relatedSearchSuggestions(trimmedQuery, newsPages);
+  const fallbackResults =
+    relatedResults.length > 0 ? relatedResults : searchPopularSuggestions;
+  const resultCount =
+    popularResults.length +
+    templateResults.length +
+    pageResults.length +
+    promoResults.length;
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -106,6 +121,7 @@ export function Header() {
 
   function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!trimmedQuery) return;
     const first =
       popularResults[0] ??
       templateResults[0] ??
@@ -113,17 +129,37 @@ export function Header() {
       promoResults[0];
     if (first) {
       closeSearch();
-      window.location.href = first.href;
+      router.push(first.href);
       return;
     }
-    const q = searchQuery.trim();
-    closeSearch();
-    if (!q) return;
-    window.location.href = `/san-pham`;
+    // Không redirect: giữ panel + query để user sửa từ khóa hoặc chọn gợi ý.
+    searchInputRef.current?.select();
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      searchFieldRef.current?.animate(
+        [
+          { transform: "translateX(0)" },
+          { transform: "translateX(-6px)" },
+          { transform: "translateX(5px)" },
+          { transform: "translateX(-3px)" },
+          { transform: "translateX(0)" },
+        ],
+        { duration: 360, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+      );
+    }
+  }
+
+  function clearSearch() {
+    setSearchQuery("");
+    searchInputRef.current?.focus();
   }
 
   function handleSuggestionClick() {
     closeSearch();
+  }
+
+  function handleConsultFromSearch() {
+    closeSearch();
+    openContactForm({ variant: "consult" });
   }
 
   return (
@@ -288,7 +324,10 @@ export function Header() {
                   <label className="sr-only" htmlFor={`${menuId}-search-input`}>
                     Từ khóa tìm kiếm
                   </label>
-                  <div className="flex items-center gap-2 rounded-full border border-card-border bg-bg-primary px-3.5 py-2.5 transition-shadow focus-within:border-cta focus-within:ring-2 focus-within:ring-cta/30">
+                  <div
+                    ref={searchFieldRef}
+                    className="flex items-center gap-2 rounded-full border border-card-border bg-bg-primary px-3.5 py-2.5 transition-shadow focus-within:border-cta focus-within:ring-2 focus-within:ring-cta/30"
+                  >
                     <SearchIconSmall />
                     <input
                       ref={searchInputRef}
@@ -298,12 +337,30 @@ export function Header() {
                       onChange={(event) => setSearchQuery(event.target.value)}
                       placeholder="Từ khóa tìm kiếm"
                       autoComplete="off"
-                      className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted"
+                      className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted [&::-webkit-search-cancel-button]:hidden"
                     />
+                    {searchQuery ? (
+                      <button
+                        type="button"
+                        onClick={clearSearch}
+                        aria-label="Xóa từ khóa"
+                        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:bg-bg-secondary hover:text-foreground"
+                      >
+                        <ClearIcon />
+                      </button>
+                    ) : null}
                   </div>
                 </form>
 
-                <div className="max-h-[min(22rem,70vh)] overflow-y-auto px-2 pb-3">
+                <p className="sr-only" aria-live="polite">
+                  {trimmedQuery
+                    ? hasResults
+                      ? `${resultCount} kết quả`
+                      : `Không tìm thấy kết quả cho ${trimmedQuery}`
+                    : ""}
+                </p>
+
+                <div className="max-h-[min(26rem,70vh)] overflow-y-auto px-2 pb-3">
                   {hasResults ? (
                     <>
                       {popularResults.length > 0 ? (
@@ -336,9 +393,47 @@ export function Header() {
                       ) : null}
                     </>
                   ) : (
-                    <p className="px-3 py-4 text-sm text-muted">
-                      Không tìm thấy kết quả cho &ldquo;{searchQuery.trim()}&rdquo;
-                    </p>
+                    <div className="search-empty">
+                      <div className="px-3 pb-1 pt-3">
+                        <p className="text-sm font-semibold text-foreground">
+                          Không tìm thấy kết quả cho &ldquo;{trimmedQuery}&rdquo;
+                        </p>
+                        <p className="mt-1 text-xs text-muted">
+                          Thử từ khóa ngắn hơn, kiểm tra chính tả hoặc tìm theo
+                          ngành nghề (vd: &ldquo;spa&rdquo;, &ldquo;nội thất&rdquo;).
+                        </p>
+                      </div>
+                      <SearchGroup
+                        title={
+                          relatedResults.length > 0
+                            ? "Có thể bạn đang tìm"
+                            : "Tìm kiếm nhiều nhất"
+                        }
+                        items={fallbackResults}
+                        onSelect={handleSuggestionClick}
+                      />
+                      <div className="mx-1 mt-2 flex flex-col gap-2 rounded-lg border border-card-border bg-bg-secondary p-3">
+                        <p className="text-xs text-muted">
+                          Chưa thấy mẫu phù hợp? PML thiết kế riêng theo yêu cầu.
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          <button
+                            type="button"
+                            onClick={handleConsultFromSearch}
+                            className="inline-flex items-center rounded-full bg-cta px-3.5 py-1.5 text-xs font-semibold text-white transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
+                          >
+                            Nhờ tư vấn miễn phí
+                          </button>
+                          <Link
+                            href="/san-pham"
+                            onClick={handleSuggestionClick}
+                            className="inline-flex items-center rounded-full border border-card-border bg-bg-primary px-3.5 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-cta hover:text-cta"
+                          >
+                            Xem tất cả mẫu
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
@@ -598,6 +693,14 @@ function ClockIcon() {
     >
       <circle cx="12" cy="12" r="8.25" />
       <path d="M12 8.5V12l2.5 1.5" />
+    </svg>
+  );
+}
+
+function ClearIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden className="h-3.5 w-3.5">
+      <path d="M6 6l8 8M14 6l-8 8" strokeLinecap="round" />
     </svg>
   );
 }

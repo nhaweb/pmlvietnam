@@ -39,10 +39,16 @@ function haystack(entry: SearchEntry) {
   );
 }
 
+function queryTokens(query: string) {
+  return normalizeSearch(query).split(" ").filter(Boolean);
+}
+
+/** Mọi từ trong query đều phải xuất hiện — không phụ thuộc thứ tự ("ban hang website"). */
 function matchesQuery(entry: SearchEntry, query: string) {
-  const q = normalizeSearch(query);
-  if (!q) return true;
-  return haystack(entry).includes(q);
+  const tokens = queryTokens(query);
+  if (tokens.length === 0) return true;
+  const text = haystack(entry);
+  return tokens.every((token) => text.includes(token));
 }
 
 function matchScore(entry: SearchEntry, query: string) {
@@ -132,8 +138,74 @@ function pageEntries(): SearchEntry[] {
 const SITE_TEMPLATES = templateEntries();
 const SITE_PAGES = pageEntries();
 
-export function filterSearchResults(query: string): SearchResultGroups {
+function pagesFor(newsPages?: SearchSuggestion[]): SearchEntry[] {
+  return newsPages
+    ? [
+        ...SITE_PAGES.filter((page) => !page.href.startsWith("/tin-tuc/")),
+        ...newsPages,
+      ]
+    : SITE_PAGES;
+}
+
+/** Từ quá chung — khớp gần như mọi entry nên không dùng để gợi ý liên quan. */
+const GENERIC_TOKENS = new Set([
+  "web",
+  "website",
+  "trang",
+  "mau",
+  "thiet",
+  "ke",
+  "cho",
+  "va",
+  "cua",
+  "the",
+  "nao",
+  "gi",
+]);
+
+/**
+ * Gợi ý khi không có kết quả khớp đủ mọi từ: xếp theo số từ có nghĩa trùng.
+ * Trả về rỗng nếu query không có từ nào đủ đặc trưng.
+ */
+export function relatedSearchSuggestions(
+  query: string,
+  newsPages?: SearchSuggestion[],
+  limit = 5,
+): SearchSuggestion[] {
+  const tokens = queryTokens(query).filter(
+    (token) => token.length >= 3 && !GENERIC_TOKENS.has(token),
+  );
+  if (tokens.length === 0) return [];
+
+  const pool = [
+    ...searchPopularSuggestions,
+    ...SITE_TEMPLATES,
+    ...pagesFor(newsPages),
+    ...searchPromoSuggestions,
+  ];
+
+  const scored = pool
+    .map((entry) => {
+      const text = haystack(entry);
+      const hits = tokens.filter((token) => text.includes(token)).length;
+      return { entry, hits };
+    })
+    .filter(({ hits }) => hits > 0)
+    .sort(
+      (a, b) =>
+        b.hits - a.hits || a.entry.label.localeCompare(b.entry.label, "vi"),
+    )
+    .map(({ entry }) => entry);
+
+  return uniqueByHref(scored).slice(0, limit);
+}
+
+export function filterSearchResults(
+  query: string,
+  newsPages?: SearchSuggestion[],
+): SearchResultGroups {
   const q = query.trim();
+  const pagesSource = pagesFor(newsPages);
 
   if (!q) {
     return {
@@ -166,7 +238,7 @@ export function filterSearchResults(query: string): SearchResultGroups {
 
   const pages = uniqueByHref(
     sortMatches(
-      SITE_PAGES.filter(
+      pagesSource.filter(
         (item) => matchesQuery(item, q) && !shown.has(item.href),
       ),
       q,

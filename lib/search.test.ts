@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { filterSearchResults, normalizeSearch } from "./search.ts";
+import {
+  filterSearchResults,
+  normalizeSearch,
+  relatedSearchSuggestions,
+} from "./search.ts";
 import { searchPopularSuggestions } from "./site-config.ts";
 
 test("normalizeSearch matches accented and unaccented Vietnamese", () => {
@@ -46,4 +50,29 @@ test("xây dựng and xay dung return the same construction results", () => {
       item.label.toLowerCase().includes("xây dựng"),
     ),
   );
+});
+
+test("query words match regardless of order", () => {
+  const ordered = filterSearchResults("noi that xuong go");
+  const reversed = filterSearchResults("xuong go noi that");
+  const hrefs = (r: ReturnType<typeof filterSearchResults>) =>
+    [...r.templates, ...r.pages].map((item) => item.href).sort();
+  assert.ok(hrefs(ordered).length > 0);
+  assert.deepEqual(hrefs(ordered), hrefs(reversed));
+});
+
+test("related suggestions recover partial matches when strict search is empty", () => {
+  const query = "spa zzzqqq";
+  const strict = filterSearchResults(query);
+  assert.equal(
+    strict.popular.length + strict.templates.length + strict.pages.length + strict.promo.length,
+    0,
+  );
+  const related = relatedSearchSuggestions(query);
+  assert.ok(related.length > 0);
+  assert.ok(related.length <= 5);
+});
+
+test("related suggestions ignore generic-only queries", () => {
+  assert.deepEqual(relatedSearchSuggestions("website zz"), []);
 });

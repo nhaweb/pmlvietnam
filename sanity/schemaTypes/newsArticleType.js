@@ -42,6 +42,14 @@ export const newsArticleType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'category',
+      title: 'Chuyên mục',
+      description: 'Nhãn trên card và badge đầu bài, ví dụ SEO, Hướng dẫn.',
+      type: 'string',
+      group: 'content',
+      validation: (rule) => rule.required().max(40),
+    }),
+    defineField({
       name: 'excerpt',
       title: 'Mô tả ngắn',
       description: 'Hiển thị trên card ở trang chủ và trang /tin-tuc.',
@@ -87,17 +95,38 @@ export const newsArticleType = defineType({
         defineField({
           name: 'title',
           title: 'Meta title',
-          description: 'Bỏ trống sẽ dùng Tiêu đề bài viết.',
+          description:
+            'Bỏ trống sẽ dùng Tiêu đề bài viết. Site tự thêm " | PML Vietnam" (15 ký tự) phía sau.',
           type: 'string',
-          validation: (rule) => rule.max(70).warning('Nên dưới 70 ký tự'),
+          validation: (rule) =>
+            rule.max(50).warning('Nên dưới 50 ký tự để cả hậu tố thương hiệu không bị Google cắt'),
         }),
         defineField({
           name: 'description',
           title: 'Meta description',
-          description: 'Bỏ trống sẽ dùng Mô tả ngắn.',
+          description: 'Bỏ trống sẽ dùng Mô tả ngắn. Nên 140–160 ký tự.',
           type: 'text',
           rows: 3,
-          validation: (rule) => rule.max(170).warning('Nên dưới 170 ký tự'),
+          validation: (rule) => [
+            rule.max(160).warning('Nên dưới 160 ký tự để Google không cắt'),
+            rule.min(70).warning('Quá ngắn, Google có thể tự lấy đoạn khác trong bài'),
+          ],
+        }),
+        defineField({
+          name: 'ogImage',
+          title: 'Ảnh chia sẻ (Facebook, Zalo)',
+          description:
+            'Bỏ trống sẽ dùng Ảnh đại diện. Site tự cắt về 1200×630 theo điểm nhấn (hotspot), nên upload ảnh rộng từ 1200px.',
+          type: 'image',
+          options: {hotspot: true},
+        }),
+        defineField({
+          name: 'noIndex',
+          title: 'Ẩn khỏi Google',
+          description:
+            'Bật để Google không lập chỉ mục bài này và bỏ khỏi sitemap. Bài vẫn xem được qua link.',
+          type: 'boolean',
+          initialValue: false,
         }),
       ],
     }),

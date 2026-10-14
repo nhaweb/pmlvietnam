@@ -1,3 +1,5 @@
+import { readServerEnv as readEnv } from "@/lib/server-env";
+
 export type ContactLead = {
   variant: "consult" | "register";
   name: string;
@@ -6,8 +8,6 @@ export type ContactLead = {
   message?: string;
   selectedSample?: string;
 };
-
-type EmailEnvName = "RESEND_API_KEY" | "CONTACT_TO_EMAIL" | "RESEND_FROM_EMAIL";
 
 export class EmailConfigError extends Error {
   constructor(message: string) {
@@ -21,24 +21,6 @@ export class EmailSendError extends Error {
     super(message);
     this.name = "EmailSendError";
   }
-}
-
-function processEnvValue(name: EmailEnvName) {
-  // Dynamic lookup — Next.js inlines `process.env.RESEND_API_KEY` at build time as undefined.
-  const value = process.env[name];
-  return typeof value === "string" && value.trim() ? value.trim() : undefined;
-}
-
-function cloudflareBinding(name: EmailEnvName) {
-  const ctx = Reflect.get(globalThis, Symbol.for("__cloudflare-context__")) as
-    | { env?: Record<string, unknown> }
-    | undefined;
-  const value = ctx?.env?.[name];
-  return typeof value === "string" && value.trim() ? value.trim() : undefined;
-}
-
-function readEnv(name: EmailEnvName) {
-  return cloudflareBinding(name) ?? processEnvValue(name);
 }
 
 function requiredEnv(name: "RESEND_API_KEY" | "CONTACT_TO_EMAIL") {

@@ -2,12 +2,9 @@ import type { Metadata, MetadataRoute } from "next";
 import {
   faqContent,
   logoPath,
-  newsArticles,
   siteContact,
   socialLinks,
   type FaqItem,
-  type NewsArticle,
-  type NewsArticleBlock,
 } from "@/lib/site-config";
 
 /** Production canonical host — override via `NEXT_PUBLIC_SITE_URL` if needed. */
@@ -42,6 +39,8 @@ type PageMetadataInput = {
   path: string;
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   type?: "website" | "article";
   publishedTime?: string;
   noIndex?: boolean;
@@ -57,6 +56,8 @@ export function pageMetadata({
   path,
   image = DEFAULT_OG_IMAGE,
   imageAlt = `${SITE_NAME} — giải pháp website chuyên nghiệp`,
+  imageWidth,
+  imageHeight,
   type = "website",
   publishedTime,
   noIndex = false,
@@ -82,6 +83,9 @@ export function pageMetadata({
         {
           url: imageUrl,
           alt: imageAlt,
+          ...(imageWidth && imageHeight
+            ? { width: imageWidth, height: imageHeight }
+            : {}),
         },
       ],
     },
@@ -160,17 +164,14 @@ export function faqPageJsonLd(items: FaqItem[] = faqContent.items) {
   };
 }
 
-function firstArticleImage(blocks: NewsArticleBlock[]) {
-  const image = blocks.find(
-    (block): block is Extract<NewsArticleBlock, { type: "image" }> =>
-      block.type === "image",
-  );
-  return image?.src;
-}
-
-export function articleJsonLd(article: NewsArticle) {
+export function articleJsonLd(article: {
+  slug: string;
+  meta: { title: string; description: string; ogImage: { src: string } };
+  banner: { publishedAtIso: string };
+  updatedAtIso: string;
+}) {
   const path = `/tin-tuc/${article.slug}`;
-  const image = firstArticleImage(article.blocks) ?? article.banner.src;
+  const image = article.meta.ogImage.src;
 
   return {
     "@context": "https://schema.org",
@@ -179,7 +180,7 @@ export function articleJsonLd(article: NewsArticle) {
     description: article.meta.description,
     image: [absoluteUrl(image)],
     datePublished: article.banner.publishedAtIso,
-    dateModified: article.banner.publishedAtIso,
+    dateModified: article.updatedAtIso,
     author: {
       "@type": "Organization",
       name: SITE_NAME,
@@ -253,8 +254,3 @@ export const STATIC_SITEMAP_ROUTES: Array<{
   { path: "/dieu-khoan-su-dung", changeFrequency: "yearly", priority: 0.3 },
 ];
 
-export function articleOgImage(article: NewsArticle) {
-  return firstArticleImage(article.blocks) ?? article.banner.src;
-}
-
-export { newsArticles };

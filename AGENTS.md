@@ -8,6 +8,10 @@
 - Card: border + bg-fill (ref luvini.vn), ảnh hover/click scale nhẹ (ref tma.vn)
 - Ưu tiên sửa dụng animation để cải thiện UX (user thích web có animation, chỉ dùng trong các case best practice, không được lạm dụng)
 
+## Deployment
+- Test/staging: Vercel. Production: Fly.io.
+- KHÔNG đề xuất, viết code riêng cho, hay gợi ý deploy lên Cloudflare (Workers/OpenNext/Wrangler) nữa. Biến môi trường production set bằng `fly secrets set`, staging set trên Vercel dashboard.
+
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 

@@ -6,4 +6,8 @@ import { client } from './client'
 
 export const { sanityFetch, SanityLive } = defineLive({
   client,
+  serverToken: false,
+  browserToken: false,
+  // Live events refresh published content; this is the fallback if the stream drops.
+  fetchOptions: { revalidate: 60 },
 });

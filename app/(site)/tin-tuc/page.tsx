@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NewsListingSection } from "@/components/sections/NewsListingSection";
 import { NewsPageBanner } from "@/components/sections/NewsPageBanner";
+import { getPublishedNewsItems } from "@/lib/news";
 import { pageMetadata } from "@/lib/seo";
 import { newsPageContent } from "@/lib/site-config";
 
@@ -12,11 +13,13 @@ export const metadata: Metadata = pageMetadata({
   imageAlt: newsPageContent.banner.alt,
 });
 
-export default function TinTucPage() {
+export default async function TinTucPage() {
+  const items = await getPublishedNewsItems();
+
   return (
     <>
       <NewsPageBanner />
-      <NewsListingSection />
+      <NewsListingSection items={items} />
     </>
   );
 }
