@@ -78,7 +78,13 @@ function ArticleBlock({ block }: { block: NewsArticleBlock }) {
   switch (block.type) {
     case "paragraph":
       return (
-        <p className="text-sm leading-relaxed text-foreground/85 sm:text-[0.9375rem] sm:leading-[1.75]">
+        <p
+          className={
+            block.text.includes("\n")
+              ? "text-sm leading-snug text-foreground/85 sm:text-[0.9375rem] sm:leading-normal"
+              : "text-sm leading-relaxed text-foreground/85 sm:text-[0.9375rem] sm:leading-[1.75]"
+          }
+        >
           <RichText text={block.text} />
         </p>
       );

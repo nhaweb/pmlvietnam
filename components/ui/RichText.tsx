@@ -5,6 +5,19 @@ import Link from "next/link";
  * Inline Word/markdown: `**đậm**`, `*nghiêng*`, `***cả hai***`, `<u>gạch chân</u>`, `[text](href)`.
  */
 export function RichText({ text }: { text: string }) {
+  if (text.includes("\n")) {
+    const lines = text.split("\n");
+    return (
+      <>
+        {lines.map((line, index) => (
+          <span key={`ln-${index}`}>
+            {index > 0 ? <br /> : null}
+            {hasRichMarkup(line) ? parseRichText(line) : line}
+          </span>
+        ))}
+      </>
+    );
+  }
   if (!hasRichMarkup(text)) {
     return text;
   }
