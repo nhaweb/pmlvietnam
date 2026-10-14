@@ -23,12 +23,10 @@ LINKIFY = (
     ("<u>Mobile-first indexing</u>", "[Mobile-first indexing](https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing)"),
     ("<u>Mẫu giao diện</u>", "[Mẫu giao diện](/san-pham)"),
     ("<u>luvini.vn</u>", "[luvini.vn](https://luvini.vn)"),
-    ("<u>VinaSite</u>", "[VinaSite](https://vinasite.com.vn/mau-website/)"),
-    ("<u>123Website</u>", "[123Website](https://123website.com.vn/danh-muc-website/)"),
-    ("<u>Vietcodex</u>", "[Vietcodex](https://vietcodex.com/template-store)"),
-    ("<u>Webchốt</u>", "[Webchốt](https://webchot.com/mau-website)"),
     ("<u>0908 985 844</u>", "[0908 985 844](https://zalo.me/0908985844)"),
 )
+
+COMPETITOR_NAMES = ("VinaSite", "123Website", "Vietcodex", "Webchốt")
 
 MUOI_REPLACEMENTS = (
     ("Mười mẫu hay mười nhóm ngành", "10 mẫu hay 10 nhóm ngành"),
@@ -55,6 +53,9 @@ def polish_text(text: str) -> str:
     text = re.sub(r" {2,}", " ", text)
     for old, new in LINKIFY:
         text = text.replace(old, new)
+    for name in COMPETITOR_NAMES:
+        text = re.sub(rf"\[{re.escape(name)}\]\([^)]+\)", name, text)
+        text = text.replace(f"<u>{name}</u>", name)
     if "mailto:" not in text:
         text = text.replace(
             "pmluanvn@gmail.com",
@@ -76,6 +77,40 @@ def polish_text(text: str) -> str:
             "[facebook.com/pmlvietnam.vn](https://www.facebook.com/pmlvietnam.vn)",
         )
     return text
+
+
+CONTACT_PREFIXES = (
+    "Hotline",
+    "Email:",
+    "Địa chỉ:",
+    "Giờ làm việc:",
+    "Catalog:",
+    "Facebook:",
+)
+
+
+def compact_contact_lines(blocks: list[dict]) -> list[dict]:
+    """Gộp Hotline/Email/địa chỉ thành một đoạn — tránh space-y giữa từng dòng."""
+    out: list[dict] = []
+    i = 0
+    while i < len(blocks):
+        block = blocks[i]
+        if block["type"] == "paragraph" and block["text"].startswith(CONTACT_PREFIXES):
+            lines = [block["text"]]
+            i += 1
+            while (
+                i < len(blocks)
+                and blocks[i]["type"] == "paragraph"
+                and blocks[i]["text"].startswith(CONTACT_PREFIXES)
+            ):
+                lines.append(blocks[i]["text"])
+                i += 1
+            out.append({"type": "paragraph", "text": "\n".join(lines)})
+            continue
+        out.append(block)
+        i += 1
+    return out
+
 
 H2 = {
     "Khách đang tìm bạn trên Google",
@@ -454,13 +489,13 @@ ARTICLES = [
 
 
 def banner_src(art: dict) -> str:
-    if art["thumb"]:
-        return f"/tin-tuc/{art['image_dir']}/{art['thumb']}"
     return art["banner_fallback"]
 
 
 def card_image(art: dict) -> str:
-    return banner_src(art)
+    if art["thumb"]:
+        return f"/tin-tuc/{art['image_dir']}/{art['thumb']}"
+    return art["banner_fallback"]
 
 
 def main():
@@ -496,6 +531,7 @@ def main():
                 block["items"] = [
                     polish_text(apply_rich(item, lookup)) for item in block["items"]
                 ]
+        blocks = compact_contact_lines(blocks)
         chunks_const.append(
             f'export const {art["const"]} = {ts_str(art["slug"])} as const;'
         )
