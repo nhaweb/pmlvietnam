@@ -749,6 +749,8 @@ export type ProductSampleItem = {
   groupId: string;
   groupLabel: string;
   image: { src: string; alt: string; width?: number; height?: number };
+  /** Ảnh riêng cho trang chi tiết — không ảnh hưởng thumbnail catalog. */
+  detailImage?: { src: string; alt: string; width?: number; height?: number };
   /** URL xem thực tế — hiện nút "Xem thực tế" khi có */
   liveUrl?: string;
   /**
@@ -772,6 +774,19 @@ function slugifyOccupation(value: string) {
 /** Demo live theo nghề — bổ sung khi có site thật. */
 const TEMPLATE_LIVE_DEMOS: Record<string, string> = {
   "Thực phẩm & Đồ uống": "https://luvini.vn",
+  "Cửa hàng thời trang": "https://fashion-dev-livid.vercel.app/",
+};
+
+/** Screenshot trang chi tiết khi khác thumbnail catalog. */
+const TEMPLATE_DETAIL_IMAGES: Record<
+  string,
+  { src: string; width: number; height: number }
+> = {
+  "Cửa hàng thời trang": {
+    src: "/san-pham/ban-le-&-tmdt/cua_hang_thoi_trang_chi_tiet.png",
+    width: 1654,
+    height: 4499,
+  },
 };
 
 const TEMPLATE_IMAGE_SIZE = { width: 1080, height: 720 } as const;
@@ -966,6 +981,7 @@ function buildProductSamples(groups: IndustryGroup[]): ProductSampleItem[] {
   for (const group of groups) {
     for (const occupation of group.occupations) {
       const preview = TEMPLATE_PREVIEW_IMAGES[occupation];
+      const detail = TEMPLATE_DETAIL_IMAGES[occupation];
       const src =
         preview?.src ?? SAMPLE_IMAGE_SRC[imageIndex % SAMPLE_IMAGE_SRC.length];
       imageIndex += 1;
@@ -982,6 +998,9 @@ function buildProductSamples(groups: IndustryGroup[]): ProductSampleItem[] {
           width: preview?.width,
           height: preview?.height,
         },
+        detailImage: detail
+          ? { ...detail, alt: `Mẫu website ${occupation}` }
+          : undefined,
       });
     }
   }
@@ -1105,9 +1124,8 @@ export function getRelatedProductSamples(
 /**
  * Task 4 — Tin tức / Sự kiện mới nhất.
  * Carousel trang chủ: 5 item/hàng. Listing đầy đủ tại `/tin-tuc`.
- * Chi tiết bài viết tại `/tin-tuc/[slug]` khi có nội dung trong `newsArticles`.
- * Item chưa có bài chi tiết vẫn giữ trong `items`; site chỉ hiện `publishedNewsItems`.
- * TODO: thay title/excerpt/date/image bằng bài thật khi có CMS / content.
+ * Chi tiết bài viết công khai đọc từ Sanity (`newsArticle`).
+ * Mảng này là nguồn import: `npx sanity exec scripts/migrate-news-to-sanity.ts --with-user-token`.
  */
 export type NewsItem = {
   id: string;
@@ -1352,6 +1370,8 @@ export const newsPageContent = {
     "Cập nhật xu hướng thiết kế web, SEO và vận hành số từ PML Vietnam.",
   breadcrumbHome: "Trang chủ",
   breadcrumbCurrent: "Tin tức",
+  /** Số tin / trang — chia hết cho grid 1/2/3/4 cột nên hàng cuối luôn đầy */
+  pageSize: 12,
   banner: {
     src: "/tin-tuc/banner_tin_tuc.webp",
     alt: "Banner trang tin tức PML Vietnam",

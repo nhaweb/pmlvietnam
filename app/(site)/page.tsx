@@ -17,6 +17,7 @@ import {
   absoluteUrl,
   faqPageJsonLd,
 } from "@/lib/seo";
+import { getPublishedNewsItems } from "@/lib/news";
 
 export const metadata: Metadata = {
   title: {
@@ -48,7 +49,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const newsItems = await getPublishedNewsItems();
+
   return (
     <>
       <JsonLd data={faqPageJsonLd()} />
@@ -72,7 +75,7 @@ export default function Home() {
         <TestimonialSection />
       </Reveal>
       <Reveal>
-        <NewsSection />
+        <NewsSection items={newsItems} />
       </Reveal>
     </>
   );

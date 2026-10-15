@@ -1,15 +1,17 @@
 import type { MetadataRoute } from "next";
+import { getNewsSitemapEntries } from "@/lib/news";
 import {
   absoluteUrl,
   STATIC_SITEMAP_ROUTES,
 } from "@/lib/seo";
 import {
-  newsArticles,
   productSampleHref,
   productsPageContent,
 } from "@/lib/site-config";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_SITEMAP_ROUTES.map(
@@ -21,9 +23,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  const articleEntries: MetadataRoute.Sitemap = newsArticles.map((article) => ({
+  const articles = await getNewsSitemapEntries();
+  const articleEntries: MetadataRoute.Sitemap = articles.map((article) => ({
     url: absoluteUrl(`/tin-tuc/${article.slug}`),
-    lastModified: new Date(article.banner.publishedAtIso),
+    lastModified: new Date(article.updatedAt ?? article.publishedAt ?? lastModified),
     changeFrequency: "monthly",
     priority: 0.7,
   }));

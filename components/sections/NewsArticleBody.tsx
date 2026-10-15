@@ -1,20 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Reveal } from "@/components/ui/Reveal";
-import { RichText } from "@/components/ui/RichText";
-import {
-  newsPageContent,
-  type NewsArticle,
-  type NewsArticleBlock,
-} from "@/lib/site-config";
+import { NewsPortableText } from "@/components/news/NewsPortableText";
+import { newsPageContent } from "@/lib/site-config";
+import type { CmsNewsArticle } from "@/lib/news";
 
 /**
- * Thân bài tin tức — nền kem hai bên, cột trắng giữa (brief PML).
- * Reveal từng block (không wrap cả bài) để tránh opacity:0 kẹt trên nội dung dài.
- * Inline: `**` `*` `<u>` `[text](href)`.
+ * Thân bài tin tức — nền kem hai bên, cột trắng giữa.
+ * Nội dung Portable Text từ Sanity. Reveal từng block để nội dung dài không kẹt opacity.
  */
-export function NewsArticleBody({ article }: { article: NewsArticle }) {
-  const { blocks, meta } = article;
+export function NewsArticleBody({ article }: { article: CmsNewsArticle }) {
+  const { body, meta } = article;
   const { breadcrumbHome, breadcrumbCurrent } = newsPageContent;
 
   return (
@@ -63,86 +57,9 @@ export function NewsArticleBody({ article }: { article: NewsArticle }) {
 
       <article className="mx-auto max-w-[1280px] bg-bg-primary px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
         <div className="space-y-5 sm:space-y-6">
-          {blocks.map((block, index) => (
-            <Reveal key={`${block.type}-${index}`} amount="some">
-              <ArticleBlock block={block} />
-            </Reveal>
-          ))}
+          <NewsPortableText value={body} />
         </div>
       </article>
     </section>
   );
-}
-
-function ArticleBlock({ block }: { block: NewsArticleBlock }) {
-  switch (block.type) {
-    case "paragraph":
-      return (
-        <p className="text-sm leading-relaxed text-foreground/85 sm:text-[0.9375rem] sm:leading-[1.75]">
-          <RichText text={block.text} />
-        </p>
-      );
-    case "heading":
-      if (block.level === 2) {
-        return (
-          <h2 className="pt-2 text-xl font-bold leading-snug tracking-tight text-foreground sm:pt-3 sm:text-2xl">
-            {block.text}
-          </h2>
-        );
-      }
-      return (
-        <h3 className="pt-1 text-base font-bold leading-snug text-foreground sm:text-lg">
-          {block.text}
-        </h3>
-      );
-    case "list": {
-      const ListTag = block.ordered ? "ol" : "ul";
-      const listClass = block.ordered
-        ? "list-decimal space-y-3 pl-5 text-sm leading-relaxed text-foreground/85 marker:font-semibold marker:text-cta sm:text-[0.9375rem] sm:leading-[1.75]"
-        : "list-disc space-y-2 pl-5 text-sm leading-relaxed text-foreground/85 marker:text-cta sm:text-[0.9375rem] sm:leading-[1.75]";
-
-      return (
-        <ListTag className={listClass}>
-          {block.items.map((item) => (
-            <li key={item} className="pl-1">
-              <RichText text={item} />
-            </li>
-          ))}
-        </ListTag>
-      );
-    }
-    case "image":
-      return (
-        <figure className="overflow-hidden py-1 sm:py-2">
-          <Image
-            src={block.src}
-            alt={block.alt}
-            width={1200}
-            height={675}
-            quality={100}
-            className="h-auto w-full object-cover"
-            sizes="(max-width: 768px) 100vw, 80rem"
-          />
-        </figure>
-      );
-    case "link":
-      return (
-        <p className="text-sm leading-relaxed sm:text-[0.9375rem] sm:leading-[1.75]">
-          <Link
-            href={block.href}
-            className="font-semibold text-cta underline decoration-cta/40 underline-offset-4 transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
-          >
-            <RichText text={block.text} />
-          </Link>
-        </p>
-      );
-    case "tagline":
-      return (
-        <p className="pt-2 text-center text-sm font-semibold leading-relaxed text-foreground sm:pt-3 sm:text-base">
-          <RichText text={block.text} />
-        </p>
-      );
-    default:
-      return null;
-  }
 }

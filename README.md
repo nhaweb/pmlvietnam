@@ -13,6 +13,59 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Copy `.env.example` → `.env.local` rồi điền key. Không commit file `.env*`.
 
+## Sanity CMS (tin tức)
+
+Bài viết `/tin-tuc/<slug>` được quản lý trên Sanity (project `7ocodxq0`, dataset `pml`). Studio nhúng sẵn trong app tại [http://localhost:3000/studio](http://localhost:3000/studio) (production: `/studio`), đăng nhập bằng tài khoản Sanity được mời vào project.
+
+Biến môi trường (đã có trong `.env.example`):
+
+| Biến | Giá trị |
+|---|---|
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `7ocodxq0` |
+| `NEXT_PUBLIC_SANITY_DATASET` | `pml` |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | Optional, mặc định `2026-10-13` |
+
+### Cấu trúc
+
+| Đường dẫn | Nội dung |
+|---|---|
+| `sanity.config.js` | Cấu hình Studio (basePath `/studio`, Structure + Vision) |
+| `sanity.cli.js` | Cấu hình CLI (`npx sanity ...`) |
+| `sanity/schemaTypes/` | Schema: `newsArticle` (bài viết), `newsBody` (rich text) |
+| `sanity/structure.js` | Sidebar Studio |
+| `sanity/lib/` | Client, image URL builder, Live Content API |
+| `app/(studio)/studio/` | Route Studio — root layout riêng, không có header/footer site |
+| `scripts/migrate-news-to-sanity.ts` | Import tin tức hard-code từ `lib/site-config.ts` lên Sanity |
+
+App dùng hai root layout: `app/(site)/` cho website, `app/(studio)/` cho Studio. URL 404 không khớp route nào được render bởi `app/global-not-found.tsx` (cờ `experimental.globalNotFound` trong `next.config.ts`).
+
+### Schema bài viết (`newsArticle`)
+
+| Field | Ghi chú |
+|---|---|
+| `title` | Tiêu đề hiển thị trên card và bài viết (bắt buộc) |
+| `slug` | URL `/tin-tuc/<slug>`, chữ thường không dấu + gạch ngang (bắt buộc) |
+| `publishedAt` | Ngày đăng, dùng để sắp xếp (bắt buộc) |
+| `excerpt` | Mô tả ngắn trên card (bắt buộc, nên dưới 220 ký tự) |
+| `mainImage` + `alt` | Thumbnail card, banner bài viết, ảnh OG (bắt buộc) |
+| `body` | Rich text: đoạn văn, H2, H3, Tagline, list gạch đầu dòng / đánh số, đậm / nghiêng / gạch chân, link, ảnh kèm alt |
+| `seo.title`, `seo.description` | Optional — bỏ trống thì dùng `title` / `excerpt` |
+
+Tin tức không có danh mục. Bài chỉ hiện trên site khi đã **Publish** trong Studio (draft không hiển thị).
+
+### Lệnh thường dùng
+
+Các lệnh dưới dùng phiên đăng nhập Sanity CLI (`npx sanity login`), không cần token trong `.env`.
+
+| Command | Mục đích |
+|---|---|
+| `npx sanity schema validate` | Kiểm tra schema |
+| `npx sanity documents validate -y` | Kiểm tra dữ liệu hiện có theo schema |
+| `npx sanity exec scripts/migrate-news-to-sanity.ts --with-user-token -- --dry` | Xem trước import tin tức |
+| `npx sanity exec scripts/migrate-news-to-sanity.ts --with-user-token` | Import tin tức (chạy lại an toàn: trùng slug thì cập nhật, không tạo bản sao) |
+
+Đổi schema xong không cần deploy riêng — Studio build cùng app. Khi website bắt đầu đọc tin tức từ Sanity, thêm `NEXT_PUBLIC_SANITY_PROJECT_ID` và `NEXT_PUBLIC_SANITY_DATASET` vào `[build.args]` của `fly.toml` (biến `NEXT_PUBLIC_*` được bake lúc build) và thêm domain production vào CORS origins của project trên [sanity.io/manage](https://www.sanity.io/manage).
+
 ## Email (Resend)
 
 Contact form POST tới `/api/contact`, gửi mail qua Resend.

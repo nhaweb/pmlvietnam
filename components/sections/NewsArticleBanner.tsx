@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
-import type { NewsArticle } from "@/lib/site-config";
+import type { CmsNewsArticle } from "@/lib/news";
 
 /**
  * Banner bài tin tức — full-bleed ảnh + overlay tối, title + badge + ngày (ref web4s).
  */
-export function NewsArticleBanner({ article }: { article: NewsArticle }) {
+export function NewsArticleBanner({ article }: { article: CmsNewsArticle }) {
   const { meta, banner } = article;
 
   return (

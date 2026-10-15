@@ -2,9 +2,18 @@ import type { NextConfig } from "next";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    globalNotFound: true,
+  },
   images: {
-    qualities: [75, 100],
+    qualities: [75, 85, 90, 100],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/images/**",
+      },
+    ],
   },
   async redirects() {
     return [
