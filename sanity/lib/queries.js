@@ -21,6 +21,18 @@ export const newsListQuery = defineQuery(/* groq */ `
   }
 `);
 
+export const latestNewsQuery = defineQuery(/* groq */ `
+  *[
+    _type == "newsArticle"
+    && defined(slug.current)
+    && defined(title)
+    && defined(publishedAt)
+    && defined(mainImage.asset)
+  ] | order(publishedAt desc) [0...$limit] {
+    ${newsCardFields}
+  }
+`);
+
 export const newsArticleQuery = defineQuery(/* groq */ `
   *[_type == "newsArticle" && slug.current == $slug][0] {
     ${newsCardFields},

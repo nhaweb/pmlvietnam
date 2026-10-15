@@ -12,6 +12,8 @@ primary_region = 'sin'
     NEXT_PUBLIC_SITE_URL = 'https://pmlvietnam.vn'
     NEXT_PUBLIC_META_PIXEL_ID = '1458756179420493'
     NEXT_PUBLIC_GOOGLE_TAG_ID = 'G-B5CPN73ZCZ'
+    NEXT_PUBLIC_SANITY_PROJECT_ID = '7ocodxq0'
+    NEXT_PUBLIC_SANITY_DATASET = 'pml'
 
 [env]
   HOSTNAME = '0.0.0.0'
@@ -19,6 +21,8 @@ primary_region = 'sin'
   NEXT_PUBLIC_SITE_URL = 'https://pmlvietnam.vn'
   NEXT_PUBLIC_META_PIXEL_ID = '1458756179420493'
   NEXT_PUBLIC_GOOGLE_TAG_ID = 'G-B5CPN73ZCZ'
+  NEXT_PUBLIC_SANITY_PROJECT_ID = '7ocodxq0'
+  NEXT_PUBLIC_SANITY_DATASET = 'pml'
 
 [http_service]
   internal_port = 8080

@@ -29,7 +29,7 @@
 
 ### 4. Tin tức / Sự kiện mới nhất
 - ✅ `NewsSection` — 5 tin/hàng, carousel `<` `>` + auto next 4s + kéo/vuốt (cùng pattern slider mẫu website cũ)
-- Data: `newsContent` trong `lib/site-config.ts` (placeholder — swap khi có bài thật)
+- Data: bài `newsArticle` trên Sanity (`getLatestNewsItems` trong `lib/news.ts`, tối đa `newsContent.homeLimit` = 10 bài mới nhất); copy heading/tagline ở `newsContent` trong `lib/site-config.ts`
 - Card riêng: ảnh trên + category/date + title + excerpt (khác card mẫu website)
 
 ### 5. Nhận xét của khách hàng

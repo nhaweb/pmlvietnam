@@ -2,7 +2,6 @@ import {
   footerContent,
   industryGroups,
   navItems,
-  publishedNewsItems,
   productSampleHref,
   productsPageContent,
   searchPopularSuggestions,
@@ -128,23 +127,14 @@ function pageEntries(): SearchEntry[] {
     });
   }
 
-  for (const news of publishedNewsItems) {
-    pages.push({ id: news.id, label: news.title, href: news.href });
-  }
-
   return uniqueByHref(pages);
 }
 
 const SITE_TEMPLATES = templateEntries();
 const SITE_PAGES = pageEntries();
 
-function pagesFor(newsPages?: SearchSuggestion[]): SearchEntry[] {
-  return newsPages
-    ? [
-        ...SITE_PAGES.filter((page) => !page.href.startsWith("/tin-tuc/")),
-        ...newsPages,
-      ]
-    : SITE_PAGES;
+function pagesFor(newsPages: SearchSuggestion[] = []): SearchEntry[] {
+  return [...SITE_PAGES, ...newsPages];
 }
 
 /** Từ quá chung — khớp gần như mọi entry nên không dùng để gợi ý liên quan. */

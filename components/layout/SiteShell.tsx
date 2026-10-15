@@ -11,7 +11,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { encodeSansExpanded } from "@/lib/fonts";
 import { getPublishedNewsItems } from "@/lib/news";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
-import { publishedNewsItems, type SearchSuggestion } from "@/lib/site-config";
+import type { SearchSuggestion } from "@/lib/site-config";
 import { SanityLive } from "@/sanity/lib/live";
 
 export async function SiteShell({ children }: { children: ReactNode }) {
@@ -54,10 +54,6 @@ async function loadNewsSearchPages(): Promise<SearchSuggestion[]> {
     }));
   } catch (error) {
     console.error("Không tải được tin tức từ Sanity cho ô tìm kiếm.", error);
-    return publishedNewsItems.map((item) => ({
-      id: item.id,
-      label: item.title,
-      href: item.href,
-    }));
+    return [];
   }
 }

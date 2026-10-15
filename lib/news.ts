@@ -4,6 +4,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
+  latestNewsQuery,
   newsArticleQuery,
   newsListQuery,
   newsSlugsQuery,
@@ -116,13 +117,25 @@ function toNewsItem(doc: NewsCardDoc): NewsItem | null {
   };
 }
 
-export async function getPublishedNewsItems(): Promise<NewsItem[]> {
-  const { data } = await sanityFetch({ query: newsListQuery });
+function toNewsItems(data: unknown): NewsItem[] {
   const docs = (data ?? []) as NewsCardDoc[];
   return docs.flatMap((doc) => {
     const item = toNewsItem(doc);
     return item ? [item] : [];
   });
+}
+
+export async function getPublishedNewsItems(): Promise<NewsItem[]> {
+  const { data } = await sanityFetch({ query: newsListQuery });
+  return toNewsItems(data);
+}
+
+export async function getLatestNewsItems(limit: number): Promise<NewsItem[]> {
+  const { data } = await sanityFetch({
+    query: latestNewsQuery,
+    params: { limit },
+  });
+  return toNewsItems(data);
 }
 
 export async function getNewsArticle(

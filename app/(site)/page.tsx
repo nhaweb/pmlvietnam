@@ -17,7 +17,8 @@ import {
   absoluteUrl,
   faqPageJsonLd,
 } from "@/lib/seo";
-import { getPublishedNewsItems } from "@/lib/news";
+import { getLatestNewsItems } from "@/lib/news";
+import { newsContent } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: {
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const newsItems = await getPublishedNewsItems();
+  const newsItems = await getLatestNewsItems(newsContent.homeLimit);
 
   return (
     <>

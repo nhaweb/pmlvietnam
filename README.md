@@ -35,7 +35,6 @@ Biến môi trường (đã có trong `.env.example`):
 | `sanity/structure.js` | Sidebar Studio |
 | `sanity/lib/` | Client, image URL builder, Live Content API |
 | `app/(studio)/studio/` | Route Studio — root layout riêng, không có header/footer site |
-| `scripts/migrate-news-to-sanity.ts` | Import tin tức hard-code từ `lib/site-config.ts` lên Sanity |
 
 App dùng hai root layout: `app/(site)/` cho website, `app/(studio)/` cho Studio. URL 404 không khớp route nào được render bởi `app/global-not-found.tsx` (cờ `experimental.globalNotFound` trong `next.config.ts`).
 
@@ -61,8 +60,6 @@ Các lệnh dưới dùng phiên đăng nhập Sanity CLI (`npx sanity login`), 
 |---|---|
 | `npx sanity schema validate` | Kiểm tra schema |
 | `npx sanity documents validate -y` | Kiểm tra dữ liệu hiện có theo schema |
-| `npx sanity exec scripts/migrate-news-to-sanity.ts --with-user-token -- --dry` | Xem trước import tin tức |
-| `npx sanity exec scripts/migrate-news-to-sanity.ts --with-user-token` | Import tin tức (chạy lại an toàn: trùng slug thì cập nhật, không tạo bản sao) |
 
 Đổi schema xong không cần deploy riêng — Studio build cùng app. Khi website bắt đầu đọc tin tức từ Sanity, thêm `NEXT_PUBLIC_SANITY_PROJECT_ID` và `NEXT_PUBLIC_SANITY_DATASET` vào `[build.args]` của `fly.toml` (biến `NEXT_PUBLIC_*` được bake lúc build) và thêm domain production vào CORS origins của project trên [sanity.io/manage](https://www.sanity.io/manage).
 
