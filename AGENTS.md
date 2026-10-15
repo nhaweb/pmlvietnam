@@ -1,18 +1,11 @@
 <!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
 
-## Design Tokens — PML Vietnam Landing
-- Colors: bg-primary #FFFFFF, bg-secondary #F7F5F2, cta-orange #F97316, footer-navy #0B1F3A
-- Logo: "Nhà" cam #F97316, "Web" navy #0B1F3A (Logo đã được thêm vào theo đường dẫn public\logo )
-- Font: Surt Expanded (ref perpetualny.com) — nếu chưa có license, dùng font tương tự gần nhất
-- Card: border + bg-fill (ref luvini.vn), ảnh hover/click scale nhẹ (ref tma.vn)
-- Ưu tiên sửa dụng animation để cải thiện UX (user thích web có animation, chỉ dùng trong các case best practice, không được lạm dụng)
+## This is NOT the Next.js you know
 
-## Deployment
-- Test/staging: Vercel. Production: Fly.io.
-- KHÔNG đề xuất, viết code riêng cho, hay gợi ý deploy lên Cloudflare (Workers/OpenNext/Wrangler) nữa. Biến môi trường production set bằng `fly secrets set`, staging set trên Vercel dashboard.
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
 <!-- END:nextjs-agent-rules -->
 
 

@@ -1370,6 +1370,8 @@ export const newsPageContent = {
     "Cập nhật xu hướng thiết kế web, SEO và vận hành số từ PML Vietnam.",
   breadcrumbHome: "Trang chủ",
   breadcrumbCurrent: "Tin tức",
+  /** Số tin / trang — chia hết cho grid 1/2/3/4 cột nên hàng cuối luôn đầy */
+  pageSize: 12,
   banner: {
     src: "/tin-tuc/banner_tin_tuc.webp",
     alt: "Banner trang tin tức PML Vietnam",
