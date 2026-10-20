@@ -770,6 +770,8 @@ function slugifyOccupation(value: string) {
 const TEMPLATE_LIVE_DEMOS: Record<string, string> = {
   "Thực phẩm & Đồ uống": "https://luvini.vn",
   "Cửa hàng thời trang": "https://fashion-dev-livid.vercel.app/",
+  "Spa, thẩm mỹ viện": "https://spa-ten-delta.vercel.app/",
+  "Nhà hàng, quán ăn": "https://restaurant-rho-liard.vercel.app/",
 };
 
 /** Screenshot trang chi tiết khi khác thumbnail catalog. */
@@ -799,16 +801,18 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
   { src: string; width: number; height: number }
 > = {
   "Nhà hàng, quán ăn": {
-    src: "/san-pham/dich-vu-thuong-mai/nha_hang_quan_an.webp",
-    ...TEMPLATE_IMAGE_SIZE,
+    src: "/san-pham/ban-le-&-tmdt/restaurant.webp",
+    width: 1559,
+    height: 7652,
   },
   "Quán cà phê, trà sữa": {
     src: "/san-pham/dich-vu-thuong-mai/quan_cafe_tra_sua.webp",
     ...TEMPLATE_IMAGE_SIZE,
   },
   "Spa, thẩm mỹ viện": {
-    src: "/san-pham/dich-vu-thuong-mai/spa_tham_my_vien.webp",
-    ...TEMPLATE_IMAGE_SIZE,
+    src: "/san-pham/ban-le-&-tmdt/spa.webp",
+    width: 1550,
+    height: 3482,
   },
   "Salon tóc, nail": {
     src: "/san-pham/dich-vu-thuong-mai/salon_toc_nail.webp",
@@ -1629,12 +1633,11 @@ export const solutionPageContent = {
     items: [
       {
         id: "luvini",
-        title: "Luvini & Co.",
+        title: "Thực phẩm & đồ uống",
         description: "Website giới thiệu thương hiệu và sản phẩm",
-        href: "https://luvini.vn",
-        external: true,
+        href: "/san-pham/ban-le-tmdt-thuc-pham-do-uong",
         image: {
-          src: "/san-pham/ban-le-&-tmdt/luvini.png",
+          src: "/san-pham/ban-le-&-tmdt/thuc-pham-do-uong.webp",
           alt: "Website Luvini & Co do PML Vietnam thực hiện",
         },
       },
