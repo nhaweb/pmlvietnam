@@ -7,6 +7,7 @@ import {
 
 /**
  * Card mẫu giao diện — click → trang chi tiết `/san-pham/[slug]`.
+ * Demo live (iframe) chỉ mở từ nút "Xem thực tế".
  * Hover: orange border + title color.
  */
 export function ProductSampleCard({ item }: { item: ProductSampleItem }) {

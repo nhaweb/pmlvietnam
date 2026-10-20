@@ -784,6 +784,21 @@ const TEMPLATE_DETAIL_IMAGES: Record<
     width: 1654,
     height: 4499,
   },
+  "Nhà hàng, quán ăn": {
+    src: "/san-pham/ban-le-&-tmdt/restaurant.webp",
+    width: 1559,
+    height: 7652,
+  },
+  "Spa, thẩm mỹ viện": {
+    src: "/san-pham/ban-le-&-tmdt/spa.webp",
+    width: 1550,
+    height: 3482,
+  },
+  "Thực phẩm & Đồ uống": {
+    src: "/san-pham/ban-le-&-tmdt/luvini.png",
+    width: 1651,
+    height: 4240,
+  },
 };
 
 const TEMPLATE_IMAGE_SIZE = { width: 1080, height: 720 } as const;
@@ -801,18 +816,16 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
   { src: string; width: number; height: number }
 > = {
   "Nhà hàng, quán ăn": {
-    src: "/san-pham/ban-le-&-tmdt/restaurant.webp",
-    width: 1559,
-    height: 7652,
+    src: "/san-pham/dich-vu-thuong-mai/nha_hang_quan_an.webp",
+    ...TEMPLATE_IMAGE_SIZE,
   },
   "Quán cà phê, trà sữa": {
     src: "/san-pham/dich-vu-thuong-mai/quan_cafe_tra_sua.webp",
     ...TEMPLATE_IMAGE_SIZE,
   },
   "Spa, thẩm mỹ viện": {
-    src: "/san-pham/ban-le-&-tmdt/spa.webp",
-    width: 1550,
-    height: 3482,
+    src: "/san-pham/dich-vu-thuong-mai/spa_tham_my_vien.webp",
+    ...TEMPLATE_IMAGE_SIZE,
   },
   "Salon tóc, nail": {
     src: "/san-pham/dich-vu-thuong-mai/salon_toc_nail.webp",
@@ -827,9 +840,8 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
     ...TEMPLATE_IMAGE_SIZE,
   },
   "Thực phẩm & Đồ uống": {
-    src: "/san-pham/ban-le-&-tmdt/luvini.png",
-    width: 1651,
-    height: 4240,
+    src: "/san-pham/ban-le-&-tmdt/thuc-pham-do-uong.webp",
+    ...TEMPLATE_IMAGE_SIZE,
   },
   "Cửa hàng thời trang": templatePreview(
     "Bán lẻ_thương_mại_điện tử",
@@ -1055,6 +1067,16 @@ export const templateDetailContent = {
   liveViewLabel: "Xem thực tế",
   /** Fallback demo khi mẫu chưa có liveUrl riêng — swap khi có site thật */
   liveViewFallbackUrl: "https://luvini.vn/",
+  /** Thanh điều hướng trên trang demo `/mau-giao-dien/[slug]` */
+  liveDemoChrome: {
+    backLabel: "Tất cả mẫu",
+    backHref: "/san-pham",
+    detailLabel: "Chi tiết mẫu",
+    ctaLabel: "Đăng ký tư vấn",
+    ctaHref: "/lien-he",
+    openExternalLabel: "Mở tab mới",
+    badge: "Bản demo",
+  },
   consultLabel: "Đăng ký tư vấn",
   similarHeading: "Mẫu website tương tự",
   breadcrumbHome: "Trang chủ",
@@ -1097,10 +1119,33 @@ export function productSampleHref(item: Pick<ProductSampleItem, "id">) {
   return `/san-pham/${item.id}`;
 }
 
+/** Path demo live trên domain mình — chỉ khi mẫu đã có `liveUrl`. */
+export function templateLiveDemoHref(
+  item: Pick<ProductSampleItem, "id" | "liveUrl">,
+) {
+  if (!item.liveUrl) return null;
+  return `/mau-giao-dien/${item.id}`;
+}
+
+/**
+ * Link khi browse/catalog: ưu tiên demo live `/mau-giao-dien/...`,
+ * không có thì về trang chi tiết `/san-pham/...`.
+ */
+export function productSampleBrowseHref(
+  item: Pick<ProductSampleItem, "id" | "liveUrl">,
+) {
+  return templateLiveDemoHref(item) ?? productSampleHref(item);
+}
+
 export function getProductSampleById(
   id: string,
 ): ProductSampleItem | undefined {
   return productsPageContent.items.find((item) => item.id === id);
+}
+
+/** Các mẫu đã gắn demo live — dùng generateStaticParams cho `/mau-giao-dien`. */
+export function getProductSamplesWithLiveDemo() {
+  return productsPageContent.items.filter((item) => Boolean(item.liveUrl));
 }
 
 export function getRelatedProductSamples(

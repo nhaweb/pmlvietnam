@@ -7,6 +7,7 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import { HoverScrollPreview } from "@/components/ui/HoverScrollPreview";
 import {
   templateDetailContent,
+  templateLiveDemoHref,
   type ProductSampleItem,
   type TemplateFeatureIcon,
 } from "@/lib/site-config";
@@ -31,6 +32,7 @@ export function TemplateDetailSection({
   const handover =
     item.isReadyTemplate === false ? copy.customHandover : copy.readyHandover;
   const previewImage = item.detailImage ?? item.image;
+  const liveDemoHref = templateLiveDemoHref(item);
 
   return (
     <section
@@ -99,15 +101,22 @@ export function TemplateDetailSection({
           </div>
 
           <div className="flex justify-center lg:col-start-1 lg:row-start-2">
-            <a
-              href={item.liveUrl ?? copy.liveViewFallbackUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={liveViewClassName()}
-            >
-              {copy.liveViewLabel}
-              <ExternalLinkIcon />
-            </a>
+            {liveDemoHref ? (
+              <Link href={liveDemoHref} className={liveViewClassName()}>
+                {copy.liveViewLabel}
+                <ExternalLinkIcon />
+              </Link>
+            ) : (
+              <a
+                href={copy.liveViewFallbackUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={liveViewClassName()}
+              >
+                {copy.liveViewLabel}
+                <ExternalLinkIcon />
+              </a>
+            )}
           </div>
 
           <div className="lg:col-start-2 lg:row-start-1">
