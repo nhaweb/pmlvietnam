@@ -107,6 +107,7 @@ export const industryGroups: IndustryGroup[] = [
     label: "Y tế & Sức khỏe",
     occupations: [
       "Phòng khám đa khoa",
+      "Phòng khám nha khoa",
       "Nhà thuốc, dược phẩm",
       "Thiết bị y tế",
       "Trung tâm vật lý trị liệu",
@@ -749,6 +750,11 @@ export type ProductSampleItem = {
   /** URL xem thực tế — hiện nút "Xem thực tế" khi có */
   liveUrl?: string;
   /**
+   * `false` = site chặn iframe (X-Frame-Options) — mở tab mới thay vì embed.
+   * Mặc định `true` khi có `liveUrl`.
+   */
+  liveEmbed?: boolean;
+  /**
    * `true` (mặc định) = mẫu có sẵn, bàn giao 3–5 ngày.
    * `false` = thiết kế mới, 15–20 ngày tùy độ phức tạp.
    */
@@ -766,12 +772,20 @@ function slugifyOccupation(value: string) {
     .replace(/^-|-$/g, "");
 }
 
+type TemplateLiveDemo = {
+  url: string;
+  /** `false` khi production gửi X-Frame-Options: DENY (chưa deploy bỏ header). */
+  embed?: boolean;
+};
+
 /** Demo live theo nghề — bổ sung khi có site thật. */
-const TEMPLATE_LIVE_DEMOS: Record<string, string> = {
-  "Thực phẩm & Đồ uống": "https://luvini.vn",
-  "Cửa hàng thời trang": "https://fashion-dev-livid.vercel.app/",
-  "Spa, thẩm mỹ viện": "https://spa-ten-delta.vercel.app/",
-  "Nhà hàng, quán ăn": "https://restaurant-rho-liard.vercel.app/",
+const TEMPLATE_LIVE_DEMOS: Record<string, TemplateLiveDemo> = {
+  "Thực phẩm & Đồ uống": { url: "https://luvini.vn" },
+  "Cửa hàng thời trang": { url: "https://fashion-dev-livid.vercel.app/" },
+  "Spa, thẩm mỹ viện": { url: "https://spa-ten-delta.vercel.app/" },
+  "Nhà hàng, quán ăn": { url: "https://restaurant-rho-liard.vercel.app/" },
+  "Sản xuất bao bì, in ấn": { url: "https://print-teach.vercel.app/" },
+  "Phòng khám nha khoa": { url: "https://dental-pml.vercel.app/" },
 };
 
 /** Screenshot trang chi tiết khi khác thumbnail catalog. */
@@ -798,6 +812,16 @@ const TEMPLATE_DETAIL_IMAGES: Record<
     src: "/san-pham/ban-le-&-tmdt/luvini.png",
     width: 1651,
     height: 4240,
+  },
+  "Phòng khám nha khoa": {
+    src: "/san-pham/y-te-suc-khoe/phong-kham-nha-khoa-chi-tiet.png",
+    width: 1425,
+    height: 10340,
+  },
+  "Sản xuất bao bì, in ấn": {
+    src: "/san-pham/san-xuat-cong-nghiep/san-xuat-bao-bi-in-an-chi-tiet.png",
+    width: 1440,
+    height: 5830,
   },
 };
 
@@ -889,7 +913,7 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
   ),
   "Sản xuất bao bì, in ấn": templatePreview(
     "Sản xuất công nghiệp",
-    "san-xuat-bao-bi-in-an.webp",
+    "san-xuat-bao-bi-in-an.png",
   ),
   "Cơ khí, kim loại": templatePreview(
     "Sản xuất công nghiệp",
@@ -930,6 +954,10 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
   "Phòng khám đa khoa": templatePreview(
     "Y tế sức khỏe",
     "phong-kham-da-khoa.webp",
+  ),
+  "Phòng khám nha khoa": templatePreview(
+    "Y tế sức khỏe",
+    "phong-kham-nha-khoa.png",
   ),
   "Nhà thuốc, dược phẩm": templatePreview(
     "Y tế sức khỏe",
@@ -996,12 +1024,14 @@ function buildProductSamples(groups: IndustryGroup[]): ProductSampleItem[] {
       const src =
         preview?.src ?? SAMPLE_IMAGE_SRC[imageIndex % SAMPLE_IMAGE_SRC.length];
       imageIndex += 1;
+      const liveDemo = TEMPLATE_LIVE_DEMOS[occupation];
       items.push({
         id: `${group.id}-${slugifyOccupation(occupation)}`,
         title: occupation,
         groupId: group.id,
         groupLabel: group.label,
-        liveUrl: TEMPLATE_LIVE_DEMOS[occupation],
+        liveUrl: liveDemo?.url,
+        liveEmbed: liveDemo ? liveDemo.embed !== false : undefined,
         isReadyTemplate: true,
         image: {
           src,

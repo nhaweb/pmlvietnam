@@ -12,6 +12,7 @@ type TemplateLiveDemoFrameProps = {
 
 /**
  * Thanh chrome mỏng + iframe full-viewport cho demo live trên domain mình.
+ * Khi `liveEmbed === false` (site chặn iframe) → CTA mở tab mới thay vì iframe lỗi.
  */
 export function TemplateLiveDemoFrame({
   item,
@@ -19,6 +20,7 @@ export function TemplateLiveDemoFrame({
 }: TemplateLiveDemoFrameProps) {
   const chrome = templateDetailContent.liveDemoChrome;
   const detailHref = productSampleHref(item);
+  const canEmbed = item.liveEmbed !== false;
 
   return (
     <div className="flex h-dvh flex-col">
@@ -63,14 +65,30 @@ export function TemplateLiveDemoFrame({
         </div>
       </header>
 
-      <iframe
-        title={`Demo — ${item.title}`}
-        src={liveUrl}
-        className="h-full w-full flex-1 border-0 bg-white"
-        loading="eager"
-        referrerPolicy="no-referrer-when-downgrade"
-        allow="fullscreen"
-      />
+      {canEmbed ? (
+        <iframe
+          title={`Demo — ${item.title}`}
+          src={liveUrl}
+          className="h-full w-full flex-1 border-0 bg-white"
+          loading="eager"
+          referrerPolicy="no-referrer-when-downgrade"
+          allow="fullscreen"
+        />
+      ) : (
+        <div className="flex flex-1 flex-col items-center justify-center gap-4 bg-bg-secondary px-6 text-center">
+          <p className="max-w-md text-sm text-muted sm:text-base">
+            Mẫu này chưa cho phép nhúng iframe. Mở tab mới để xem demo đầy đủ.
+          </p>
+          <a
+            href={liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg bg-cta px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+          >
+            {chrome.openExternalLabel} — {item.title}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

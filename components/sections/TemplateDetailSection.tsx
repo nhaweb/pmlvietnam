@@ -101,14 +101,14 @@ export function TemplateDetailSection({
           </div>
 
           <div className="flex justify-center lg:col-start-1 lg:row-start-2">
-            {liveDemoHref ? (
+            {liveDemoHref && item.liveEmbed !== false ? (
               <Link href={liveDemoHref} className={liveViewClassName()}>
                 {copy.liveViewLabel}
                 <ExternalLinkIcon />
               </Link>
             ) : (
               <a
-                href={copy.liveViewFallbackUrl}
+                href={item.liveUrl ?? copy.liveViewFallbackUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={liveViewClassName()}
