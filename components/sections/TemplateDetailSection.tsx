@@ -109,8 +109,6 @@ export function TemplateDetailSection({
             ) : (
               <a
                 href={item.liveUrl ?? copy.liveViewFallbackUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className={liveViewClassName()}
               >
                 {copy.liveViewLabel}

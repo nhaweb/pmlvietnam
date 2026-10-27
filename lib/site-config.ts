@@ -780,12 +780,13 @@ type TemplateLiveDemo = {
 
 /** Demo live theo nghề — bổ sung khi có site thật. */
 const TEMPLATE_LIVE_DEMOS: Record<string, TemplateLiveDemo> = {
-  "Thực phẩm & Đồ uống": { url: "https://luvini.vn" },
   "Cửa hàng thời trang": { url: "https://fashion-dev-livid.vercel.app/" },
   "Spa, thẩm mỹ viện": { url: "https://spa-ten-delta.vercel.app/" },
   "Nhà hàng, quán ăn": { url: "https://restaurant-rho-liard.vercel.app/" },
   "Sản xuất bao bì, in ấn": { url: "https://print-teach.vercel.app/" },
   "Phòng khám nha khoa": { url: "https://dental-pml.vercel.app/" },
+  "Homestay, căn hộ dịch vụ": { url: "https://bds-swart-two.vercel.app/" },
+  "Khách sạn, resort": { url: "https://resort-sepia-one.vercel.app/" },
 };
 
 /** Screenshot trang chi tiết khi khác thumbnail catalog. */
@@ -820,6 +821,16 @@ const TEMPLATE_DETAIL_IMAGES: Record<
   },
   "Sản xuất bao bì, in ấn": {
     src: "/san-pham/san-xuat-cong-nghiep/san-xuat-bao-bi-in-an-chi-tiet.png",
+    width: 1440,
+    height: 5830,
+  },
+  "Homestay, căn hộ dịch vụ": {
+    src: "/san-pham/du-lich-khach-san/homestay-1.webp",
+    width: 1440,
+    height: 5830,
+  },
+  "Khách sạn, resort": {
+    src: "/san-pham/du-lich-khach-san/resort.webp",
     width: 1440,
     height: 5830,
   },
@@ -1095,8 +1106,8 @@ export type TemplateFeatureIcon =
  */
 export const templateDetailContent = {
   liveViewLabel: "Xem thực tế",
-  /** Fallback demo khi mẫu chưa có liveUrl riêng — swap khi có site thật */
-  liveViewFallbackUrl: "https://luvini.vn/",
+  /** Fallback khi mẫu chưa có liveUrl — không trỏ site ngoài */
+  liveViewFallbackUrl: "#",
   /** Thanh điều hướng trên trang demo `/mau-giao-dien/[slug]` */
   liveDemoChrome: {
     backLabel: "Tất cả mẫu",
@@ -1744,6 +1755,16 @@ export const solutionPageContent = {
         image: {
           src: "/san-pham/dich-vu-thuong-mai/spa_tham_my_vien.webp",
           alt: "Mẫu website spa, thẩm mỹ viện PML Vietnam",
+        },
+      },
+      {
+        id: "homestay",
+        title: "Homestay, căn hộ dịch vụ",
+        description: "Website giới thiệu Homestay, căn hộ dịch vụ",
+        href: "/san-pham/du-lich-khach-san-homestay-can-ho-dich-vu",
+        image: {
+          src: "/san-pham/san-pham/du-lich-khach-san/homestay.webp",
+          alt: "Mẫu website Homestay, căn hộ dịch vụ",
         },
       },
     ] satisfies SolutionProjectItem[],
