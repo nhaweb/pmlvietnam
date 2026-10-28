@@ -1767,7 +1767,7 @@ export const solutionPageContent = {
           alt: "Mẫu website Homestay, căn hộ dịch vụ",
         },
       },
-    ] satisfies SolutionProjectItem[],
+    ] satisfies SolutionProjectItem[] as SolutionProjectItem[],
   },
   formSectionId: "dang-ky",
 };
