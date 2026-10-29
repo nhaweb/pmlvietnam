@@ -1769,7 +1769,9 @@ export const solutionPageContent = {
         description: "Website giới thiệu Homestay, căn hộ dịch vụ",
         href: "/san-pham/du-lich-khach-san-homestay-can-ho-dich-vu",
         image: {
-          src: "/san-pham/san-pham/du-lich-khach-san/homestay.webp",
+          src: encodeURI(
+            "/Tat_ca_website/Du lịch khách sạn/homestay-can-ho-dich-vu.webp",
+          ),
           alt: "Mẫu website Homestay, căn hộ dịch vụ",
         },
       },
