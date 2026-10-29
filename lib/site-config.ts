@@ -930,7 +930,7 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
   ),
   "Sản xuất bao bì, in ấn": templatePreview(
     "Sản xuất công nghiệp",
-    "san-xuat-bao-bi-in-an.png",
+    "san-xuat-bao-bi-in-an-unboxing.webp",
   ),
   "Cơ khí, kim loại": templatePreview(
     "Sản xuất công nghiệp",
