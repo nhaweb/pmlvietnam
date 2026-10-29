@@ -787,6 +787,7 @@ const TEMPLATE_LIVE_DEMOS: Record<string, TemplateLiveDemo> = {
   "Phòng khám nha khoa": { url: "https://dental-pml.vercel.app/" },
   "Homestay, căn hộ dịch vụ": { url: "https://bds-swart-two.vercel.app/" },
   "Khách sạn, resort": { url: "https://resort-sepia-one.vercel.app/" },
+  "Gia sư, dạy kèm": { url: "https://tutoring-zeta-orcin.vercel.app/" },
 };
 
 /** Screenshot trang chi tiết khi khác thumbnail catalog. */
@@ -833,6 +834,11 @@ const TEMPLATE_DETAIL_IMAGES: Record<
     src: "/san-pham/du-lich-khach-san/resort.webp",
     width: 1440,
     height: 5830,
+  },
+  "Gia sư, dạy kèm": {
+    src: "/san-pham/giao-duc-dao-tao/gia-su-day-kem-chi-tiet.png",
+    width: 1440,
+    height: 7696,
   },
 };
 
@@ -924,7 +930,7 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
   ),
   "Sản xuất bao bì, in ấn": templatePreview(
     "Sản xuất công nghiệp",
-    "san-xuat-bao-bi-in-an.png",
+    "san-xuat-bao-bi-in-an-unboxing.webp",
   ),
   "Cơ khí, kim loại": templatePreview(
     "Sản xuất công nghiệp",
