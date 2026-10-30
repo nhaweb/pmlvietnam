@@ -27,8 +27,12 @@ export function AllWebsiteSamplesSection() {
   const [mosaicPages, setMosaicPages] = useState<AllSampleRow[][]>(pages);
   const { openContactForm } = useContactForm();
 
+  // Defer randomize so SSR HTML matches the first client paint.
   useEffect(() => {
-    setMosaicPages(pages.map((page) => page.map(randomizeRowWide)));
+    const timerId = window.setTimeout(() => {
+      setMosaicPages(pages.map((page) => page.map(randomizeRowWide)));
+    }, 0);
+    return () => window.clearTimeout(timerId);
   }, [pages]);
 
   return (

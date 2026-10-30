@@ -1,17 +1,20 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useState, type ReactNode } from "react";
+import { useSyncExternalStore, type ReactNode } from "react";
+
+const emptySubscribe = () => () => {};
 
 /** `useReducedMotion()` is null on the server. Keep the first paint static so
  *  SSR HTML matches hydration; enable motion only after mount. */
 function useCanAnimate() {
   const reduceMotion = useReducedMotion();
-  const [ready, setReady] = useState(false);
-  useEffect(() => {
-    setReady(true);
-  }, []);
-  return ready && reduceMotion !== true;
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
+  return isClient && reduceMotion !== true;
 }
 
 const easeOut = [0.22, 1, 0.36, 1] as const;

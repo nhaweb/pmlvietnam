@@ -18,6 +18,8 @@ const eslintConfig = defineConfig([
     ".sanity/**",
     "dist/**",
     "cloudflare-env.d.ts",
+    // Node CJS bootstrap for the container image — not app TS.
+    "docker-entrypoint.js",
   ]),
 ]);
 

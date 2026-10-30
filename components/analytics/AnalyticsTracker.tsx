@@ -35,13 +35,12 @@ export function AnalyticsTracker() {
     }
 
     engagedForPage.current = false;
-    let timerId: ReturnType<typeof setTimeout> | undefined;
 
     function fireEngaged() {
       if (engagedForPage.current) return;
       engagedForPage.current = true;
       trackEngagedVisitor();
-      if (timerId !== undefined) clearTimeout(timerId);
+      clearTimeout(timerId);
       window.removeEventListener("scroll", onScroll);
     }
 
@@ -57,12 +56,12 @@ export function AnalyticsTracker() {
       }
     }
 
-    timerId = setTimeout(fireEngaged, ENGAGE_TIME_MS);
+    const timerId = setTimeout(fireEngaged, ENGAGE_TIME_MS);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
     return () => {
-      if (timerId !== undefined) clearTimeout(timerId);
+      clearTimeout(timerId);
       window.removeEventListener("scroll", onScroll);
     };
   }, [pathname, search]);

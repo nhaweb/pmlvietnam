@@ -88,7 +88,6 @@ export function Header({ newsPages }: { newsPages?: SearchSuggestion[] }) {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    if (!mobileOpen) setOpenKey(null);
     return () => {
       document.body.style.overflow = "";
     };
@@ -186,7 +185,12 @@ export function Header({ newsPages }: { newsPages?: SearchSuggestion[] }) {
           aria-expanded={mobileOpen}
           aria-controls={`${menuId}-mobile`}
           aria-label={mobileOpen ? "Đóng menu" : "Mở menu"}
-          onClick={() => setMobileOpen((v) => !v)}
+          onClick={() => {
+            setMobileOpen((v) => {
+              if (v) setOpenKey(null);
+              return !v;
+            });
+          }}
         >
           <span
             className={cx(
@@ -590,7 +594,10 @@ export function Header({ newsPages }: { newsPages?: SearchSuggestion[] }) {
         type="button"
         aria-label="Đóng menu"
         className="fixed inset-0 z-30 bg-foreground/25 lg:hidden"
-        onClick={() => setMobileOpen(false)}
+        onClick={() => {
+          setMobileOpen(false);
+          setOpenKey(null);
+        }}
       />
     ) : null}
     </>
@@ -611,7 +618,7 @@ function SearchGroup({
       <p className="px-3 py-2 text-sm font-semibold text-foreground">{title}</p>
       <ul role="listbox" aria-label={title}>
         {items.map((item) => (
-          <li key={item.id} role="option">
+          <li key={item.id} role="option" aria-selected="false">
             <Link
               href={item.href}
               onClick={onSelect}

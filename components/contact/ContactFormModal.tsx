@@ -112,17 +112,23 @@ export function ContactFormModal({
     };
   }, [open]);
 
-  useEffect(() => {
-    if (!open) {
-      setName("");
-      setPhone("");
-      setEmail("");
-      setMessage("");
-      setErrors({});
-      setSubmitting(false);
-      setSubmitted(false);
-    }
-  }, [open, variant, selectedSample, formKey]);
+  // Reset fields while closed (incl. variant changes) without an effect.
+  const idleKey = !open
+    ? `${variant}|${formKey}|${selectedSample ?? ""}`
+    : null;
+  const [prevIdleKey, setPrevIdleKey] = useState(idleKey);
+  if (idleKey === null && prevIdleKey !== null) {
+    setPrevIdleKey(null);
+  } else if (idleKey !== null && idleKey !== prevIdleKey) {
+    setPrevIdleKey(idleKey);
+    setName("");
+    setPhone("");
+    setEmail("");
+    setMessage("");
+    setErrors({});
+    setSubmitting(false);
+    setSubmitted(false);
+  }
 
   function handleDialogClose() {
     onClose();
