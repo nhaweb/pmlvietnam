@@ -121,7 +121,6 @@ function htmlBody(lead: ContactLead) {
 }
 
 export async function sendContactLeadEmail(lead: ContactLead) {
-  // Dynamic import — keep Resend out of Worker cold-start / module-eval CPU budget.
   const { Resend } = await import("resend");
   const resend = new Resend(requiredEnv("RESEND_API_KEY"));
   const to = requiredEnv("CONTACT_TO_EMAIL");

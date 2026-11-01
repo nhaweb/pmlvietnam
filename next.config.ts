@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const nextConfig: NextConfig = {
   experimental: {
@@ -24,8 +23,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-// Only for local next dev with Cloudflare bindings — skip in Docker/Fly production.
-if (process.env.NODE_ENV !== "production") {
-  initOpenNextCloudflareForDev();
-}

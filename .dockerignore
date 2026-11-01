@@ -28,11 +28,6 @@ agent-transcripts
 # next.js
 /.next/
 /out/
-.open-next
-
-# cloudflare
-.wrangler
-.dev.vars
 
 # production
 /build
@@ -57,6 +52,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-.open-next/*
-.open-next*

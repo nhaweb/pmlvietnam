@@ -75,7 +75,7 @@ Contact form POST tới `/api/contact`, gửi mail qua Resend.
 
 App, region, port và biến public đã có trong `fly.toml` + `Dockerfile`. Không chạy `fly launch` lại (sẽ ghi đè config).
 
-`npm run deploy` là lệnh Cloudflare, **không** deploy Fly. Dùng `fly deploy`.
+Deploy bằng `fly deploy` (không dùng `npm run deploy`).
 
 ### 1. Cài `flyctl` và đăng nhập
 
@@ -149,26 +149,3 @@ Site production: [https://pmlvietnam.vn](https://pmlvietnam.vn) — mở homepag
 Khi deploy lỗi: xem `fly status` → `fly logs` trước khi sửa config. Không tắt health check và không regenerate `fly.toml`.
 
 Đổi `NEXT_PUBLIC_*` thì sửa `[build.args]` (và `[env]` cho đồng bộ) trong `fly.toml` rồi `fly deploy` lại — `fly secrets set` không đủ vì các biến đó được bake lúc build.
-
-## Cloudflare Workers (optional)
-
-Stack OpenNext/Wrangler vẫn còn trong repo, không phải production hiện tại.
-
-| Command | Purpose |
-|---|---|
-| `npm run build:worker` | Build Next.js + OpenNext Worker bundle |
-| `npm run preview` | Build and run in the Workers runtime locally |
-| `npm run deploy` | Build and deploy to Cloudflare |
-
-### Workers Builds (Git / CI)
-
-In the Cloudflare dashboard → Workers → your project → **Settings → Build**, set:
-
-| Setting | Value |
-|---|---|
-| **Build command** | `npm run build:worker` |
-| **Deploy command** | `npx wrangler deploy` |
-
-Do **not** use `npm run build` as the Cloudflare build command — that only runs `next build` and skips the OpenNext Worker output (`.open-next`), which causes:
-
-`Could not find compiled Open Next config, did you run the build command?`
