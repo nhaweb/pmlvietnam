@@ -788,6 +788,9 @@ const TEMPLATE_LIVE_DEMOS: Record<string, TemplateLiveDemo> = {
   "Homestay, căn hộ dịch vụ": { url: "https://bds-swart-two.vercel.app/" },
   "Khách sạn, resort": { url: "https://resort-sepia-one.vercel.app/" },
   "Gia sư, dạy kèm": { url: "https://tutoring-zeta-orcin.vercel.app/" },
+  "Thương hiệu cá nhân": {
+    url: "https://personal-brand-six-pi.vercel.app/",
+  },
 };
 
 /** Screenshot trang chi tiết khi khác thumbnail catalog. */
@@ -837,6 +840,11 @@ const TEMPLATE_DETAIL_IMAGES: Record<
   },
   "Gia sư, dạy kèm": {
     src: "/san-pham/giao-duc-dao-tao/gia-su-day-kem-chi-tiet.png",
+    width: 1440,
+    height: 7696,
+  },
+  "Thương hiệu cá nhân": {
+    src: "/san-pham/thuong-hieu-ca-nhan/personal-brand.webp",
     width: 1440,
     height: 7696,
   },
@@ -1159,6 +1167,7 @@ export const templateDetailContent = {
     "Tặng thiết kế Hero Banner (số lượng tùy theo gói)",
     "Hỗ trợ nhập bài viết/sản phẩm (số lượng tùy theo gói)",
     "Mã nguồn sử dụng: Next.js, Tailwind CSS, Headless CMS",
+    "Tùy chỉnh màu sắc, giao diện để đồng bộ với nhận diện thương hiệu"
   ],
 };
 
@@ -1773,6 +1782,18 @@ export const solutionPageContent = {
             "/Tat_ca_website/Du lịch khách sạn/homestay-can-ho-dich-vu.webp",
           ),
           alt: "Mẫu website Homestay, căn hộ dịch vụ",
+        },
+      },
+      {
+        id: "personal-branding",
+        title: "Thương hiệu cá nhân",
+        description: "Website giới thiệu thương hiệu cá nhân",
+        href: "/san-pham/dich-vu-chuyen-nghiep-thuong-hieu-ca-nhan",
+        image: {
+          src: encodeURI(
+            "/Tat_ca_website/Dịch vụ chuyên nghiệp/thuong-hieu-ca-nhan.webp",
+          ),
+          alt: "Mẫu website thương hiệu cá nhân",
         },
       },
     ] satisfies SolutionProjectItem[] as SolutionProjectItem[],
