@@ -23,7 +23,7 @@ export type SocialLink = {
 };
 
 export const siteContact = {
-  phoneDisplay: "0908 985 844",
+  phoneDisplay: "0789 780 167",
   phoneTel: "0908985844",
   zaloUrl: "https://zalo.me/0908985844",
   email: "pmluanvn@gmail.com",
@@ -1572,7 +1572,7 @@ export const contactFormContent = {
     name: { label: "Tên của bạn", placeholder: "Nguyễn Văn A", required: true },
     phone: {
       label: "Số điện thoại",
-      placeholder: "0908 985 844",
+      placeholder: "0789 780 167",
       required: true,
     },
     email: {
@@ -1631,7 +1631,7 @@ export const lienHePageContent = {
     },
     phone: {
       label: "Số điện thoại",
-      placeholder: "0908 985 844",
+      placeholder: "0789 780 167",
       required: true,
     },
     email: {

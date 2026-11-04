@@ -122,7 +122,7 @@ Gói tiêu chuẩn xử lý trong giờ làm việc. Sự cố nghiêm trọng (
 
 <u>**Đăng ký tư vấn**</u> gói chăm sóc phù hợp — website PML hoặc site sẵn có sau khảo sát.
 
-- Hotline / Zalo: <u>0908 985 844</u>
+- Hotline / Zalo: <u>0789 780 167</u>
 - Email: pmluanvn@gmail.com
 - Địa chỉ: 208 Trường Chinh, Phường Tân Bình, TP. Hồ Chí Minh
 - Giờ làm việc: Thứ 2 - Thứ 7: 8:00 - 18:00

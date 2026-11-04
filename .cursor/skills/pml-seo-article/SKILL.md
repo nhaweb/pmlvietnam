@@ -40,7 +40,7 @@ Một **website chuyên nghiệp** giúp khách hiểu bạn bán gì.
 
 PML Vietnam nổi bật nhờ *nền tảng công nghệ riêng*.
 
-<u>**Đăng ký tư vấn**</u> tại [pmlvietnam.vn/lien-he](https://pmlvietnam.vn/lien-he) hoặc Zalo <u>0908 985 844</u>.
+<u>**Đăng ký tư vấn**</u> tại [pmlvietnam.vn/lien-he](https://pmlvietnam.vn/lien-he) hoặc Zalo <u>0789 780 167</u>.
 ```
 
 Ít hơn vẫn hơn: tối đa ~6–8 cụm đậm, ~4 nghiêng, 1 cụm CTA gạch chân (+ SĐT/URL). Nhồi format = fail QC.

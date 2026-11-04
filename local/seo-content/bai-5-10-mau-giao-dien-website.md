@@ -240,7 +240,7 @@ Có. Sau bàn giao bạn nhận tài khoản quản trị để đăng bài, s�
 
 <u>**Đăng ký tư vấn**</u> để được gợi ý mẫu đúng ngành.
 
-- Hotline / Zalo: <u>0908 985 844</u>
+- Hotline / Zalo: <u>0789 780 167</u>
 - Email: pmluanvn@gmail.com
 - Địa chỉ: 208 Trường Chinh, Phường Tân Bình, TP. Hồ Chí Minh
 - Giờ làm việc: Thứ 2 - Thứ 7: 8:00 - 18:00
