@@ -24,8 +24,8 @@ export type SocialLink = {
 
 export const siteContact = {
   phoneDisplay: "0789 780 167",
-  phoneTel: "0908985844",
-  zaloUrl: "https://zalo.me/0908985844",
+  phoneTel: "0789780167",
+  zaloUrl: "https://zalo.me/0789780167",
   email: "pmluanvn@gmail.com",
   address: "208 Trường Chinh, Phường Tân Bình, TP.Hồ Chí Minh",
   mapsUrl:
