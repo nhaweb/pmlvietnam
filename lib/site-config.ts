@@ -119,6 +119,7 @@ export const industryGroups: IndustryGroup[] = [
     occupations: [
       "Công ty du lịch, lữ hành",
       "Khách sạn, resort",
+      "PML Hotel",
       "Homestay, căn hộ dịch vụ",
       "Địa điểm vui chơi, giải trí",
     ],
@@ -787,7 +788,9 @@ const TEMPLATE_LIVE_DEMOS: Record<string, TemplateLiveDemo> = {
   "Phòng khám nha khoa": { url: "https://dental-pml.vercel.app/" },
   "Homestay, căn hộ dịch vụ": { url: "https://bds-swart-two.vercel.app/" },
   "Khách sạn, resort": { url: "https://resort-sepia-one.vercel.app/" },
+  "PML Hotel": { url: "https://hotel-gamma-pied.vercel.app/" },
   "Gia sư, dạy kèm": { url: "https://tutoring-zeta-orcin.vercel.app/" },
+  "Trung tâm đào tạo kỹ năng": { url: "https://pmlacademy.vercel.app/" },
   "Thương hiệu cá nhân": {
     url: "https://personal-brand-six-pi.vercel.app/",
   },
@@ -838,10 +841,20 @@ const TEMPLATE_DETAIL_IMAGES: Record<
     width: 1440,
     height: 5830,
   },
+  "PML Hotel": {
+    src: "/san-pham/du-lich-khach-san/pml-hotel-chi-tiet.webp",
+    width: 1440,
+    height: 10176,
+  },
   "Gia sư, dạy kèm": {
     src: "/san-pham/giao-duc-dao-tao/gia-su-day-kem-chi-tiet.png",
     width: 1440,
     height: 7696,
+  },
+  "Trung tâm đào tạo kỹ năng": {
+    src: "/san-pham/giao-duc-dao-tao/trung-tam-dao-tao-ky-nang-chi-tiet.png",
+    width: 1425,
+    height: 10731,
   },
   "Thương hiệu cá nhân": {
     src: "/san-pham/thuong-hieu-ca-nhan/personal-brand.webp",
@@ -998,6 +1011,10 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
     "du-lich-lu-hanh.webp",
   ),
   "Khách sạn, resort": templatePreview(
+    "Du lịch khách sạn",
+    "hotel-resort.webp",
+  ),
+  "PML Hotel": templatePreview(
     "Du lịch khách sạn",
     "hotel-resort.webp",
   ),
