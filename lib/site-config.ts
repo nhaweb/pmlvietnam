@@ -1816,8 +1816,8 @@ export const solutionPageContent = {
       },
       {
         id: "khach-san",
-        title: "Khách sạn",
-        description: "Website giới thiệu khách sạn",
+        title: "Mẫu Website PML Hotel",
+        description: "Mẫu Website Khách sạn",
         href: "/san-pham/du-lich-khach-san-pml-hotel",
         image: {
           src: encodeURI(
