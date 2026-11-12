@@ -1801,6 +1801,7 @@ export const solutionPageContent = {
           alt: "Mẫu website Homestay, căn hộ dịch vụ",
         },
       },
+
       {
         id: "personal-branding",
         title: "Thương hiệu cá nhân",
@@ -1811,6 +1812,18 @@ export const solutionPageContent = {
             "/Tat_ca_website/Dịch vụ chuyên nghiệp/thuong-hieu-ca-nhan.webp",
           ),
           alt: "Mẫu website thương hiệu cá nhân",
+        },
+      },
+      {
+        id: "khach-san",
+        title: "Khách sạn",
+        description: "Website giới thiệu khách sạn",
+        href: "/san-pham/du-lich-khach-san-pml-hotel",
+        image: {
+          src: encodeURI(
+            "/Tat_ca_website/Du lịch khách sạn/hotel-resort.webp",
+          ),
+          alt: "Mẫu website khách sạn PML Hotel",
         },
       },
     ] satisfies SolutionProjectItem[] as SolutionProjectItem[],
