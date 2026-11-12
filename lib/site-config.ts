@@ -119,7 +119,7 @@ export const industryGroups: IndustryGroup[] = [
     occupations: [
       "Công ty du lịch, lữ hành",
       "Khách sạn, resort",
-      "PML Hotel",
+      "Khách sạn",
       "Homestay, căn hộ dịch vụ",
       "Địa điểm vui chơi, giải trí",
     ],
@@ -788,7 +788,7 @@ const TEMPLATE_LIVE_DEMOS: Record<string, TemplateLiveDemo> = {
   "Phòng khám nha khoa": { url: "https://dental-pml.vercel.app/" },
   "Homestay, căn hộ dịch vụ": { url: "https://bds-swart-two.vercel.app/" },
   "Khách sạn, resort": { url: "https://resort-sepia-one.vercel.app/" },
-  "PML Hotel": { url: "https://hotel-gamma-pied.vercel.app/" },
+  "Khách sạn": { url: "https://hotel-gamma-pied.vercel.app/" },
   "Gia sư, dạy kèm": { url: "https://tutoring-zeta-orcin.vercel.app/" },
   "Trung tâm đào tạo kỹ năng": { url: "https://pmlacademy.vercel.app/" },
   "Thương hiệu cá nhân": {
@@ -841,7 +841,7 @@ const TEMPLATE_DETAIL_IMAGES: Record<
     width: 1440,
     height: 5830,
   },
-  "PML Hotel": {
+  "Khách sạn": {
     src: "/san-pham/du-lich-khach-san/pml-hotel-chi-tiet.webp",
     width: 1440,
     height: 10176,
@@ -1014,9 +1014,9 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
     "Du lịch khách sạn",
     "hotel-resort.webp",
   ),
-  "PML Hotel": templatePreview(
+  "Khách sạn": templatePreview(
     "Du lịch khách sạn",
-    "hotel-resort.webp",
+    "khach-san.webp",
   ),
   "Homestay, căn hộ dịch vụ": templatePreview(
     "Du lịch khách sạn",
@@ -1816,14 +1816,14 @@ export const solutionPageContent = {
       },
       {
         id: "khach-san",
-        title: "Mẫu Website PML Hotel",
-        description: "Mẫu Website Khách sạn",
-        href: "/san-pham/du-lich-khach-san-pml-hotel",
+        title: "Khách sạn",
+        description: "Mẫu Website giới thiệu khách sạn",
+        href: "/san-pham/du-lich-khach-san-khach-san",
         image: {
           src: encodeURI(
-            "/Tat_ca_website/Du lịch khách sạn/hotel-resort.webp",
+            "/Tat_ca_website/Du lịch khách sạn/khach-san.webp",
           ),
-          alt: "Mẫu website khách sạn PML Hotel",
+          alt: "Mẫu website khách sạn",
         },
       },
     ] satisfies SolutionProjectItem[] as SolutionProjectItem[],
