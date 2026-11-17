@@ -3540,7 +3540,7 @@ export const agentWorkComparisonContent: CareWorkComparisonContent = {
     {
       id: "note-pay-as-you-go",
       title: "Chi phí linh hoạt theo mức sử dụng (Pay As You Go):",
-      body: "Thanh toán theo lượng tin nhắn thực tế sử dụng, phù hợp với doanh nghiệp muốn linh hoạt theo nhu cầu. Gói này thấp nhất từ 199.000 ngàn + nếu vượt 10.000 tin nhắn/tháng.",
+      body: "Thanh toán theo lượng tin nhắn thực tế sử dụng, phù hợp với doanh nghiệp muốn linh hoạt theo nhu cầu. Gói này thấp nhất từ 199.000 đ/tháng + nếu vượt 10.000 tin nhắn/tháng.",
     },
   ],
 };
