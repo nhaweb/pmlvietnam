@@ -171,6 +171,7 @@ export const serviceNavLinks: NavChild[] = [
   },
   { label: "Chăm sóc website", href: "/cham-soc-website" },
   { label: "SEO Content", href: "/seo-content" },
+  { label: "Trợ lý AI", href: "/tro-ly-ai" },
 ];
 
 /** Menu chính — logo + CTA giữ nguyên ở Header; cấu trúc theo mockup. */
@@ -187,6 +188,7 @@ export const navItems: NavItem[] = [
   {
     label: "Dịch vụ",
     href: "/#dich-vu",
+    columns: 2,
     children: serviceNavLinks,
   },
   {
@@ -1547,7 +1549,8 @@ export type ContactFormRegisterKey =
   | "register"
   | "thietKeWebsite"
   | "chamSocWebsite"
-  | "pmlContent";
+  | "pmlContent"
+  | "pmlAgent";
 
 export const contactFormContent = {
   image: {
@@ -1583,6 +1586,12 @@ export const contactFormContent = {
     defaultHeading: "Đăng ký ngay",
     subheading:
       "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói SEO Content phù hợp.",
+    submitLabel: "Đăng ký ngay",
+  },
+  pmlAgent: {
+    defaultHeading: "Đăng ký ngay",
+    subheading:
+      "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói PML Agent phù hợp.",
     submitLabel: "Đăng ký ngay",
   },
   fields: {
@@ -2284,7 +2293,7 @@ export type CareWorkValue =
 export type CareWorkItem = {
   id: string;
   label: string;
-  values: [CareWorkValue, CareWorkValue, CareWorkValue];
+  values: CareWorkValue[];
   /** Hàng nổi bật (vd. giá) */
   highlight?: boolean;
 };
@@ -2330,7 +2339,7 @@ export type CareWorkComparisonContent = {
   mobileTabsLabel: string;
   /** Ghi đè subheading Form 8 khi đăng ký từ bảng so sánh gói */
   registerSubheading?: string;
-  packages: [CareWorkPackage, CareWorkPackage, CareWorkPackage];
+  packages: CareWorkPackage[];
   groups: CareWorkGroup[];
   notes?: CareWorkNote[];
   /** Bỏ accordion nhóm, hiện thẳng các hàng so sánh */
@@ -2350,8 +2359,19 @@ const careQuotaRow = (
   careQuota(b),
   careQuota(c),
 ];
+const careQuotaRow2 = (
+  a: string,
+  b: string,
+): [CareWorkValue, CareWorkValue] => [
+  careQuota(a),
+  careQuota(b),
+];
 const careAllIncluded: [CareWorkValue, CareWorkValue, CareWorkValue] = [
   careIncluded,
+  careIncluded,
+  careIncluded,
+];
+const careAllIncluded2: [CareWorkValue, CareWorkValue] = [
   careIncluded,
   careIncluded,
 ];
@@ -3440,6 +3460,235 @@ export const contentServiceContent = {
         question: "Dịch vụ này có bao gồm hình ảnh minh họa không?",
         answer:
           "Dịch vụ tập trung vào nội dung văn bản chuẩn SEO. Hình ảnh minh họa (nếu cần) sẽ được trao đổi riêng theo yêu cầu.",
+      },
+    ] satisfies FaqItem[],
+  },
+};
+
+export const agentWorkComparisonContent: CareWorkComparisonContent = {
+  id: "chi-phi-pml-agent",
+  heading: "Chi phí dịch vụ về PML Agent – Chatbox AI",
+  tagline:
+    "So sánh hạn mức, nhu cầu sử dụng để chọn đúng theo từng gói PML Agent.",
+  toggleShow: "Xem chi tiết gói dịch vụ PML Agent",
+  toggleHide: "Ẩn chi tiết gói dịch vụ PML Agent",
+  ctaLabel: "Đăng ký ngay",
+  includedLabel: "Bao gồm",
+  excludedLabel: "Không bao gồm",
+  mobileTabsLabel: "Chọn gói PML Agent",
+  registerSubheading:
+    "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói PML Agent phù hợp.",
+  flat: true,
+  packages: [
+    {
+      id: "pro",
+      name: "PML Agent Pro",
+      shortName: "Pro",
+      tagline:
+        "Phù hợp với doanh nghiệp có nhu cầu sử dụng AI Chatbox thường xuyên.",
+      featured: true,
+      price: "270.000 đ/tháng",
+    },
+    {
+      id: "pay-as-you-go",
+      name: "PML Agent – Pay As You Go",
+      shortName: "Pay As You Go",
+      tagline:
+        "Phù hợp với doanh nghiệp muốn bắt đầu sử dụng AI Chatbox với ngân sách linh hoạt.",
+      price: "Từ 199.000 đ/tháng",
+    },
+  ],
+  groups: [
+    {
+      id: "tinh-nang-pml-agent",
+      title: "Tính năng chi tiết",
+      items: [
+        {
+          id: "ai-credits",
+          label: "AI credits / tháng",
+          values: careQuotaRow2("10.000 tin nhắn", "Theo thực tế (+ nếu vượt)"),
+        },
+        {
+          id: "gia-nam",
+          label: "Giá năm (tiết kiệm 20%)",
+          values: careQuotaRow2("2.592.000 đ/năm", "Theo nhu cầu thực tế"),
+        },
+        {
+          id: "db-kb",
+          label: "Database và Knowledge Base riêng",
+          values: careAllIncluded2,
+        },
+        {
+          id: "lich-su",
+          label: "Quản lý lịch sử hội thoại",
+          values: careAllIncluded2,
+        },
+        {
+          id: "dashboard",
+          label: "Dashboard theo dõi mức độ sử dụng",
+          values: careAllIncluded2,
+        },
+        {
+          id: "ngon-ngu",
+          label: "Đa ngôn ngữ",
+          values: careQuotaRow2("Tiếng Việt, Tiếng Anh", "Tiếng Việt, Tiếng Anh"),
+        },
+      ],
+    },
+  ],
+  notes: [
+    {
+      id: "note-pay-as-you-go",
+      title: "Chi phí linh hoạt theo mức sử dụng (Pay As You Go):",
+      body: "Thanh toán theo lượng tin nhắn thực tế sử dụng, phù hợp với doanh nghiệp muốn linh hoạt theo nhu cầu. Gói này thấp nhất từ 199.000 ngàn + nếu vượt 10.000 tin nhắn/tháng.",
+    },
+  ],
+};
+
+export const agentProcessStepsContent = {
+  heading: "Quy trình triển khai PML Agent tại PML Vietnam",
+  steps: [
+    {
+      id: "agent-step-1",
+      step: "Bước 1",
+      title: "Khảo sát và tiếp nhận dữ liệu",
+      description:
+        "Tiếp nhận thông tin sản phẩm, dịch vụ, tài liệu kinh doanh và mục tiêu tư vấn của doanh nghiệp.",
+      iconSrc: "/process/icons/step-1-consult.png",
+    },
+    {
+      id: "agent-step-2",
+      step: "Bước 2",
+      title: "Xây dựng cơ sở tri thức (Knowledge Base)",
+      description:
+        "Chuẩn hóa tài liệu, thiết lập Database và huấn luyện AI theo đúng ngữ cảnh ngành nghề.",
+      iconSrc: "/process/icons/step-2-plan.png",
+    },
+    {
+      id: "agent-step-3",
+      step: "Bước 3",
+      title: "Cấu hình kịch bản & Giao diện",
+      description:
+        "Thiết lập câu chào, ngữ điệu phản hồi và tùy biến màu sắc chatbox đồng bộ nhận diện thương hiệu.",
+      iconSrc: "/process/icons/step-3-build.png",
+    },
+    {
+      id: "agent-step-4",
+      step: "Bước 4",
+      title: "Kiểm thử & Tinh chỉnh câu trả lời",
+      description:
+        "Chạy thử nghiệm đa tình huống hỏi - đáp, tối ưu độ chính xác và tốc độ phản hồi.",
+      iconSrc: "/process/icons/step-4-test.png",
+    },
+    {
+      id: "agent-step-5",
+      step: "Bước 5",
+      title: "Tích hợp website & Vận hành",
+      description:
+        "Nhúng Chatbox AI vào website, bàn giao quyền quản trị và đồng hành hỗ trợ kỹ thuật 24/7.",
+      iconSrc: "/process/icons/step-5-handover.png",
+    },
+  ] satisfies ProcessStepItem[],
+};
+
+export const agentServiceContent = {
+  hero: {
+    eyebrow: "Chatbox AI - 24/7",
+    headline: "Trợ lý AI thông minh cho website doanh nghiệp",
+    bullets: [
+      "Tự động hóa hoạt động tư vấn và hỗ trợ khách hàng 24/7",
+      "Tự động cập nhật tri thức doanh nghiệp để trả lời đúng ngữ cảnh",
+      "Trả lời câu hỏi bằng ngôn ngữ tự nhiên",
+      "Quản lý và theo dõi hoạt động của Chatbox AI",
+      "Tối ưu chi phí, tăng hiệu suất",
+    ],
+    ctaLabel: "Đăng ký ngay",
+    ctaSubheading:
+      "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói PML Agent phù hợp.",
+    autoplayMs: 5000,
+    banners: [
+      {
+        src: "/pml-agent/pml-agent-banner.webp",
+        alt: "Trợ lý AI thông minh cho website doanh nghiệp — PML Agent",
+      },
+      {
+        src: "/pml-agent/pml-agent-chat-message.webp",
+        alt: "Giao diện hội thoại thông minh — PML Agent Chatbox",
+      },
+    ],
+  },
+  intro: {
+    id: "gioi-thieu-pml-agent",
+    heading: "Vì sao doanh nghiệp cần trợ lý AI?",
+    intro:
+      "Trong môi trường kinh doanh trực tuyến, khách hàng luôn mong muốn được tư vấn và giải đáp nhanh chóng. Tuy nhiên, doanh nghiệp không phải lúc nào cũng có nhân sự trực tuyến để phản hồi mọi yêu cầu.",
+    highlightTitle: "PML Agent giúp giải quyết những vấn đề đó:",
+    points: [
+      "Không bỏ lỡ khách hàng tiềm năng: Khách hàng có thể nhận được phản hồi ngay khi truy cập website, bất kể thời gian nào.",
+      "Giảm tải công việc cho nhân viên: Tự động xử lý các câu hỏi thường gặp, giúp nhân viên tập trung vào những công việc quan trọng hơn.",
+      "Nâng cao trải nghiệm khách hàng: Cung cấp thông tin nhanh chóng, nhất quán và thuận tiện.",
+      "Tối ưu chi phí vận hành: Giảm thời gian xử lý các yêu cầu tư vấn lặp lại.",
+    ],
+    note: "Nếu doanh nghiệp của bạn muốn tối ưu tốc độ phản hồi và chuyển đổi khách truy cập thành khách hàng tiềm năng, PML Agent chính là giải pháp lý tưởng.",
+    image: {
+      src: "/pml-agent/pml-agent-chat-message.webp",
+      alt: "Trợ lý AI thông minh PML Agent",
+    },
+  },
+  costPackages: agentWorkComparisonContent,
+  why: {
+    ...whyChooseContent,
+    heading: "Tại sao chọn giải pháp Chatbox AI của PML Vietnam?",
+    subheading:
+      "AI am hiểu sản phẩm - Dữ liệu bảo mật tuyệt đối - Tích hợp nhanh chóng trên mọi nền tảng website.",
+  },
+  details: {
+    id: "ban-nhan-duoc-pml-agent",
+    heading: "Bạn nhận được gì khi sử dụng dịch vụ PML Agent?",
+    items: [
+      "Chatbox AI tích hợp website: Giao diện chatbox thân thiện, hiện đại, phù hợp với thương hiệu của doanh nghiệp.",
+      "Hệ thống Knowledge Base riêng: Thiết lập cơ sở tri thức theo lĩnh vực kinh doanh, cập nhật, bổ sung dữ liệu khi có thay đổi.",
+      "Công nghệ AI kết hợp Database: Truy xuất thông tin phù hợp để trả lời câu hỏi.",
+      "Cấu hình và triển khai dịch vụ: Tùy chỉnh nội dung tư vấn và thông tin phản hồi.",
+      "Vận hành và hỗ trợ kỹ thuật: Hỗ trợ kỹ thuật trong quá trình sử dụng theo gói dịch vụ.",
+    ],
+  },
+  process: agentProcessStepsContent,
+  faq: {
+    heading: "Câu hỏi thường gặp về dịch vụ PML Agent",
+    image: faqContent.image,
+    items: [
+      {
+        id: "agent-faq-1",
+        question: "PML Agent là gì?",
+        answer:
+          "PML Agent là giải pháp Chatbox AI tích hợp trực tiếp vào website, sử dụng Database và Knowledge Base để tiếp nhận, phân tích và trả lời câu hỏi của khách hàng dựa trên thông tin, dữ liệu và tài liệu do doanh nghiệp cung cấp.",
+      },
+      {
+        id: "agent-faq-2",
+        question:
+          "Chatbox AI có thể trả lời theo dữ liệu riêng của doanh nghiệp không?",
+        answer:
+          "Có. Chatbox AI sử dụng dữ liệu và tài liệu do doanh nghiệp cung cấp để xây dựng Knowledge Base, giúp trợ lý AI trả lời các câu hỏi liên quan đến sản phẩm, dịch vụ, chính sách và hoạt động kinh doanh.",
+      },
+      {
+        id: "agent-faq-3",
+        question: "Chatbox AI có hoạt động ngoài giờ hành chính không?",
+        answer:
+          "Có. Trợ lý AI hoạt động 24/7, hỗ trợ tiếp nhận và giải đáp câu hỏi của khách hàng ngay cả khi doanh nghiệp không có nhân viên trực tuyến.",
+      },
+      {
+        id: "agent-faq-4",
+        question: "Doanh nghiệp có thể cập nhật thông tin cho Chatbox AI không?",
+        answer:
+          "Có. Khi doanh nghiệp có sản phẩm mới, thay đổi giá bán, chính sách hoặc nội dung dịch vụ, dữ liệu Knowledge Base có thể được cập nhật để trợ lý AI sử dụng thông tin mới nhất.",
+      },
+      {
+        id: "agent-faq-5",
+        question:
+          "Website không làm tại PML Vietnam có tích hợp Chatbox AI được không?",
+        answer:
+          "Có, sau khi khảo sát công nghệ và quyền truy cập. Một số hệ thống đặc thù sẽ được báo phạm vi rõ trước khi nhận.",
       },
     ] satisfies FaqItem[],
   },

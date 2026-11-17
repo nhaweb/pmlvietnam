@@ -171,7 +171,14 @@ export function CareWorkDetailsSection({
                 </div>
 
                 <div className="hidden lg:block">
-                  <div className="grid grid-cols-[minmax(16rem,1.35fr)_repeat(3,minmax(0,1fr))]">
+                  <div
+                    className={cx(
+                      "grid",
+                      packages.length === 2
+                        ? "grid-cols-[minmax(16rem,1.35fr)_repeat(2,minmax(0,1fr))]"
+                        : "grid-cols-[minmax(16rem,1.35fr)_repeat(3,minmax(0,1fr))]",
+                    )}
+                  >
                     <div />
                     {packages.map((pkg, index) => (
                       <div
@@ -419,7 +426,14 @@ function ComparisonRow({
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-[minmax(16rem,1.35fr)_repeat(3,minmax(0,1fr))]">
+        <div
+          className={cx(
+            "grid",
+            packageNames.length === 2
+              ? "grid-cols-[minmax(16rem,1.35fr)_repeat(2,minmax(0,1fr))]"
+              : "grid-cols-[minmax(16rem,1.35fr)_repeat(3,minmax(0,1fr))]",
+          )}
+        >
           <p
             className={cx(
               "px-4 py-3.5 text-sm font-semibold leading-relaxed text-foreground/85 sm:px-5",
@@ -497,7 +511,10 @@ function MobilePackageTabs({
   return (
     <div
       aria-label={tabsLabel}
-      className="grid grid-cols-3 gap-1 rounded-2xl border border-card-border bg-card p-1"
+      className={cx(
+        "grid gap-1 rounded-2xl border border-card-border bg-card p-1",
+        packages.length === 2 ? "grid-cols-2" : "grid-cols-3",
+      )}
     >
       {packages.map((pkg, index) => {
         const selected = index === activeIndex;
