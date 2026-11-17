@@ -219,7 +219,7 @@ export function Header({ newsPages }: { newsPages?: SearchSuggestion[] }) {
           />
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Menu chính">
+        <nav className="relative hidden items-center gap-0.5 lg:flex" aria-label="Menu chính">
           {navItems.map((item) => {
             const hasChildren = Boolean(item.children?.length);
             const isOpen = openKey === item.label;
@@ -237,10 +237,12 @@ export function Header({ newsPages }: { newsPages?: SearchSuggestion[] }) {
               );
             }
 
+            const alignNavLeft = item.label === "Dịch vụ";
+
             return (
               <div
                 key={item.label}
-                className="relative"
+                className={cx(!alignNavLeft && "relative")}
                 onMouseEnter={() => setOpenKey(item.label)}
                 onMouseLeave={() => setOpenKey(null)}
                 onFocusCapture={() => setOpenKey(item.label)}
@@ -270,7 +272,11 @@ export function Header({ newsPages }: { newsPages?: SearchSuggestion[] }) {
                   role="menu"
                   className={cx(
                     "absolute top-full z-50 pt-2 transition-opacity duration-150",
-                    isMega ? "left-1/2 w-[min(36rem,calc(100vw-2rem))] -translate-x-1/2" : "left-0 min-w-[240px]",
+                    alignNavLeft
+                      ? "left-0 w-max"
+                      : isMega
+                        ? "left-1/2 w-[min(36rem,calc(100vw-2rem))] -translate-x-1/2"
+                        : "left-0 min-w-[240px]",
                     isOpen
                       ? "pointer-events-auto opacity-100"
                       : "pointer-events-none opacity-0",
