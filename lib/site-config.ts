@@ -793,6 +793,7 @@ const TEMPLATE_LIVE_DEMOS: Record<string, TemplateLiveDemo> = {
   "Khách sạn": { url: "https://hotel-gamma-pied.vercel.app/" },
   "Gia sư, dạy kèm": { url: "https://tutoring-zeta-orcin.vercel.app/" },
   "Trung tâm đào tạo kỹ năng": { url: "https://pmlacademy.vercel.app/" },
+  "Trung tâm ngoại ngữ": { url: "https://language-center-nu.vercel.app/" },
   "Thương hiệu cá nhân": {
     url: "https://personal-brand-six-pi.vercel.app/",
   },
@@ -857,6 +858,11 @@ const TEMPLATE_DETAIL_IMAGES: Record<
     src: "/san-pham/giao-duc-dao-tao/trung-tam-dao-tao-ky-nang-chi-tiet.png",
     width: 1425,
     height: 10731,
+  },
+  "Trung tâm ngoại ngữ": {
+    src: "/san-pham/giao-duc-dao-tao/trung-tam-ngoai-ngu-chi-tiet.png",
+    width: 1440,
+    height: 14381,
   },
   "Thương hiệu cá nhân": {
     src: "/san-pham/thuong-hieu-ca-nhan/personal-brand.webp",
