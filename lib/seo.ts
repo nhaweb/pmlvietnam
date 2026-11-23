@@ -246,6 +246,7 @@ export const STATIC_SITEMAP_ROUTES: Array<{
     priority: 0.8,
   },
   { path: "/cham-soc-website", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/tro-ly-ai", changeFrequency: "monthly", priority: 0.8 },
   { path: "/seo-content", changeFrequency: "monthly", priority: 0.8 },
   { path: "/san-pham", changeFrequency: "weekly", priority: 0.8 },
   { path: "/tin-tuc", changeFrequency: "weekly", priority: 0.8 },

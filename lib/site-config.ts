@@ -119,7 +119,7 @@ export const industryGroups: IndustryGroup[] = [
     occupations: [
       "Công ty du lịch, lữ hành",
       "Khách sạn, resort",
-      "PML Hotel",
+      "Khách sạn",
       "Homestay, căn hộ dịch vụ",
       "Địa điểm vui chơi, giải trí",
     ],
@@ -152,10 +152,12 @@ export const industryGroups: IndustryGroup[] = [
 ];
 
 /** Mega menu "Mẫu giao diện" (trái 5 | phải 5) — trang sản phẩm theo nhóm ngành. */
-export const templateCategoryLinks: NavChild[] = industryGroups.map((group) => ({
-  label: group.label,
-  href: `/san-pham#${group.id}`,
-}));
+export const templateCategoryLinks: NavChild[] = industryGroups.map(
+  (group) => ({
+    label: group.label,
+    href: `/san-pham#${group.id}`,
+  }),
+);
 
 /** Footer cột Dịch vụ — cùng danh sách submenu Header. */
 export const serviceNavLinks: NavChild[] = [
@@ -171,6 +173,7 @@ export const serviceNavLinks: NavChild[] = [
   },
   { label: "Chăm sóc website", href: "/cham-soc-website" },
   { label: "SEO Content", href: "/seo-content" },
+  { label: "Trợ lý AI", href: "/tro-ly-ai" },
 ];
 
 /** Menu chính — logo + CTA giữ nguyên ở Header; cấu trúc theo mockup. */
@@ -187,6 +190,7 @@ export const navItems: NavItem[] = [
   {
     label: "Dịch vụ",
     href: "/#dich-vu",
+    columns: 2,
     children: serviceNavLinks,
   },
   {
@@ -345,11 +349,7 @@ export const aboutIntroContent = {
  * Layout 2 cột hình trái / text phải (ref interdata.vn/about-us “Tham vọng & mục tiêu”).
  * Ảnh: `public/about-us/gioi-thieu-chung-tam-nhin.webp` (680×516).
  */
-export type AboutVisionBlockIcon =
-  | "team"
-  | "vision"
-  | "values"
-  | "growth";
+export type AboutVisionBlockIcon = "team" | "vision" | "values" | "growth";
 
 export type AboutVisionBlock = {
   id: string;
@@ -518,8 +518,7 @@ export type SampleItem = {
 
 /** Ảnh mockup theo nhóm ngành — dùng chung section nổi bật + lưới tất cả mẫu. */
 const INDUSTRY_GROUP_IMAGES: Partial<Record<string, string>> = {
-  "dich-vu-thuong-mai":
-    "/san-pham/dich-vu-thuong-mai/dich_vu_thuong_mai.webp",
+  "dich-vu-thuong-mai": "/san-pham/dich-vu-thuong-mai/dich_vu_thuong_mai.webp",
   "ban-le-tmdt": encodeURI(
     "/Tat_ca_website/Bán lẻ_thương_mại_điện tử/cua-hang-thoi-trang.webp",
   ),
@@ -788,12 +787,9 @@ const TEMPLATE_LIVE_DEMOS: Record<string, TemplateLiveDemo> = {
   "Phòng khám nha khoa": { url: "https://dental-pml.vercel.app/" },
   "Homestay, căn hộ dịch vụ": { url: "https://bds-swart-two.vercel.app/" },
   "Khách sạn, resort": { url: "https://resort-sepia-one.vercel.app/" },
-  "PML Hotel": { url: "https://hotel-gamma-pied.vercel.app/" },
+  "Khách sạn": { url: "https://hotel-gamma-pied.vercel.app/" },
   "Gia sư, dạy kèm": { url: "https://tutoring-zeta-orcin.vercel.app/" },
   "Trung tâm đào tạo kỹ năng": { url: "https://pmlacademy.vercel.app/" },
-  "Cho thuê văn phòng, nhà ở": { url: "https://rent-apartment-xi.vercel.app/" },
-  "Thực phẩm & Đồ uống": { url: "https://luvini.vn/" },
-  "Cửa hàng hoa, cây cảnh": { url: "https://flower-store-nu.vercel.app/" },
   "Thương hiệu cá nhân": {
     url: "https://personal-brand-six-pi.vercel.app/",
   },
@@ -849,7 +845,7 @@ const TEMPLATE_DETAIL_IMAGES: Record<
     width: 1440,
     height: 5830,
   },
-  "PML Hotel": {
+  "Khách sạn": {
     src: "/san-pham/du-lich-khach-san/pml-hotel-chi-tiet.webp",
     width: 1440,
     height: 10176,
@@ -863,11 +859,6 @@ const TEMPLATE_DETAIL_IMAGES: Record<
     src: "/san-pham/giao-duc-dao-tao/trung-tam-dao-tao-ky-nang-chi-tiet.png",
     width: 1425,
     height: 10731,
-  },
-  "Cho thuê văn phòng, nhà ở": {
-    src: "/san-pham/xay-dung-bds/cho-thue-van-phong-nha-o-chi-tiet.png",
-    width: 1634,
-    height: 3504,
   },
   "Thương hiệu cá nhân": {
     src: "/san-pham/thuong-hieu-ca-nhan/personal-brand.webp",
@@ -998,10 +989,7 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
     "Giáo dục đào tạo",
     "trung-tam-dao-tao-ky-nang.webp",
   ),
-  "Gia sư, dạy kèm": templatePreview(
-    "Giáo dục đào tạo",
-    "gia-su-day-kem.webp",
-  ),
+  "Gia sư, dạy kèm": templatePreview("Giáo dục đào tạo", "gia-su-day-kem.webp"),
   "Phòng khám đa khoa": templatePreview(
     "Y tế sức khỏe",
     "phong-kham-da-khoa.webp",
@@ -1027,10 +1015,7 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
     "Du lịch khách sạn",
     "hotel-resort.webp",
   ),
-  "PML Hotel": templatePreview(
-    "Du lịch khách sạn",
-    "hotel-resort.webp",
-  ),
+  "Khách sạn": templatePreview("Du lịch khách sạn", "khach-san.webp"),
   "Homestay, căn hộ dịch vụ": templatePreview(
     "Du lịch khách sạn",
     "homestay-can-ho-dich-vu.webp",
@@ -1054,10 +1039,7 @@ const TEMPLATE_PREVIEW_IMAGES: Record<
     "cty-phan-mem.webp",
   ),
   "Dịch vụ IT": templatePreview("Công nghệ Dịch vụ số", "dich-vu-it.webp"),
-  "Marketing số": templatePreview(
-    "Công nghệ Dịch vụ số",
-    "marketing-so.webp",
-  ),
+  "Marketing số": templatePreview("Công nghệ Dịch vụ số", "marketing-so.webp"),
   "AI và tự động hóa": templatePreview(
     "Công nghệ Dịch vụ số",
     "ai-tu-dong-hoa.webp",
@@ -1135,11 +1117,7 @@ export const productsPageContent = {
   items: buildProductSamples(industryGroups),
 };
 
-export type TemplateFeatureIcon =
-  | "devices"
-  | "seo"
-  | "admin"
-  | "speed";
+export type TemplateFeatureIcon = "devices" | "seo" | "admin" | "speed";
 
 /**
  * Trang chi tiết mẫu `/san-pham/[slug]` (ref web4s.vn/thoitrang09).
@@ -1197,7 +1175,7 @@ export const templateDetailContent = {
     "Tặng thiết kế Hero Banner (số lượng tùy theo gói)",
     "Hỗ trợ nhập bài viết/sản phẩm (số lượng tùy theo gói)",
     "Mã nguồn sử dụng: Next.js, Tailwind CSS, Headless CMS",
-    "Tùy chỉnh màu sắc, giao diện để đồng bộ với nhận diện thương hiệu"
+    "Tùy chỉnh màu sắc, giao diện để đồng bộ với nhận diện thương hiệu",
   ],
 };
 
@@ -1390,13 +1368,7 @@ export type WhyChooseItem = {
    * Icon key khi không có highlight.
    * Map tới SVG nội bộ trong `WhyChooseSection`.
    */
-  icon?:
-    | "code"
-    | "templates"
-    | "tech"
-    | "admin"
-    | "scale"
-    | "support";
+  icon?: "code" | "templates" | "tech" | "admin" | "scale" | "support";
 };
 
 export const whyChooseContent = {
@@ -1489,12 +1461,7 @@ export const testimonialsContent = {
  * Ref layout interdata.vn: heading + domain underline + pill buttons gradient.
  */
 export type PremiumServiceIcon =
-  | "website"
-  | "landing"
-  | "branding"
-  | "fullpackage"
-  | "care"
-  | "content";
+  "website" | "landing" | "branding" | "fullpackage" | "care" | "content";
 
 export type PremiumServiceItem = {
   id: string;
@@ -1557,10 +1524,7 @@ export type ContactFormVariant = "consult" | "register";
 
 /** Bản copy form đăng ký — `register` mặc định, `thietKeWebsite` cho trang thiết kế website, `chamSocWebsite` cho trang chăm sóc website, `pmlContent` cho trang SEO Content. */
 export type ContactFormRegisterKey =
-  | "register"
-  | "thietKeWebsite"
-  | "chamSocWebsite"
-  | "pmlContent";
+  "register" | "thietKeWebsite" | "chamSocWebsite" | "pmlContent" | "pmlAgent";
 
 export const contactFormContent = {
   image: {
@@ -1598,6 +1562,12 @@ export const contactFormContent = {
       "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói SEO Content phù hợp.",
     submitLabel: "Đăng ký ngay",
   },
+  pmlAgent: {
+    defaultHeading: "Đăng ký ngay",
+    subheading:
+      "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói PML Agent phù hợp.",
+    submitLabel: "Đăng ký ngay",
+  },
   fields: {
     name: { label: "Tên của bạn", placeholder: "Nguyễn Văn A", required: true },
     phone: {
@@ -1622,8 +1592,7 @@ export const contactFormContent = {
   /** Section 8 CTA banner — mở modal register */
   section: {
     id: "lien-he",
-    headline:
-      "Khởi tạo Web đơn giản - Dễ vận hành - Dễ tăng trưởng doanh thu",
+    headline: "Khởi tạo Web đơn giản - Dễ vận hành - Dễ tăng trưởng doanh thu",
     subheadline: "Thiết kế Website chuyên nghiệp tại PML Vietnam ngay",
     ctaLabel: "Đăng ký ngay",
     bannerColor: "#1E293B",
@@ -1757,8 +1726,7 @@ export const solutionPageContent = {
     id: "du-an-tieu-bieu",
     eyebrow: "Dự án tiêu biểu",
     heading: "Một số website chúng tôi đã thực hiện",
-    tagline:
-      "Giao diện hiện đại, chuẩn SEO, dễ vận hành theo từng ngành nghề.",
+    tagline: "Giao diện hiện đại, chuẩn SEO, dễ vận hành theo từng ngành nghề.",
     catalogLabel: "Xem tất cả mẫu website",
     catalogHref: "/san-pham",
     items: [
@@ -1814,6 +1782,7 @@ export const solutionPageContent = {
           alt: "Mẫu website Homestay, căn hộ dịch vụ",
         },
       },
+
       {
         id: "personal-branding",
         title: "Thương hiệu cá nhân",
@@ -1824,6 +1793,16 @@ export const solutionPageContent = {
             "/Tat_ca_website/Dịch vụ chuyên nghiệp/thuong-hieu-ca-nhan.webp",
           ),
           alt: "Mẫu website thương hiệu cá nhân",
+        },
+      },
+      {
+        id: "khach-san",
+        title: "Khách sạn",
+        description: "Mẫu Website giới thiệu khách sạn",
+        href: "/san-pham/du-lich-khach-san-khach-san",
+        image: {
+          src: encodeURI("/Tat_ca_website/Du lịch khách sạn/khach-san.webp"),
+          alt: "Mẫu website khách sạn",
         },
       },
     ] satisfies SolutionProjectItem[] as SolutionProjectItem[],
@@ -2284,7 +2263,7 @@ export type CareWorkValue =
 export type CareWorkItem = {
   id: string;
   label: string;
-  values: [CareWorkValue, CareWorkValue, CareWorkValue];
+  values: CareWorkValue[];
   /** Hàng nổi bật (vd. giá) */
   highlight?: boolean;
 };
@@ -2330,7 +2309,7 @@ export type CareWorkComparisonContent = {
   mobileTabsLabel: string;
   /** Ghi đè subheading Form 8 khi đăng ký từ bảng so sánh gói */
   registerSubheading?: string;
-  packages: [CareWorkPackage, CareWorkPackage, CareWorkPackage];
+  packages: CareWorkPackage[];
   groups: CareWorkGroup[];
   notes?: CareWorkNote[];
   /** Bỏ accordion nhóm, hiện thẳng các hàng so sánh */
@@ -2350,8 +2329,16 @@ const careQuotaRow = (
   careQuota(b),
   careQuota(c),
 ];
+const careQuotaRow2 = (
+  a: string,
+  b: string,
+): [CareWorkValue, CareWorkValue] => [careQuota(a), careQuota(b)];
 const careAllIncluded: [CareWorkValue, CareWorkValue, CareWorkValue] = [
   careIncluded,
+  careIncluded,
+  careIncluded,
+];
+const careAllIncluded2: [CareWorkValue, CareWorkValue] = [
   careIncluded,
   careIncluded,
 ];
@@ -2368,8 +2355,7 @@ const careFlagRow = (
 export const careWorkComparisonContent = {
   id: "chi-tiet-cong-viec-cham-soc",
   heading: "Chi tiết chăm sóc website",
-  tagline:
-    "Hãy lựa chọn gói chăm sóc website phù hợp với nhu cầu của bạn.",
+  tagline: "Hãy lựa chọn gói chăm sóc website phù hợp với nhu cầu của bạn.",
   toggleShow: "Xem chi tiết công việc chăm sóc website",
   toggleHide: "Ẩn chi tiết công việc chăm sóc website",
   ctaLabel: "Đăng ký ngay",
@@ -2561,7 +2547,8 @@ export const careWorkComparisonContent = {
         },
         {
           id: "redirect-404",
-          label: "Chuyển hướng truy cập các link lỗi 404 - không tìm thấy trang",
+          label:
+            "Chuyển hướng truy cập các link lỗi 404 - không tìm thấy trang",
           values: [careIncluded, careIncluded, careIncluded],
         },
       ],
@@ -3062,11 +3049,7 @@ export const brandingWorkComparisonContent = {
         {
           id: "chinh-sua",
           label: "Số lần chỉnh sửa",
-          values: careQuotaRow(
-            "5 lần",
-            "Đến khi hài lòng",
-            "Đến khi hài lòng",
-          ),
+          values: careQuotaRow("5 lần", "Đến khi hài lòng", "Đến khi hài lòng"),
         },
         {
           id: "ho-tro-ky-thuat",
@@ -3183,7 +3166,8 @@ export const careServiceContent = {
     items: [
       {
         id: "care-faq-1",
-        question: "Website không làm tại PML Vietnam có thuê chăm sóc được không?",
+        question:
+          "Website không làm tại PML Vietnam có thuê chăm sóc được không?",
         answer:
           "Có, sau khi khảo sát công nghệ và quyền truy cập. Một số hệ thống đặc thù sẽ được báo phạm vi rõ trước khi nhận.",
       },
@@ -3445,6 +3429,239 @@ export const contentServiceContent = {
   },
 };
 
+export const agentWorkComparisonContent: CareWorkComparisonContent = {
+  id: "chi-phi-pml-agent",
+  heading: "Chi phí dịch vụ về PML Agent – Chatbox AI",
+  tagline:
+    "So sánh hạn mức, nhu cầu sử dụng để chọn đúng theo từng gói PML Agent.",
+  toggleShow: "Xem chi tiết gói dịch vụ PML Agent",
+  toggleHide: "Ẩn chi tiết gói dịch vụ PML Agent",
+  ctaLabel: "Đăng ký ngay",
+  includedLabel: "Bao gồm",
+  excludedLabel: "Không bao gồm",
+  mobileTabsLabel: "Chọn gói PML Agent",
+  registerSubheading:
+    "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói PML Agent phù hợp.",
+  flat: true,
+  packages: [
+    {
+      id: "pro",
+      name: "PML Agent Pro",
+      shortName: "Pro",
+      tagline:
+        "Phù hợp với doanh nghiệp có nhu cầu sử dụng AI Chatbox thường xuyên.",
+      featured: true,
+      price: "270.000 đ/tháng",
+    },
+    {
+      id: "pay-as-you-go",
+      name: "PML Agent – Pay As You Go",
+      shortName: "Pay As You Go",
+      tagline:
+        "Phù hợp với doanh nghiệp muốn bắt đầu sử dụng AI Chatbox với ngân sách linh hoạt.",
+      price: "Từ 199.000 đ/tháng",
+    },
+  ],
+  groups: [
+    {
+      id: "tinh-nang-pml-agent",
+      title: "Tính năng chi tiết",
+      items: [
+        {
+          id: "ai-credits",
+          label: "AI credits / tháng",
+          values: careQuotaRow2("10.000 tin nhắn", "Theo thực tế (+ nếu vượt)"),
+        },
+        {
+          id: "gia-nam",
+          label: "Giá năm (tiết kiệm 20%)",
+          values: careQuotaRow2("2.592.000 đ/năm", "Theo nhu cầu thực tế"),
+        },
+        {
+          id: "db-kb",
+          label: "Database và Knowledge Base riêng",
+          values: careAllIncluded2,
+        },
+        {
+          id: "lich-su",
+          label: "Quản lý lịch sử hội thoại",
+          values: careAllIncluded2,
+        },
+        {
+          id: "dashboard",
+          label: "Dashboard theo dõi mức độ sử dụng",
+          values: careAllIncluded2,
+        },
+        {
+          id: "ngon-ngu",
+          label: "Đa ngôn ngữ",
+          values: careQuotaRow2(
+            "Tiếng Việt, Tiếng Anh",
+            "Tiếng Việt, Tiếng Anh",
+          ),
+        },
+      ],
+    },
+  ],
+  notes: [
+    {
+      id: "note-pay-as-you-go",
+      title: "Chi phí linh hoạt theo mức sử dụng (Pay As You Go):",
+      body: "Thanh toán theo lượng tin nhắn thực tế sử dụng, phù hợp với doanh nghiệp muốn linh hoạt theo nhu cầu. Gói này thấp nhất từ 199.000 đ/tháng + nếu vượt 10.000 tin nhắn/tháng.",
+    },
+  ],
+};
+
+export const agentProcessStepsContent = {
+  heading: "Quy trình triển khai PML Agent tại PML Vietnam",
+  steps: [
+    {
+      id: "agent-step-1",
+      step: "Bước 1",
+      title: "Khảo sát và tiếp nhận dữ liệu",
+      description:
+        "Tiếp nhận thông tin sản phẩm, dịch vụ, tài liệu kinh doanh và mục tiêu tư vấn của doanh nghiệp.",
+      iconSrc: "/process/icons/step-1-consult.png",
+    },
+    {
+      id: "agent-step-2",
+      step: "Bước 2",
+      title: "Xây dựng cơ sở tri thức (Knowledge Base)",
+      description:
+        "Chuẩn hóa tài liệu, thiết lập Database và huấn luyện AI theo đúng ngữ cảnh ngành nghề.",
+      iconSrc: "/process/icons/step-2-plan.png",
+    },
+    {
+      id: "agent-step-3",
+      step: "Bước 3",
+      title: "Cấu hình kịch bản & Giao diện",
+      description:
+        "Thiết lập câu chào, ngữ điệu phản hồi và tùy biến màu sắc chatbox đồng bộ nhận diện thương hiệu.",
+      iconSrc: "/process/icons/step-3-build.png",
+    },
+    {
+      id: "agent-step-4",
+      step: "Bước 4",
+      title: "Kiểm thử & Tinh chỉnh câu trả lời",
+      description:
+        "Chạy thử nghiệm đa tình huống hỏi - đáp, tối ưu độ chính xác và tốc độ phản hồi.",
+      iconSrc: "/process/icons/step-4-test.png",
+    },
+    {
+      id: "agent-step-5",
+      step: "Bước 5",
+      title: "Tích hợp website & Vận hành",
+      description:
+        "Nhúng Chatbox AI vào website, bàn giao quyền quản trị và đồng hành hỗ trợ kỹ thuật 24/7.",
+      iconSrc: "/process/icons/step-5-handover.png",
+    },
+  ] satisfies ProcessStepItem[],
+};
+
+export const agentServiceContent = {
+  hero: {
+    eyebrow: "Chatbox AI - 24/7",
+    headline: "Trợ lý AI thông minh cho website doanh nghiệp",
+    bullets: [
+      "Tự động hóa hoạt động tư vấn và hỗ trợ khách hàng 24/7",
+      "Tự động cập nhật tri thức doanh nghiệp để trả lời đúng ngữ cảnh",
+      "Trả lời câu hỏi bằng ngôn ngữ tự nhiên",
+      "Quản lý và theo dõi hoạt động của Chatbox AI",
+      "Tối ưu chi phí, tăng hiệu suất",
+    ],
+    ctaLabel: "Đăng ký ngay",
+    ctaSubheading:
+      "Để lại thông tin — PML Vietnam sẽ liên hệ tư vấn và triển khai gói PML Agent phù hợp.",
+    autoplayMs: 5000,
+    banners: [
+      {
+        src: "/pml-agent/pml-agent-banner.webp",
+        alt: "Trợ lý AI thông minh cho website doanh nghiệp — PML Agent",
+      },
+      {
+        src: "/pml-agent/pml-agent-chat-message.webp",
+        alt: "Giao diện hội thoại thông minh — PML Agent Chatbox",
+      },
+    ],
+  },
+  intro: {
+    id: "gioi-thieu-pml-agent",
+    heading: "Vì sao doanh nghiệp cần trợ lý AI?",
+    intro:
+      "Trong môi trường kinh doanh trực tuyến, khách hàng luôn mong muốn được tư vấn và giải đáp nhanh chóng. Tuy nhiên, doanh nghiệp không phải lúc nào cũng có nhân sự trực tuyến để phản hồi mọi yêu cầu.",
+    highlightTitle: "PML Agent giúp giải quyết những vấn đề đó:",
+    points: [
+      "Không bỏ lỡ khách hàng tiềm năng: Khách hàng có thể nhận được phản hồi ngay khi truy cập website, bất kể thời gian nào.",
+      "Giảm tải công việc cho nhân viên: Tự động xử lý các câu hỏi thường gặp, giúp nhân viên tập trung vào những công việc quan trọng hơn.",
+      "Nâng cao trải nghiệm khách hàng: Cung cấp thông tin nhanh chóng, nhất quán và thuận tiện.",
+      "Tối ưu chi phí vận hành: Giảm thời gian xử lý các yêu cầu tư vấn lặp lại.",
+    ],
+    note: "Nếu doanh nghiệp của bạn muốn tối ưu tốc độ phản hồi và chuyển đổi khách truy cập thành khách hàng tiềm năng, PML Agent chính là giải pháp lý tưởng.",
+    image: {
+      src: "/pml-agent/pml-agent-chat-message.webp",
+      alt: "Trợ lý AI thông minh PML Agent",
+    },
+  },
+  costPackages: agentWorkComparisonContent,
+  why: {
+    ...whyChooseContent,
+    heading: "Tại sao chọn giải pháp Chatbox AI của PML Vietnam?",
+    subheading:
+      "AI am hiểu sản phẩm - Dữ liệu bảo mật tuyệt đối - Tích hợp nhanh chóng trên mọi nền tảng website.",
+  },
+  details: {
+    id: "ban-nhan-duoc-pml-agent",
+    heading: "Bạn nhận được gì khi sử dụng dịch vụ PML Agent?",
+    items: [
+      "Chatbox AI tích hợp website: Giao diện chatbox thân thiện, hiện đại, phù hợp với thương hiệu của doanh nghiệp.",
+      "Hệ thống Knowledge Base riêng: Thiết lập cơ sở tri thức theo lĩnh vực kinh doanh, cập nhật, bổ sung dữ liệu khi có thay đổi.",
+      "Công nghệ AI kết hợp Database: Truy xuất thông tin phù hợp để trả lời câu hỏi.",
+      "Cấu hình và triển khai dịch vụ: Tùy chỉnh nội dung tư vấn và thông tin phản hồi.",
+      "Vận hành và hỗ trợ kỹ thuật: Hỗ trợ kỹ thuật trong quá trình sử dụng theo gói dịch vụ.",
+    ],
+  },
+  process: agentProcessStepsContent,
+  faq: {
+    heading: "Câu hỏi thường gặp về dịch vụ PML Agent",
+    image: faqContent.image,
+    items: [
+      {
+        id: "agent-faq-1",
+        question: "PML Agent là gì?",
+        answer:
+          "PML Agent là giải pháp Chatbox AI tích hợp trực tiếp vào website, sử dụng Database và Knowledge Base để tiếp nhận, phân tích và trả lời câu hỏi của khách hàng dựa trên thông tin, dữ liệu và tài liệu do doanh nghiệp cung cấp.",
+      },
+      {
+        id: "agent-faq-2",
+        question:
+          "Chatbox AI có thể trả lời theo dữ liệu riêng của doanh nghiệp không?",
+        answer:
+          "Có. Chatbox AI sử dụng dữ liệu và tài liệu do doanh nghiệp cung cấp để xây dựng Knowledge Base, giúp trợ lý AI trả lời các câu hỏi liên quan đến sản phẩm, dịch vụ, chính sách và hoạt động kinh doanh.",
+      },
+      {
+        id: "agent-faq-3",
+        question: "Chatbox AI có hoạt động ngoài giờ hành chính không?",
+        answer:
+          "Có. Trợ lý AI hoạt động 24/7, hỗ trợ tiếp nhận và giải đáp câu hỏi của khách hàng ngay cả khi doanh nghiệp không có nhân viên trực tuyến.",
+      },
+      {
+        id: "agent-faq-4",
+        question:
+          "Doanh nghiệp có thể cập nhật thông tin cho Chatbox AI không?",
+        answer:
+          "Có. Khi doanh nghiệp có sản phẩm mới, thay đổi giá bán, chính sách hoặc nội dung dịch vụ, dữ liệu Knowledge Base có thể được cập nhật để trợ lý AI sử dụng thông tin mới nhất.",
+      },
+      {
+        id: "agent-faq-5",
+        question:
+          "Website không làm tại PML Vietnam có tích hợp Chatbox AI được không?",
+        answer:
+          "Có, sau khi khảo sát công nghệ và quyền truy cập. Một số hệ thống đặc thù sẽ được báo phạm vi rõ trước khi nhận.",
+      },
+    ] satisfies FaqItem[],
+  },
+};
+
 /**
  * Trang pháp lý `/chinh-sach-bao-mat` và `/dieu-khoan-su-dung`.
  * Nội dung từ `public/chinh-sach-bao-mat/` và `public/dieu-khoan-su-dung/`.
@@ -3672,4 +3889,3 @@ export const termsOfUsePageContent: LegalPageContent = {
     },
   ],
 };
-
