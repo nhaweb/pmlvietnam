@@ -792,6 +792,7 @@ const TEMPLATE_LIVE_DEMOS: Record<string, TemplateLiveDemo> = {
   "Trung tâm đào tạo kỹ năng": { url: "https://pmlacademy.vercel.app/" },
   "Cho thuê văn phòng, nhà ở": { url: "https://rent-apartment-xi.vercel.app/" },
   "Thực phẩm & Đồ uống": { url: "https://luvini.vn/" },
+  "Quán cà phê, trà sữa": { url: "https://cafe-shop-lyart.vercel.app/" },
   "Cửa hàng hoa, cây cảnh": { url: "https://flower-store-nu.vercel.app/" },
   "Thương hiệu cá nhân": {
     url: "https://personal-brand-six-pi.vercel.app/",
@@ -812,6 +813,11 @@ const TEMPLATE_DETAIL_IMAGES: Record<
     src: "/san-pham/ban-le-&-tmdt/restaurant.webp",
     width: 1559,
     height: 7652,
+  },
+  "Quán cà phê, trà sữa": {
+    src: "/san-pham/dich-vu-thuong-mai/quan-ca-phe-tra-sua-chi-tiet.webp",
+    width: 1644,
+    height: 6011,
   },
   "Spa, thẩm mỹ viện": {
     src: "/san-pham/ban-le-&-tmdt/spa.webp",
@@ -3459,7 +3465,7 @@ export const agentWorkComparisonContent: CareWorkComparisonContent = {
       tagline:
         "Phù hợp với doanh nghiệp có nhu cầu sử dụng AI Chatbox thường xuyên.",
       featured: true,
-      price: "270.000 đ/tháng",
+      price: "299.000 đ/tháng",
     },
     {
       id: "pay-as-you-go",
@@ -3483,7 +3489,7 @@ export const agentWorkComparisonContent: CareWorkComparisonContent = {
         {
           id: "gia-nam",
           label: "Giá năm (tiết kiệm 20%)",
-          values: careQuotaRow2("2.592.000 đ/năm", "Theo nhu cầu thực tế"),
+          values: careQuotaRow2("2.870.000 đ/năm", "Theo nhu cầu thực tế"),
         },
         {
           id: "db-kb",
